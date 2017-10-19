@@ -4,8 +4,9 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{{ URL::asset('/css/app.css') }}" rel="stylesheet">
 
-        <title>Laravel</title>
+        <title>Rapport Generator</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -49,16 +50,6 @@
                 font-size: 84px;
             }
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -79,16 +70,20 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Rapport Generator
+                </div>
+                <div class="generator--selector clearfix">
+                    <div class="selectlist selectlist--left">
+                        {{ Form::select('sector', $sectors) }}
+                        @foreach($sectorsr as $sector)
+                            {{ Form::radio('sector', $sector) }}  
+                        @endforeach
+                    </div>
+                    <div class="selectlist selectlist--right">
+                        {{ Form::select('functie', $functies)}}
+                    </div>
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
             </div>
         </div>
     </body>

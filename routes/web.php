@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
 
 Route::resource('sector', 'SectorsController');
 Route::resource('functie', 'FunctiesController');
+Route::resource('element', 'ElementsController');

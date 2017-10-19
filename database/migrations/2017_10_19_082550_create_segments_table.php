@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFunctiesTable extends Migration
+class CreateSegmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateFunctiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('functies', function (Blueprint $table) {
+        Schema::create('segments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->text('description');
-            $table->text('introduction');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ class CreateFunctiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('functies');
+        Schema::dropIfExists('segments');
     }
 }
