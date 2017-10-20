@@ -1,21 +1,28 @@
+.generator--selector--wrap {
+	width: 100%;
+    // padding: 2rem 0;
+    background: rgba(143, 177, 255, 0.1);
+}
+
 .generator--selector {
-    border: 1px solid black;
-    width: 100%;
+    width: 60%;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+    background: rgba(128, 128, 128, 0.09);
 }
 
 .selectlist {
     display:inline-block;
-    width: 45%;
+    width: 50%;
+    text-align: center;
 }
 
 .selectlist--left {
     float: left;
-    text-align: left;
 }
 
 .selectlist--right {
     float: right;
-    text-align: left;
 }
 
 input[type="radio"]{
@@ -27,6 +34,40 @@ input[type="radio"] + label  {
 }
 
 input[type="radio"]:checked + label {
-	background: #0DFF92;
+	background: #99fdd0;
 }
 
+label {
+    width: 24rem;
+    padding: 0.8rem 0;
+    text-align: center;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 1rem;
+    margin: 0;
+
+    font-size: 12px;
+}
+
+.generator--shortresults {
+	max-width: 80%;
+	margin: 0 auto;
+	text-align: left;
+	ul {
+		// list-style: none;
+	}
+}
+
+.generator--results {
+	max-width: 80%;
+	margin: 0 auto;
+	text-align: left;
+
+	.intro {
+		font-style: italic;
+	}
+
+	.body {
+
+	}
+}

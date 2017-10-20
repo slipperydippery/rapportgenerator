@@ -27,7 +27,7 @@
             }
 
             .flex-center {
-                align-items: center;
+                /*align-items: center;*/
                 display: flex;
                 justify-content: center;
             }
@@ -51,7 +51,7 @@
             }
 
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 8px;
             }
         </style>
     </head>
@@ -72,18 +72,63 @@
                 <div class="title m-b-md">
                     Rapport Generator
                 </div>
-                <div class="generator--selector clearfix">
-                    <div class="selectlist selectlist--left">
-                        @foreach($sectors as $sector)
-                            {{ Form::radio('sector', $sector->id, false, ['id' => $sector->id]) }}  
-                            {{ Form::label($sector->id, $sector->title) }} <br>
-                        @endforeach
+                <div class="generator--selector--wrap">
+                    <div class="generator--selector clearfix">
+                        <div class="selectlist selectlist--left">
+                            <h3>Sector</h3>
+                            @foreach($sectors as $sector)
+                                {{ Form::radio('sector', $sector->id, false, ['id' => $sector->id]) }}  
+                                {{ Form::label($sector->id, $sector->title) }} <br>
+                            @endforeach
+                        </div>
+                        <div class="selectlist selectlist--right">
+                            <h3>Functie</h3>
+                            @foreach($functies as $functie)
+                                {{ Form::radio('functie', $functie->id, false, ['id' => 'functie-' . $functie->id]) }}  
+                                {{ Form::label('functie-' . $functie->id, $functie->title) }} <br>
+                            @endforeach
+                        </div>
                     </div>
-                    <div class="selectlist selectlist--right">
-                        @foreach($functies as $functie)
-                            {{ Form::radio('functie', $functie->id, false, ['id' => 'functie-' . $functie->id]) }}  
-                            {{ Form::label('functie-' . $functie->id, $functie->title) }} <br>
-                        @endforeach
+                </div>
+
+                <div class="generator--shortresults">
+                    <h2>Resultaten</h2>
+                    <ul>
+                        <li><a href="#Titel1">Titel</a></li>
+                        <li><a href="#Titel2">Volgende Titel</a></li>
+                        <li><a href="#Titel3">Nog een resultaat</a></li>
+                    </ul>
+                </div>
+
+                <div class="generator--results">
+                    <div class="result" id="Titel1">
+                        <h2>Title</h2>
+                        <span class="intro">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                        </span>
+                        <span class="body">
+                            <p>Amet consectetur adipiscing elit duis tristique sollicitudin nibh sit amet. Non nisi est sit amet. Neque volutpat ac tincidunt vitae semper. Dignissim cras tincidunt lobortis feugiat vivamus at augue. Nulla facilisi nullam vehicula ipsum a arcu. Maecenas pharetra convallis posuere morbi leo urna molestie at elementum. Facilisi morbi tempus iaculis urna id. Nec feugiat in fermentum posuere. Massa sed elementum tempus egestas sed sed. Sit amet consectetur adipiscing elit ut. Eget velit aliquet sagittis id consectetur purus ut. Elementum curabitur vitae nunc sed velit dignissim.</p>
+                        </span>
+                    </div>
+
+                    <div class="result" id="Titel2">
+                        <h2>Volgende Title</h2>
+                        <span class="intro">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                        </span>
+                        <span class="body">
+                            <p>Amet consectetur adipiscing elit duis tristique sollicitudin nibh sit amet. Non nisi est sit amet. Neque volutpat ac tincidunt vitae semper. Dignissim cras tincidunt lobortis feugiat vivamus at augue. Nulla facilisi nullam vehicula ipsum a arcu. Maecenas pharetra convallis posuere morbi leo urna molestie at elementum. Facilisi morbi tempus iaculis urna id. Nec feugiat in fermentum posuere. Massa sed elementum tempus egestas sed sed. Sit amet consectetur adipiscing elit ut. Eget velit aliquet sagittis id consectetur purus ut. Elementum curabitur vitae nunc sed velit dignissim.</p>
+                        </span>
+                    </div>
+
+                    <div class="result" id="Titel3">
+                        <h2>Resultaat nummer drie</h2>
+                        <span class="intro">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                        </span>
+                        <span class="body">
+                            <p>Amet consectetur adipiscing elit duis tristique sollicitudin nibh sit amet. Non nisi est sit amet. Neque volutpat ac tincidunt vitae semper. Dignissim cras tincidunt lobortis feugiat vivamus at augue. Nulla facilisi nullam vehicula ipsum a arcu. Maecenas pharetra convallis posuere morbi leo urna molestie at elementum. Facilisi morbi tempus iaculis urna id. Nec feugiat in fermentum posuere. Massa sed elementum tempus egestas sed sed. Sit amet consectetur adipiscing elit ut. Eget velit aliquet sagittis id consectetur purus ut. Elementum curabitur vitae nunc sed velit dignissim.</p>
+                        </span>
                     </div>
                 </div>
 
