@@ -10,9 +10,8 @@ class PagesController extends Controller
 {
     public function home()
     {
-    	$sectors = Sector::pluck('title', 'id');
-    	$sectorsr = Sector::all();
-    	$functies = Functie::pluck('title', 'id');
-    	return view ('welcome', compact('sectors', 'functies', 'sectorsr'));
+    	$sectors = Sector::all();
+    	$functies = Functie::all();
+    	return view ('welcome', compact('sectors', 'functies'));
     }
 }

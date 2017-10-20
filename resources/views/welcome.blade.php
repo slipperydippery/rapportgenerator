@@ -74,13 +74,16 @@
                 </div>
                 <div class="generator--selector clearfix">
                     <div class="selectlist selectlist--left">
-                        {{ Form::select('sector', $sectors) }}
-                        @foreach($sectorsr as $sector)
-                            {{ Form::radio('sector', $sector) }}  
+                        @foreach($sectors as $sector)
+                            {{ Form::radio('sector', $sector->id, false, ['id' => $sector->id]) }}  
+                            {{ Form::label($sector->id, $sector->title) }} <br>
                         @endforeach
                     </div>
                     <div class="selectlist selectlist--right">
-                        {{ Form::select('functie', $functies)}}
+                        @foreach($functies as $functie)
+                            {{ Form::radio('functie', $functie->id, false, ['id' => 'functie-' . $functie->id]) }}  
+                            {{ Form::label('functie-' . $functie->id, $functie->title) }} <br>
+                        @endforeach
                     </div>
                 </div>
 
