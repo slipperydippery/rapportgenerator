@@ -8411,7 +8411,7 @@ button.close {
 .selectlist--switch {
   position: absolute;
   top: -7px;
-  width: 100%;
+  left: 48%;
   text-align: center;
   font-size: 49px;
   font-weight: bold;
@@ -8420,7 +8420,7 @@ button.close {
 .selectlist--plus {
   position: absolute;
   top: 90px;
-  width: 100%;
+  left: 48%;
   text-align: center;
   font-size: 90px;
   font-weight: bold;
