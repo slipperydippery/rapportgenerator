@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Sector;
+use App\Element;
 use App\Functie;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,7 @@ class PagesController extends Controller
     {
     	$sectors = Sector::all();
     	$functies = Functie::all();
-    	return view ('welcome', compact('sectors', 'functies'));
+    	$elements = Element::all();
+    	return view ('welcome', compact('sectors', 'functies', 'elements'));
     }
 }

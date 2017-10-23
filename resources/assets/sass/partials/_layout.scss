@@ -1,14 +1,81 @@
+$bodywidth: 1000px;
+$maxbodywidth: 80%;
+
+.menubar {
+    width: 100%;
+    .menubar--content {
+        width: $bodywidth;
+        max-width: $maxbodywidth;
+        margin: 0 auto;
+        span.ingelogd {
+            float: right;
+            span.ingelogd--naam {
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+.title {
+    display: inline-block;
+    width: 100%;
+    font-size: 84px;    
+    line-height: 74px;
+    margin-top: 20px;
+}
+.subtitle {
+    width: $bodywidth;
+    max-width: $maxbodywidth;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 30px;
+    /* font-style: italic; */
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.introtext {
+    width: $bodywidth;
+    max-width: $maxbodywidth;
+    margin: 0 auto;
+    text-align: left;
+}
+
+
 .generator--selector--wrap {
-	width: 100%;
+	width: 100vw;
     // padding: 2rem 0;
     background: rgba(143, 177, 255, 0.1);
 }
 
 .generator--selector {
-    width: 60%;
+    position: relative;
+    width: $bodywidth;
+    max-width: $maxbodywidth;
     margin: 0 auto;
     padding-bottom: 2rem;
     background: rgba(128, 128, 128, 0.09);
+}
+
+.selectlist--switch {
+    position: absolute;
+    top: -7px;
+    width: 100%;
+    text-align: center;
+    font-size: 49px;
+    font-weight: bold;
+    // color: #60947c;  
+}
+
+.selectlist--plus {
+    position: absolute;
+    top: 90px;
+    width: 100%;
+    text-align: center;
+    font-size: 90px;
+    font-weight: bold;
+    color: #a5a5a5;
+    z-index: 0;
 }
 
 .selectlist {
@@ -50,7 +117,8 @@ label {
 }
 
 .generator--shortresults {
-	max-width: 80%;
+    width: $bodywidth;
+	max-width: $maxbodywidth;
 	margin: 0 auto;
 	text-align: left;
 	ul {
@@ -59,7 +127,8 @@ label {
 }
 
 .generator--results {
-	max-width: 80%;
+    width: $bodywidth;
+	max-width: $maxbodywidth;
 	margin: 0 auto;
 	text-align: left;
 
