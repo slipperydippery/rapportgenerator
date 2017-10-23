@@ -73,7 +73,7 @@ $maxbodywidth: 80%;
 
 .selectlist--plus {
     position: absolute;
-    top: 90px;
+    top: 117px;
     left: 48%;
     text-align: center;
     font-size: 90px;
@@ -137,6 +137,7 @@ label {
 	text-align: left;
 
     .result {
+        position: relative;
         background: #f3f3f3;
         margin: 0;
         padding: 2rem;
@@ -147,12 +148,24 @@ label {
     .result:nth-child(2n) {
         background: none;
     }
-
 	.intro {
 		font-style: italic;
 	}
-
 	.body {
 
 	}
+    .fav {
+        color: blue;
+        opacity: 0.2;
+    } 
+
+    .fav-star {
+        position: absolute;
+        top: 16px;
+        right: 10px;
+        width: 2rem;
+        height: 2rem;
+        path {
+        }
+    }
 }
