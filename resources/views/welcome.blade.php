@@ -87,7 +87,7 @@
                     <div class="generator--selector clearfix">
                         <div class="selectlist selectlist--left">
                             <h3>Sector</h3>
-                            <input id="0" name="sector" type="checkbox" value="0" checked="checked">  
+                            <input id="0" name="sector" type="checkbox" value="0">  
                             <label for="0">read all</label> <br>
                             @foreach($sectors as $sector)
                                 {{ Form::checkbox('sector', $sector->id, false, ['id' => $sector->id]) }}  
@@ -96,7 +96,7 @@
                         </div>
                         <div class="selectlist selectlist--right">
                             <h3>Functie</h3>
-                            <input id="functie-0" name="functie" type="checkbox" value="0" checked="checked">  
+                            <input id="functie-0" name="functie" type="checkbox" value="0" >  
                             <label for="functie-0">read all</label> <br>
                             @foreach($functies as $functie)
                                 {{ Form::checkbox('functie', $functie->id, false, ['id' => 'functie-' . $functie->id]) }}  
