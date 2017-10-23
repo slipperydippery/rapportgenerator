@@ -78,7 +78,24 @@
                 </div>
                 <div class="introtext--wrap">
                     <div class="introtext">
-                        <p>Deze rapportgenerator maakt het mogelijk om informatie over de ondersteuningsstructuur van de cultuursector te lezen vanuit sector- of functieperspectief. Om het rapport te lezen vanuit sectorperspectief selecteert u de sector en kiest u daarbij de bijbehoordende funcite. Wilt u het rapport lezen vanuit functieperspectief selecteert u eerst een functie. U kunt deze onderdelen uit het rapport op uw eigen clipboard bewaren, of de geselecteerde informatie delen. Wilt u het hele rapport lezen, klik op read all. </p>
+                        <p>Deze rapportgenerator maakt het mogelijk om informatie over de ondersteuningsstructuur van de cultuursector te lezen vanuit sector- of functieperspectief. Om het rapport te lezen vanuit sectorperspectief selecteert u de sector en kiest u daarbij de bijbehoordende funcite. Wilt u het rapport lezen vanuit functieperspectief selecteert u eerst een functie. U kunt deze onderdelen uit het rapport op uw eigen clipboard bewaren, of de geselecteerde informatie delen. Wilt u het hele rapport lezen, klik op read all. U kunt ook de volgende rapportonderdelen lezen:</p>
+                        <ul>
+                            <li>
+                                <a href="#">Inleiding</a>
+                            </li>
+                            <li>
+                                <a href="#">Toelichting op sectoren</a>
+                            </li>
+                            <li>
+                                <a href="#">Beschrijving van functies</a>
+                            </li>
+                            <li>
+                                <a href="#">Beschouwing van functies</a>
+                            </li>
+                            <li>
+                                <a href="#">Prioritering van functies</a>
+                            </li>
+                        </ul>
                     
                         <p>Deze rapportgenerator geeft de mogelijkheid om informatie te lezen waarin u zelf geïnteresseerd bent.</p>
                     </div>
@@ -87,8 +104,6 @@
                     <div class="generator--selector clearfix">
                         <div class="selectlist selectlist--left">
                             <h3>Sector</h3>
-                            <input id="0" name="sector" type="checkbox" value="0">  
-                            <label for="0">read all</label> <br>
                             @foreach($sectors as $sector)
                                 {{ Form::checkbox('sector', $sector->id, false, ['id' => $sector->id]) }}  
                                 {{ Form::label($sector->id, $sector->title) }} <br>
@@ -96,8 +111,6 @@
                         </div>
                         <div class="selectlist selectlist--right">
                             <h3>Functie</h3>
-                            <input id="functie-0" name="functie" type="checkbox" value="0" >  
-                            <label for="functie-0">read all</label> <br>
                             @foreach($functies as $functie)
                                 {{ Form::checkbox('functie', $functie->id, false, ['id' => 'functie-' . $functie->id]) }}  
                                 {{ Form::label('functie-' . $functie->id, $functie->title) }} <br>
