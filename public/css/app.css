@@ -8387,9 +8387,14 @@ button.close {
   margin-bottom: 20px;
 }
 
-.introtext {
+.introtext--wrap {
   width: 1000px;
   max-width: 80%;
+  margin: 0 auto;
+}
+
+.introtext--wrap .introtext {
+  width: 70%;
   margin: 0 auto;
   text-align: left;
 }
@@ -8477,6 +8482,20 @@ label {
   max-width: 80%;
   margin: 0 auto;
   text-align: left;
+}
+
+.generator--results .result {
+  background: #f3f3f3;
+  margin: 0;
+  padding: 2rem;
+}
+
+.generator--results .result h2 {
+  margin-top: 0;
+}
+
+.generator--results .result:nth-child(2n) {
+  background: none;
 }
 
 .generator--results .intro {

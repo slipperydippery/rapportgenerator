@@ -72,10 +72,12 @@
                 <div class="subtitle">
                     Ondersteuningsstructuur van de cultuursector
                 </div>
-                <div class="introtext">
-                    <p>Deze rapportgenerator maakt het mogelijk om informatie over de ondersteuningsstructuur van de cultuursector te lezen vanuit sector- of functieperspectief. Om het rapport te lezen vanuit sector-functie selecteert u de sector en kiest u daarbij de bijbehoordende funcite. Wilt u het rapport lezen vanuit functie perspectief selecteert u eerst een functie. U kunt deze onderdelen uit het rapport op uw eigen clipboard bewaren, of de geselecteerde informatie delen. Wilt u het hele rapport lezen, klik op read all. </p>
-
-                    <p>Deze rapportgenerator geeft de mogelijkheid om informatie te lezen waarin u zelf geïnteresseerd bent.</p>
+                <div class="introtext--wrap">
+                    <div class="introtext">
+                        <p>Deze rapportgenerator maakt het mogelijk om informatie over de ondersteuningsstructuur van de cultuursector te lezen vanuit sector- of functieperspectief. Om het rapport te lezen vanuit sector-functie selecteert u de sector en kiest u daarbij de bijbehoordende funcite. Wilt u het rapport lezen vanuit functie perspectief selecteert u eerst een functie. U kunt deze onderdelen uit het rapport op uw eigen clipboard bewaren, of de geselecteerde informatie delen. Wilt u het hele rapport lezen, klik op read all. </p>
+                    
+                        <p>Deze rapportgenerator geeft de mogelijkheid om informatie te lezen waarin u zelf geïnteresseerd bent.</p>
+                    </div>
                 </div>
                 <div class="generator--selector--wrap">
                     <div class="generator--selector clearfix">
@@ -112,7 +114,7 @@
                         <div class="result" id="Titel1">
                             <h2>{{ $element->title }}</h2>
                             <span class="intro"> {!! $element->short !!} </span>
-                            <span class="body"> { $element->body }} </span>
+                            <span class="body"> {!! $element->body !!} </span>
                         </div>
                     @endforeach 
                 </div>

@@ -34,11 +34,15 @@ $maxbodywidth: 80%;
     margin-bottom: 20px;
 }
 
-.introtext {
+.introtext--wrap {
     width: $bodywidth;
     max-width: $maxbodywidth;
     margin: 0 auto;
-    text-align: left;
+    .introtext {
+        width: 70%;
+        margin: 0 auto;
+        text-align: left;
+    }
 }
 
 
@@ -131,6 +135,18 @@ label {
 	max-width: $maxbodywidth;
 	margin: 0 auto;
 	text-align: left;
+
+    .result {
+        background: #f3f3f3;
+        margin: 0;
+        padding: 2rem;
+        h2 {
+            margin-top: 0;
+        }
+    }
+    .result:nth-child(2n) {
+        background: none;
+    }
 
 	.intro {
 		font-style: italic;
