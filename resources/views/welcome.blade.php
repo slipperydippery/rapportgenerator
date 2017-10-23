@@ -71,14 +71,14 @@
                     </div>
                 </div>
                 <div class="title m-b-md">
-                    Rapport Generator
+                    Rapportgenerator
                 </div>
                 <div class="subtitle">
                     Ondersteuningsstructuur van de cultuursector
                 </div>
                 <div class="introtext--wrap">
                     <div class="introtext">
-                        <p>Deze rapportgenerator maakt het mogelijk om informatie over de ondersteuningsstructuur van de cultuursector te lezen vanuit sector- of functieperspectief. Om het rapport te lezen vanuit sector-functie selecteert u de sector en kiest u daarbij de bijbehoordende funcite. Wilt u het rapport lezen vanuit functie perspectief selecteert u eerst een functie. U kunt deze onderdelen uit het rapport op uw eigen clipboard bewaren, of de geselecteerde informatie delen. Wilt u het hele rapport lezen, klik op read all. </p>
+                        <p>Deze rapportgenerator maakt het mogelijk om informatie over de ondersteuningsstructuur van de cultuursector te lezen vanuit sector- of functieperspectief. Om het rapport te lezen vanuit sectorperspectief selecteert u de sector en kiest u daarbij de bijbehoordende funcite. Wilt u het rapport lezen vanuit functieperspectief selecteert u eerst een functie. U kunt deze onderdelen uit het rapport op uw eigen clipboard bewaren, of de geselecteerde informatie delen. Wilt u het hele rapport lezen, klik op read all. </p>
                     
                         <p>Deze rapportgenerator geeft de mogelijkheid om informatie te lezen waarin u zelf geïnteresseerd bent.</p>
                     </div>
