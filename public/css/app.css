@@ -8362,10 +8362,24 @@ button.close {
 
 .menubar .menubar--content span.ingelogd {
   float: right;
+  line-height: 3rem;
 }
 
 .menubar .menubar--content span.ingelogd span.ingelogd--naam {
   font-weight: 500;
+}
+
+.menubar .menubar--content .social--icons {
+  display: inline-block;
+  float: right;
+  padding: 0.2rem 1rem 0.6rem;
+  margin: 0 0 0 1rem;
+  background: #41dc95;
+  border-bottom-left-radius: 1rem;
+}
+
+.menubar .menubar--content .social--icons img {
+  height: 1.5rem;
 }
 
 .title {

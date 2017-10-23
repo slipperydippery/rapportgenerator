@@ -9,8 +9,20 @@ $maxbodywidth: 80%;
         margin: 0 auto;
         span.ingelogd {
             float: right;
+            line-height: 3rem;
             span.ingelogd--naam {
                 font-weight: 500;
+            }
+        }
+        .social--icons {
+            display: inline-block;
+            float: right;
+            padding: 0.2rem 1rem 0.6rem;
+            margin: 0 0 0 1rem;
+            background: #41dc95;
+            border-bottom-left-radius: 1rem;
+            img {
+                height: 1.5rem;
             }
         }
     }
