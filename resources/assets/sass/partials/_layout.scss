@@ -108,16 +108,17 @@ $maxbodywidth: 80%;
     float: right;
 }
 
-input[type="radio"]{
+input[type="checkbox"]{
 	display: none;
 }
 
-input[type="radio"] + label  {
+input[type="checkbox"] + label  {
 	display: inline-block;
 }
 
-input[type="radio"]:checked + label {
+input[type="checkbox"]:checked + label {
 	background: #99fdd0;
+    
 }
 
 label {

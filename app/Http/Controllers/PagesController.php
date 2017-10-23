@@ -13,7 +13,9 @@ class PagesController extends Controller
     {
     	$sectors = Sector::all();
     	$functies = Functie::all();
+    	$sectorsselect = Sector::pluck('title', 'id');
+    	$functiesselect = Functie::pluck('title', 'id');
     	$elements = Element::all();
-    	return view ('welcome', compact('sectors', 'functies', 'elements'));
+    	return view ('welcome', compact('sectors', 'functies', 'elements', 'functiesselect', 'sectorsselect'));
     }
 }
