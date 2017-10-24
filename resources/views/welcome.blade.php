@@ -78,8 +78,11 @@
                 </div>
                 <div class="introtext--wrap">
                     <div class="introtext">
-                        <p>Deze rapportgenerator maakt het mogelijk om informatie over de ondersteuningsstructuur van de cultuursector te lezen vanuit sector- of functieperspectief. Om het rapport te lezen vanuit sectorperspectief selecteert u de sector en kiest u daarbij de bijbehoordende funcite. Wilt u het rapport lezen vanuit functieperspectief selecteert u eerst een functie. U kunt deze onderdelen uit het rapport op uw eigen clipboard bewaren, of de geselecteerde informatie delen. Wilt u het hele rapport lezen, klik op <a href="#">read all</a>. U kunt ook de volgende rapportonderdelen lezen:</p>
+                        <p>Deze rapportgenerator maakt het mogelijk om informatie over de ondersteuningsstructuur van de cultuursector te lezen vanuit sector- of functieperspectief. Om het rapport te lezen vanuit sectorperspectief selecteert u de sector en kiest u daarbij de bijbehorende functie. Wilt u het rapport lezen vanuit functieperspectief selecteert u eerst een functie. U kunt deze onderdelen uit het rapport op uw eigen clipboard bewaren, of de geselecteerde informatie delen. Wilt u het hele rapport lezen, klik op <a href="#">read all</a>. U kunt ook de volgende rapportonderdelen lezen:</p>
                         <ul>
+                            <li>
+                                <a href="#">Read all</a>
+                            </li>
                             <li>
                                 <a href="#">Inleiding</a>
                             </li>
