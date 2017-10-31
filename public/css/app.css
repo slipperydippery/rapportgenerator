@@ -8423,11 +8423,34 @@ button.close {
   width: 1000px;
   max-width: 80%;
   margin: 0 auto;
-  padding-bottom: 2rem;
+  padding: 0;
   background: rgba(128, 128, 128, 0.09);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row no-wrap;
+          flex-flow: row no-wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.selectlist {
+  display: inline-block;
+  width: 30%;
+  text-align: center;
+  padding-bottom: 2rem;
+  margin: 0;
+}
+
+.selectlist--algemeen {
+  background: rgba(65, 220, 149, 0.25);
 }
 
 .selectlist--switch {
+  display: none;
   position: absolute;
   top: -7px;
   left: 48%;
@@ -8437,6 +8460,7 @@ button.close {
 }
 
 .selectlist--plus {
+  display: none;
   position: absolute;
   top: 117px;
   left: 48%;
@@ -8445,20 +8469,6 @@ button.close {
   font-weight: bold;
   color: #a5a5a5;
   z-index: 0;
-}
-
-.selectlist {
-  display: inline-block;
-  width: 50%;
-  text-align: center;
-}
-
-.selectlist--left {
-  float: left;
-}
-
-.selectlist--right {
-  float: right;
 }
 
 input[type="checkbox"] {
@@ -8473,7 +8483,9 @@ input[type="checkbox"]:checked + label {
   background: #99fdd0;
 }
 
-label {
+label,
+.fauxlabel {
+  display: inline-block;
   width: 24rem;
   padding: 0.8rem 0;
   text-align: center;
@@ -8482,6 +8494,19 @@ label {
   border-radius: 1rem;
   margin: 0;
   font-size: 12px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-weight: bold;
+  color: #636b6f;
+}
+
+.label {
+  width: 25rem;
+  padding: .5rem 0;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: .5rem;
+  margin: 0;
 }
 
 .generator--shortresults {

@@ -78,41 +78,36 @@
                 </div>
                 <div class="introtext--wrap">
                     <div class="introtext">
-                        <p>Deze rapportgenerator maakt het mogelijk om informatie over de ondersteuningsstructuur van de cultuursector te lezen vanuit sector- of functieperspectief. Om het rapport te lezen vanuit sectorperspectief selecteert u de sector en kiest u daarbij de bijbehorende functie. Wilt u het rapport lezen vanuit functieperspectief selecteert u eerst een functie. U kunt deze onderdelen uit het rapport op uw eigen clipboard bewaren, of de geselecteerde informatie delen. Wilt u het hele rapport lezen, klik op <a href="#">read all</a>. U kunt ook de volgende rapportonderdelen lezen:</p>
-                        <ul>
-                            <li>
-                                <a href="#">Read all</a>
-                            </li>
-                            <li>
-                                <a href="#">Inleiding</a>
-                            </li>
-                            <li>
-                                <a href="#">Toelichting op sectoren</a>
-                            </li>
-                            <li>
-                                <a href="#">Beschrijving van functies</a>
-                            </li>
-                            <li>
-                                <a href="#">Beschouwing van functies</a>
-                            </li>
-                            <li>
-                                <a href="#">Prioritering van functies</a>
-                            </li>
-                        </ul>
+                        <p>Deze rapportgenerator maakt het mogelijk om informatie over de ondersteuningsstructuur van de cultuursector te lezen vanuit sector- of functieperspectief. Om het rapport te lezen vanuit sectorperspectief selecteert u de sector en kiest u daarbij de bijbehorende functie. Wilt u het rapport lezen vanuit functieperspectief selecteert u eerst een functie. U kunt deze onderdelen uit het rapport op uw eigen clipboard bewaren, of de geselecteerde informatie delen. Wilt u het hele rapport lezen, klik op <a href="#">read all</a>. 
                     
                         <p>Deze rapportgenerator geeft de mogelijkheid om informatie te lezen waarin u zelf geïnteresseerd bent.</p>
                     </div>
                 </div>
                 <div class="generator--selector--wrap">
-                    <div class="generator--selector clearfix">
-                        <div class="selectlist selectlist--left">
+                    <div class="generator--selector">
+                        <div class="selectlist selectlist--algemeen">
+                            <h3>Algemeen</h3>
+                            <a href="#" class="fauxlabel">Inleiding op onderzoek</a><br>
+                            <a href="#" class="fauxlabel">Toelichting op sectoren</a><br>
+                            <a href="#" class="fauxlabel">Beschrijving van functies</a><br>
+                            <a href="#" class="fauxlabel">Uitwerking van functies per sector</a><br>
+                            <a href="#" class="fauxlabel">Uitwerking van sectoren per functie</a><br>
+                            <a href="#" class="fauxlabel">Beschouwing van functies</a><br>
+                            <a href="#" class="fauxlabel">Prioritisering per sector</a><br>
+                            <a href="#" class="fauxlabel">Slotbeschouwing</a><br>
+                            <a href="#" class="fauxlabel">Deelnemers werksessies</a><br>
+                            Speciale selecties <br>
+                            <a href="#" class="fauxlabel">Compleet rapport naar sectoren</a><br>
+                            <a href="#" class="fauxlabel">Compleet rapport naar functies</a><br>
+                        </div>
+                        <div class="selectlist">
                             <h3>Sector</h3>
                             @foreach($sectors as $sector)
                                 {{ Form::checkbox('sector', $sector->id, false, ['id' => $sector->id]) }}  
                                 {{ Form::label($sector->id, $sector->title) }} <br>
                             @endforeach
                         </div>
-                        <div class="selectlist selectlist--right">
+                        <div class="selectlist">
                             <h3>Functie</h3>
                             @foreach($functies as $functie)
                                 {{ Form::checkbox('functie', $functie->id, false, ['id' => 'functie-' . $functie->id]) }}  

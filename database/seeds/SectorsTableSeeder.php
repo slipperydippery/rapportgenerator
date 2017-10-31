@@ -15,22 +15,22 @@ class SectorsTableSeeder extends Seeder
 
         $sectors = [
             [
-            	'title' => 'Podiumkunsten',
-            	'description' => '',
-            	'introduction' => ''
+                'title' => 'Podiumkunsten',
+                'description' => '',
+                'introduction' => ''
+            ],
+            [
+                'title' => 'Beeldende Kunst',
+                'description' => '',
+                'introduction' => ''
+            ],
+            [
+                'title' => 'Erfgoed',
+                'description' => '',
+                'introduction' => ''
             ],
             [
             	'title' => 'Film',
-            	'description' => '',
-            	'introduction' => ''
-            ],
-            [
-            	'title' => 'Cultuureducatie',
-            	'description' => '',
-            	'introduction' => ''
-            ],
-            [
-            	'title' => 'Erfgoed',
             	'description' => '',
             	'introduction' => ''
             ],
@@ -40,10 +40,35 @@ class SectorsTableSeeder extends Seeder
             	'introduction' => ''
             ],
             [
-            	'title' => 'Cultuurbeleid',
-            	'description' => '',
-            	'introduction' => ''
-            ]
+                'title' => 'Letteren & Bibliotheken',
+                'description' => '',
+                'introduction' => ''
+            ],
+            [
+                'title' => 'Bovensectoraal Beleid',
+                'description' => '',
+                'introduction' => ''
+            ],
+            [
+                'title' => 'Bovensectoraal Digitalisering',
+                'description' => '',
+                'introduction' => ''
+            ],
+            [
+                'title' => 'Bovensectoraal Ondernemerschap',
+                'description' => '',
+                'introduction' => ''
+            ],
+            [
+                'title' => 'Bovensectoraal Internationalisering',
+                'description' => '',
+                'introduction' => ''
+            ],
+            [
+                'title' => 'Bovensectoraal Cultuureducatie',
+                'description' => '',
+                'introduction' => ''
+            ],
 
         ];
 

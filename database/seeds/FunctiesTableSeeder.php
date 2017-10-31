@@ -49,11 +49,6 @@ class FunctiesTableSeeder extends Seeder
             	'description' => 'professionalisering in en rond de sector',
             	'introduction' => ''
             ],
-            [
-            	'title' => 'Dienstverlening',
-            	'description' => 'opdrachttaken',
-            	'introduction' => ''
-            ],
 
         ];
 
