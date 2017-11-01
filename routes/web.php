@@ -16,3 +16,5 @@ Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
 Route::resource('sector', 'SectorsController');
 Route::resource('functie', 'FunctiesController');
 Route::resource('element', 'ElementsController');
+
+Route::get('/api/sector/', 'ApiController@indexsector');

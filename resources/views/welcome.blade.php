@@ -5,6 +5,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="{{ URL::asset('/css/app.css') }}" rel="stylesheet">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <script>
+            window.Laravel = <?php echo json_encode([
+                'csrfToken' => csrf_token(),
+            ]); ?>
+        </script>
 
         <title>Rapport Generator</title>
 
@@ -83,6 +89,9 @@
                         <p>Deze rapportgenerator geeft de mogelijkheid om informatie te lezen waarin u zelf geïnteresseerd bent.</p>
                     </div>
                 </div>
+                <div id="app">
+                    <rapportgenerator></rapportgenerator>-
+                </div>
                 <div class="generator--selector--wrap">
                     <div class="generator--selector">
                         <div class="selectlist selectlist--algemeen">
@@ -145,5 +154,7 @@
 
             </div>
         </div>
+    <script src="{{ URL::asset('js/app.js') }}"></script>
     </body>
+
 </html>
