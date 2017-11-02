@@ -1,6 +1,10 @@
 $bodywidth: 1000px;
 $maxbodywidth: 80%;
 
+button:focus {
+    outline: none;
+}
+
 .menubar {
     width: 100%;
     .menubar--content {
@@ -85,7 +89,8 @@ $maxbodywidth: 80%;
 }
 
 .selectlist--algemeen {
-    background: rgba(65, 220, 149, 0.25);;
+    border-right: 1px solid rgba(0, 0, 0, 0.22);
+    background: rgba(0, 0, 0, 0.05);
 }
 
 .selectlist--switch {
@@ -120,10 +125,6 @@ input[type="checkbox"] + label  {
 	display: inline-block;
 }
 
-input[type="checkbox"]:checked + label {
-	background: #99fdd0;
-    
-}
 
 label, .fauxlabel {
     display: inline-block;
@@ -138,6 +139,9 @@ label, .fauxlabel {
     box-sizing: border-box;
     font-weight: bold;
     color: #636b6f;
+}
+input[type="checkbox"]:checked + label, .active  {
+	background: #99fdd0;
 }
 
 .label {

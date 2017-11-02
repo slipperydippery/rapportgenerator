@@ -18,3 +18,4 @@ Route::resource('functie', 'FunctiesController');
 Route::resource('element', 'ElementsController');
 
 Route::get('/api/sector/', 'ApiController@indexsector');
+Route::get('/api/functie/', 'ApiController@indexfunctie');

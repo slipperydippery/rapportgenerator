@@ -42820,6 +42820,102 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -42827,25 +42923,88 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            sectors: ['this', 'that']
+            sectors: [],
+            activesectors: [],
+            functies: [],
+            activefuncties: [],
+            activealgemeen: [],
+            isReadAllSectorsActive: false,
+            isReadAllFunctiesActive: false,
+            isSectorsDisabled: false,
+            isFunctiesDisabled: false
         };
     },
     mounted: function mounted() {
         console.log('Component mounted.');
         this.getSectors();
+        this.getFuncties();
     },
 
 
     computed: {},
 
     methods: {
+        isActiveSector: function isActiveSector(sector) {
+            return this.activesectors.includes(sector);
+        },
+        isActiveFunctie: function isActiveFunctie(functie) {
+            return this.activefuncties.includes(functie);
+        },
+        toggleAlgemeen: function toggleAlgemeen(algemeen) {
+            if (this.activealgemeen.includes(algemeen)) {
+                this.activealgemeen.splice(this.activealgemeen.indexOf(algemeen), 1);
+            } else {
+                this.activealgemeen.push(algemeen);
+            }
+        },
+        toggleActiveSector: function toggleActiveSector(sector) {
+            if (this.activesectors.includes(sector)) {
+                if (this.isReadAllSectorsActive) {
+                    this.isReadAllSectorsActive = false;
+                };
+                this.activesectors.splice(this.activesectors.indexOf(sector), 1);
+            } else {
+                this.activesectors.push(sector);
+            }
+        },
+        toggleActiveFunctie: function toggleActiveFunctie(functie) {
+            if (this.activefuncties.includes(functie)) {
+                if (this.isReadAllFunctiesActive) {
+                    this.isReadAllFunctiesActive = false;
+                }
+                this.activefuncties.splice(this.activefuncties.indexOf(functie), 1);
+            } else {
+                this.activefuncties.push(functie);
+            }
+        },
+        toggleReadAllSectors: function toggleReadAllSectors() {
+            if (!this.isReadAllSectorsActive) {
+                this.activesectors = this.sectors.slice();
+            } else {
+                this.activesectors = [];
+            }
+            this.isReadAllSectorsActive = !this.isReadAllSectorsActive;
+        },
+        toggleReadAllFuncties: function toggleReadAllFuncties() {
+            if (!this.isReadAllFunctiesActive) {
+                this.activefuncties = this.functies.slice();
+            } else {
+                this.activefuncties = [];
+            }
+            this.isReadAllFunctiesActive = !this.isReadAllFunctiesActive;
+        },
         getSectors: function getSectors() {
             var home = this;
-            console.log('hereo');
             axios.get('/api/sector').then(function (response) {
-                console.log(response.data);
-                console.log(home.sectors);
                 home.sectors = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getFuncties: function getFuncties() {
+            var home = this;
+            axios.get('api/functie').then(function (response) {
+                home.functies = response.data;
             }).catch(function (error) {
                 console.log(error);
             });
@@ -42861,32 +43020,308 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
+  return _c("div", { staticClass: "generator--selector--wrap" }, [
+    _c("div", { staticClass: "generator--selector" }, [
+      _c("div", { staticClass: "selectlist selectlist--algemeen" }, [
+        _c("h3", [_vm._v("Algemeen")]),
+        _vm._v(" "),
         _c(
-          "div",
-          { staticClass: "panel panel-default" },
-          [
-            _c("div", { staticClass: "panel-heading" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _vm._v(
-                "\n                    I'm an example component! yes ho\n                "
+          "button",
+          {
+            staticClass: "fauxlabel",
+            class: {
+              active: _vm.activealgemeen.includes("Inleiding op onderzoek")
+            },
+            on: {
+              click: function($event) {
+                _vm.toggleAlgemeen("Inleiding op onderzoek")
+              }
+            }
+          },
+          [_vm._v("\n                Inleiding op onderzoek\n            ")]
+        ),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "fauxlabel",
+            class: {
+              active: _vm.activealgemeen.includes("Toelichting op sectoren")
+            },
+            on: {
+              click: function($event) {
+                _vm.toggleAlgemeen("Toelichting op sectoren")
+              }
+            }
+          },
+          [_vm._v("\n                Toelichting op sectoren\n            ")]
+        ),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "fauxlabel",
+            class: {
+              active: _vm.activealgemeen.includes("Beschrijving van functies")
+            },
+            on: {
+              click: function($event) {
+                _vm.toggleAlgemeen("Beschrijving van functies")
+              }
+            }
+          },
+          [_vm._v("\n                Beschrijving van functies\n            ")]
+        ),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "fauxlabel",
+            class: {
+              active: _vm.activealgemeen.includes(
+                "Uitwerking van functies per sector"
               )
-            ]),
-            _vm._v(" "),
-            _vm._l(_vm.sectors, function(sector) {
-              return _c("div", { staticClass: "test" }, [
-                _vm._v(_vm._s(sector.title))
-              ])
-            })
-          ],
-          2
-        )
-      ])
+            },
+            on: {
+              click: function($event) {
+                _vm.toggleAlgemeen("Uitwerking van functies per sector")
+              }
+            }
+          },
+          [
+            _vm._v(
+              "\n                Uitwerking van functies per sector\n            "
+            )
+          ]
+        ),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "fauxlabel",
+            class: {
+              active: _vm.activealgemeen.includes(
+                "Uitwerking van sectoren per functie"
+              )
+            },
+            on: {
+              click: function($event) {
+                _vm.toggleAlgemeen("Uitwerking van sectoren per functie")
+              }
+            }
+          },
+          [
+            _vm._v(
+              "\n                Uitwerking van sectoren per functie\n            "
+            )
+          ]
+        ),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "fauxlabel",
+            class: {
+              active: _vm.activealgemeen.includes("Beschouwing van functies")
+            },
+            on: {
+              click: function($event) {
+                _vm.toggleAlgemeen("Beschouwing van functies")
+              }
+            }
+          },
+          [_vm._v("\n                Beschouwing van functies\n            ")]
+        ),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "fauxlabel",
+            class: {
+              active: _vm.activealgemeen.includes("Prioritisering per sector")
+            },
+            on: {
+              click: function($event) {
+                _vm.toggleAlgemeen("Prioritisering per sector")
+              }
+            }
+          },
+          [_vm._v("\n                Prioritisering per sector\n            ")]
+        ),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "fauxlabel",
+            class: { active: _vm.activealgemeen.includes("Slotbeschouwing") },
+            on: {
+              click: function($event) {
+                _vm.toggleAlgemeen("Slotbeschouwing")
+              }
+            }
+          },
+          [_vm._v("\n                Slotbeschouwing\n            ")]
+        ),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "fauxlabel",
+            class: {
+              active: _vm.activealgemeen.includes("Deelnemers werksessies")
+            },
+            on: {
+              click: function($event) {
+                _vm.toggleAlgemeen("Deelnemers werksessies")
+              }
+            }
+          },
+          [_vm._v("\n                Deelnemers werksessies\n            ")]
+        ),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "fauxlabel",
+            class: {
+              active: _vm.activealgemeen.includes(
+                "Compleet rapport naar sectoren"
+              )
+            },
+            on: {
+              click: function($event) {
+                _vm.toggleAlgemeen("Compleet rapport naar sectoren")
+              }
+            }
+          },
+          [
+            _vm._v(
+              "\n                Compleet rapport naar sectoren\n            "
+            )
+          ]
+        ),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "fauxlabel",
+            class: {
+              active: _vm.activealgemeen.includes(
+                "Compleet rapport naar functies"
+              )
+            },
+            on: {
+              click: function($event) {
+                _vm.toggleAlgemeen("Compleet rapport naar functies")
+              }
+            }
+          },
+          [
+            _vm._v(
+              "\n                Compleet rapport naar functies\n            "
+            )
+          ]
+        ),
+        _c("br"),
+        _vm._v("\n            Speciale selecties "),
+        _c("br")
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "selectlist" },
+        [
+          _c("h3", [_vm._v("Sector")]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "fauxlabel",
+              class: { active: _vm.isReadAllSectorsActive },
+              attrs: { disabled: _vm.isSectorsDisabled },
+              on: { click: _vm.toggleReadAllSectors }
+            },
+            [_vm._v("\n                Read all\n            ")]
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.sectors, function(sector) {
+            return _c(
+              "button",
+              {
+                staticClass: "fauxlabel",
+                class: { active: _vm.isActiveSector(sector) },
+                attrs: { disabled: _vm.isSectorsDisabled },
+                on: {
+                  click: function($event) {
+                    _vm.toggleActiveSector(sector)
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                " + _vm._s(sector.title) + "\n            "
+                )
+              ]
+            )
+          }),
+          _c("br")
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "selectlist" },
+        [
+          _c("h3", [_vm._v("Functie")]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "fauxlabel",
+              class: { active: _vm.isReadAllFunctiesActive },
+              attrs: { disabled: _vm.isFunctiesDisabled },
+              on: { click: _vm.toggleReadAllFuncties }
+            },
+            [_vm._v("\n                Read all\n            ")]
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.functies, function(functie) {
+            return _c(
+              "button",
+              {
+                staticClass: "fauxlabel",
+                class: { active: _vm.isActiveFunctie(functie) },
+                attrs: { disabled: _vm.isFunctiesDisabled },
+                on: {
+                  click: function($event) {
+                    _vm.toggleActiveFunctie(functie)
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(functie.title) +
+                    "\n            "
+                )
+              ]
+            )
+          }),
+          _c("br")
+        ],
+        2
+      )
     ])
   ])
 }

@@ -92,42 +92,8 @@
                 <div id="app">
                     <rapportgenerator></rapportgenerator>-
                 </div>
-                <div class="generator--selector--wrap">
-                    <div class="generator--selector">
-                        <div class="selectlist selectlist--algemeen">
-                            <h3>Algemeen</h3>
-                            <a href="#" class="fauxlabel">Inleiding op onderzoek</a><br>
-                            <a href="#" class="fauxlabel">Toelichting op sectoren</a><br>
-                            <a href="#" class="fauxlabel">Beschrijving van functies</a><br>
-                            <a href="#" class="fauxlabel">Uitwerking van functies per sector</a><br>
-                            <a href="#" class="fauxlabel">Uitwerking van sectoren per functie</a><br>
-                            <a href="#" class="fauxlabel">Beschouwing van functies</a><br>
-                            <a href="#" class="fauxlabel">Prioritisering per sector</a><br>
-                            <a href="#" class="fauxlabel">Slotbeschouwing</a><br>
-                            <a href="#" class="fauxlabel">Deelnemers werksessies</a><br>
-                            Speciale selecties <br>
-                            <a href="#" class="fauxlabel">Compleet rapport naar sectoren</a><br>
-                            <a href="#" class="fauxlabel">Compleet rapport naar functies</a><br>
-                        </div>
-                        <div class="selectlist">
-                            <h3>Sector</h3>
-                            @foreach($sectors as $sector)
-                                {{ Form::checkbox('sector', $sector->id, false, ['id' => $sector->id]) }}  
-                                {{ Form::label($sector->id, $sector->title) }} <br>
-                            @endforeach
-                        </div>
-                        <div class="selectlist">
-                            <h3>Functie</h3>
-                            @foreach($functies as $functie)
-                                {{ Form::checkbox('functie', $functie->id, false, ['id' => 'functie-' . $functie->id]) }}  
-                                {{ Form::label('functie-' . $functie->id, $functie->title) }} <br>
-                            @endforeach
-                        </div>
-                        <div class="selectlist--switch"> <> </div>
-                        <div class="selectlist--plus"> + </div>
-                    </div>
-                </div>
-
+                <div class="selectlist--switch"> <> </div>
+                <div class="selectlist--plus"> + </div>
                 <div class="generator--shortresults">
                     <h2>Resultaten</h2>
                     <ul>
