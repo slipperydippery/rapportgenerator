@@ -43049,9 +43049,7 @@ var render = function() {
           "button",
           {
             staticClass: "fauxlabel algemeenitem",
-            class: {
-              "active--dark": _vm.activealgemeen == "Inleiding op onderzoek"
-            },
+            class: { active: _vm.activealgemeen == "Inleiding op onderzoek" },
             on: {
               click: function($event) {
                 _vm.toggleAlgemeen("Inleiding op onderzoek")
@@ -43066,9 +43064,7 @@ var render = function() {
           "button",
           {
             staticClass: "fauxlabel algemeenitem",
-            class: {
-              "active--dark": _vm.activealgemeen == "Toelichting op sectoren"
-            },
+            class: { active: _vm.activealgemeen == "Toelichting op sectoren" },
             on: {
               click: function($event) {
                 _vm.toggleAlgemeen("Toelichting op sectoren")
@@ -43094,7 +43090,7 @@ var render = function() {
           {
             staticClass: "fauxlabel algemeenitem",
             class: {
-              "active--dark": _vm.activealgemeen == "Beschrijving van functies"
+              active: _vm.activealgemeen == "Beschrijving van functies"
             },
             on: {
               click: function($event) {
@@ -43121,8 +43117,7 @@ var render = function() {
           {
             staticClass: "fauxlabel algemeenitem",
             class: {
-              "active--dark":
-                _vm.activealgemeen == "Uitwerking van functies per sector"
+              active: _vm.activealgemeen == "Uitwerking van functies per sector"
             },
             on: {
               click: function($event) {
@@ -43148,7 +43143,7 @@ var render = function() {
           {
             staticClass: "fauxlabel algemeenitem",
             class: {
-              "active--dark":
+              active:
                 _vm.activealgemeen == "Uitwerking van sectoren per functie"
             },
             on: {
@@ -43174,9 +43169,7 @@ var render = function() {
           "button",
           {
             staticClass: "fauxlabel algemeenitem",
-            class: {
-              "active--dark": _vm.activealgemeen == "Beschouwing van functies"
-            },
+            class: { active: _vm.activealgemeen == "Beschouwing van functies" },
             on: {
               click: function($event) {
                 _vm.toggleAlgemeen("Beschouwing van functies")
@@ -43201,7 +43194,7 @@ var render = function() {
           {
             staticClass: "fauxlabel algemeenitem",
             class: {
-              "active--dark": _vm.activealgemeen == "Prioritisering per sector"
+              active: _vm.activealgemeen == "Prioritisering per sector"
             },
             on: {
               click: function($event) {
@@ -43226,7 +43219,7 @@ var render = function() {
           "button",
           {
             staticClass: "fauxlabel algemeenitem",
-            class: { "active--dark": _vm.activealgemeen == "Slotbeschouwing" },
+            class: { active: _vm.activealgemeen == "Slotbeschouwing" },
             on: {
               click: function($event) {
                 _vm.toggleAlgemeen("Slotbeschouwing")
@@ -43241,9 +43234,7 @@ var render = function() {
           "button",
           {
             staticClass: "fauxlabel algemeenitem",
-            class: {
-              "active--dark": _vm.activealgemeen == "Deelnemers werksessies"
-            },
+            class: { active: _vm.activealgemeen == "Deelnemers werksessies" },
             on: {
               click: function($event) {
                 _vm.toggleAlgemeen("Deelnemers werksessies")
@@ -43261,8 +43252,7 @@ var render = function() {
           {
             staticClass: "fauxlabel algemeenitem",
             class: {
-              "active--dark":
-                _vm.activealgemeen == "Compleet rapport naar sectoren"
+              active: _vm.activealgemeen == "Compleet rapport naar sectoren"
             },
             on: {
               click: function($event) {
@@ -43282,8 +43272,7 @@ var render = function() {
           {
             staticClass: "fauxlabel algemeenitem",
             class: {
-              "active--dark":
-                _vm.activealgemeen == "Compleet rapport naar functies"
+              active: _vm.activealgemeen == "Compleet rapport naar functies"
             },
             on: {
               click: function($event) {

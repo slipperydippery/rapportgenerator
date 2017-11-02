@@ -4,74 +4,74 @@
             <div class="selectlist selectlist--algemeen">
                 <h3>Algemeen</h3>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active--dark': activealgemeen == 'Inleiding op onderzoek' } "
+                    :class=" { 'active': activealgemeen == 'Inleiding op onderzoek' } "
                     @click=" toggleAlgemeen('Inleiding op onderzoek');  "
                 >
                     Inleiding op onderzoek <br>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active--dark': activealgemeen == 'Toelichting op sectoren' } "
+                    :class=" { 'active': activealgemeen == 'Toelichting op sectoren' } "
                     @click=" toggleAlgemeen('Toelichting op sectoren'); toggleToelichtingenSectoren() "
                 >
                     Toelichting op sectoren <br>
                     <span v-if=" activealgemeen == 'Toelichting op sectoren' " class="algemeenitem--toelichting">Selecteer één of meer sectoren</span>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active--dark': activealgemeen == 'Beschrijving van functies' } "
+                    :class=" { 'active': activealgemeen == 'Beschrijving van functies' } "
                     @click=" toggleAlgemeen('Beschrijving van functies') ; toggleBeschrijvingFuncties() "
                 >
       Beschrijving van functiesing van functies <br>
                     <span v-if=" activealgemeen == 'Beschrijving van functies' " class="algemeenitem--toelichting">Selecteer één of meer functies</span>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active--dark': activealgemeen == 'Uitwerking van functies per sector' } "
+                    :class=" { 'active': activealgemeen == 'Uitwerking van functies per sector' } "
                     @click=" toggleAlgemeen('Uitwerking van functies per sector') "
                 >
                     Uitwerking van functies per sector <br>
                     <span v-if=" activealgemeen == 'Uitwerking van functies per sector' " class="algemeenitem--toelichting">Selecteer sectoren en functies</span>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active--dark': activealgemeen == 'Uitwerking van sectoren per functie' } "
+                    :class=" { 'active': activealgemeen == 'Uitwerking van sectoren per functie' } "
                     @click=" toggleAlgemeen('Uitwerking van sectoren per functie') "
                 >
                     Uitwerking van sectoren per functie <br>
                     <span v-if=" activealgemeen == 'Uitwerking van sectoren per functie' " class="algemeenitem--toelichting">Selecteer sectoren en functies</span>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active--dark': activealgemeen == 'Beschouwing van functies' } "
+                    :class=" { 'active': activealgemeen == 'Beschouwing van functies' } "
                     @click=" toggleAlgemeen('Beschouwing van functies') "
                 >
                     Beschouwing van functies <br>
                     <span v-if=" activealgemeen == 'Beschouwing van functies' " class="algemeenitem--toelichting">Selecteer één of meer functies</span>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active--dark': activealgemeen == 'Prioritisering per sector' } "
+                    :class=" { 'active': activealgemeen == 'Prioritisering per sector' } "
                     @click=" toggleAlgemeen('Prioritisering per sector') "
                 >
                     Prioritisering per sector <br>
                     <span v-if=" activealgemeen == 'Prioritisering per sector' " class="algemeenitem--toelichting">Selecteer één of meer sectoren</span>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active--dark': activealgemeen == 'Slotbeschouwing' } "
+                    :class=" { 'active': activealgemeen == 'Slotbeschouwing' } "
                     @click=" toggleAlgemeen('Slotbeschouwing') "
                 >
                     Slotbeschouwing <br>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active--dark': activealgemeen == 'Deelnemers werksessies' } "
+                    :class=" { 'active': activealgemeen == 'Deelnemers werksessies' } "
                     @click=" toggleAlgemeen('Deelnemers werksessies') "
                 >
                     Deelnemers werksessies <br>
                 </button><br>
                 Speciale selecties <br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active--dark': activealgemeen == 'Compleet rapport naar sectoren' } "
+                    :class=" { 'active': activealgemeen == 'Compleet rapport naar sectoren' } "
                     @click=" toggleAlgemeen('Compleet rapport naar sectoren') "
                 >
                     Compleet rapport naar sectoren <br>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active--dark': activealgemeen == 'Compleet rapport naar functies' } "
+                    :class=" { 'active': activealgemeen == 'Compleet rapport naar functies' } "
                     @click=" toggleAlgemeen('Compleet rapport naar functies') "
                 >
                     Compleet rapport naar functies <br>
