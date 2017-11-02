@@ -42975,6 +42975,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.activesectors.push(sector);
             }
         },
+        disableSectors: function disableSectors() {
+            this.activesectors = [];
+            this.isSectorsDisabled = true;
+        },
+        disableFuncties: function disableFuncties() {
+            this.activefuncties = [];
+            this.isFunctiesDisabled = true;
+        },
         toggleActiveFunctie: function toggleActiveFunctie(functie) {
             if (this.activefuncties.includes(functie)) {
                 if (this.isReadAllFunctiesActive) {
@@ -43001,16 +43009,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
             this.isReadAllFunctiesActive = !this.isReadAllFunctiesActive;
         },
+        toggleInleiding: function toggleInleiding() {
+            if (this.activealgemeen == 'Inleiding op onderzoek') {
+                this.disableFuncties();
+                this.disableSectors();
+            }
+        },
         toggleToelichtingenSectoren: function toggleToelichtingenSectoren() {
             if (this.activealgemeen == 'Toelichting op sectoren') {
-                this.activefuncties = [];
-                this.isFunctiesDisabled = true;
+                this.disableFuncties();
             }
         },
         toggleBeschrijvingFuncties: function toggleBeschrijvingFuncties() {
             if (this.activealgemeen == 'Beschrijving van functies') {
-                this.activesectors = [];
-                this.isSectorsDisabled = true;
+                this.disableSectors();
+            }
+        },
+        toggleBeschouwingFuncties: function toggleBeschouwingFuncties() {
+            if (this.activealgemeen == 'Beschouwing van functies') {
+                this.disableSectors();
+            }
+        },
+        togglePrioritiseringSector: function togglePrioritiseringSector() {
+            if (this.activealgemeen == 'Prioritisering per sector') {
+                this.disableFuncties();
+            }
+        },
+        toggleDeelnemersWerksessies: function toggleDeelnemersWerksessies() {
+            if (this.activealgemeen == 'Deelnemers werksessies') {
+                this.disableFuncties();
+                this.disableSectors();
+            }
+        },
+        toggleSlotbeschouwing: function toggleSlotbeschouwing() {
+            if (this.activealgemeen == 'Slotbeschouwing') {
+                this.disableFuncties();
+                this.disableSectors();
+            }
+        },
+        toggleRapportNaarFuncties: function toggleRapportNaarFuncties() {
+            if (this.activealgemeen == 'Compleet rapport naar functies') {
+                this.disableFuncties();
+                this.disableSectors();
+            }
+        },
+        toggleRapportNaarSectoren: function toggleRapportNaarSectoren() {
+            if (this.activealgemeen == 'Compleet rapport naar sectoren') {
+                this.disableFuncties();
+                this.disableSectors();
             }
         },
         getSectors: function getSectors() {
@@ -43053,6 +43099,7 @@ var render = function() {
             on: {
               click: function($event) {
                 _vm.toggleAlgemeen("Inleiding op onderzoek")
+                _vm.toggleInleiding()
               }
             }
           },
@@ -43100,7 +43147,7 @@ var render = function() {
             }
           },
           [
-            _vm._v("\n  Beschrijving van functiesing van functies "),
+            _vm._v("\n                Beschrijving van functies "),
             _c("br"),
             _vm._v(" "),
             _vm.activealgemeen == "Beschrijving van functies"
@@ -43173,6 +43220,7 @@ var render = function() {
             on: {
               click: function($event) {
                 _vm.toggleAlgemeen("Beschouwing van functies")
+                _vm.toggleBeschouwingFuncties()
               }
             }
           },
@@ -43199,6 +43247,7 @@ var render = function() {
             on: {
               click: function($event) {
                 _vm.toggleAlgemeen("Prioritisering per sector")
+                _vm.togglePrioritiseringSector()
               }
             }
           },
@@ -43223,6 +43272,7 @@ var render = function() {
             on: {
               click: function($event) {
                 _vm.toggleAlgemeen("Slotbeschouwing")
+                _vm.toggleSlotbeschouwing()
               }
             }
           },
@@ -43238,6 +43288,7 @@ var render = function() {
             on: {
               click: function($event) {
                 _vm.toggleAlgemeen("Deelnemers werksessies")
+                _vm.toggleDeelnemersWerksessies()
               }
             }
           },
@@ -43257,6 +43308,7 @@ var render = function() {
             on: {
               click: function($event) {
                 _vm.toggleAlgemeen("Compleet rapport naar sectoren")
+                _vm.toggleRapportNaarSectoren()
               }
             }
           },
@@ -43277,6 +43329,7 @@ var render = function() {
             on: {
               click: function($event) {
                 _vm.toggleAlgemeen("Compleet rapport naar functies")
+                _vm.toggleRapportNaarFuncties()
               }
             }
           },

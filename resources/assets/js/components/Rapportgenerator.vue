@@ -5,7 +5,7 @@
                 <h3>Algemeen</h3>
                 <button class="fauxlabel algemeenitem" 
                     :class=" { 'active': activealgemeen == 'Inleiding op onderzoek' } "
-                    @click=" toggleAlgemeen('Inleiding op onderzoek');  "
+                    @click=" toggleAlgemeen('Inleiding op onderzoek'); toggleInleiding() "
                 >
                     Inleiding op onderzoek <br>
                 </button><br>
@@ -20,7 +20,7 @@
                     :class=" { 'active': activealgemeen == 'Beschrijving van functies' } "
                     @click=" toggleAlgemeen('Beschrijving van functies') ; toggleBeschrijvingFuncties() "
                 >
-      Beschrijving van functiesing van functies <br>
+                    Beschrijving van functies <br>
                     <span v-if=" activealgemeen == 'Beschrijving van functies' " class="algemeenitem--toelichting">Selecteer één of meer functies</span>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
@@ -39,40 +39,40 @@
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
                     :class=" { 'active': activealgemeen == 'Beschouwing van functies' } "
-                    @click=" toggleAlgemeen('Beschouwing van functies') "
+                    @click=" toggleAlgemeen('Beschouwing van functies'); toggleBeschouwingFuncties() "
                 >
                     Beschouwing van functies <br>
                     <span v-if=" activealgemeen == 'Beschouwing van functies' " class="algemeenitem--toelichting">Selecteer één of meer functies</span>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
                     :class=" { 'active': activealgemeen == 'Prioritisering per sector' } "
-                    @click=" toggleAlgemeen('Prioritisering per sector') "
+                    @click=" toggleAlgemeen('Prioritisering per sector'); togglePrioritiseringSector() "
                 >
                     Prioritisering per sector <br>
                     <span v-if=" activealgemeen == 'Prioritisering per sector' " class="algemeenitem--toelichting">Selecteer één of meer sectoren</span>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
                     :class=" { 'active': activealgemeen == 'Slotbeschouwing' } "
-                    @click=" toggleAlgemeen('Slotbeschouwing') "
+                    @click=" toggleAlgemeen('Slotbeschouwing'); toggleSlotbeschouwing() "
                 >
                     Slotbeschouwing <br>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
                     :class=" { 'active': activealgemeen == 'Deelnemers werksessies' } "
-                    @click=" toggleAlgemeen('Deelnemers werksessies') "
+                    @click=" toggleAlgemeen('Deelnemers werksessies'); toggleDeelnemersWerksessies() "
                 >
                     Deelnemers werksessies <br>
                 </button><br>
                 Speciale selecties <br>
                 <button class="fauxlabel algemeenitem" 
                     :class=" { 'active': activealgemeen == 'Compleet rapport naar sectoren' } "
-                    @click=" toggleAlgemeen('Compleet rapport naar sectoren') "
+                    @click=" toggleAlgemeen('Compleet rapport naar sectoren'); toggleRapportNaarSectoren() "
                 >
                     Compleet rapport naar sectoren <br>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
                     :class=" { 'active': activealgemeen == 'Compleet rapport naar functies' } "
-                    @click=" toggleAlgemeen('Compleet rapport naar functies') "
+                    @click=" toggleAlgemeen('Compleet rapport naar functies'); toggleRapportNaarFuncties() "
                 >
                     Compleet rapport naar functies <br>
                 </button><br>
@@ -172,6 +172,14 @@
                     this.activesectors.push(sector);
                 }
             },
+            disableSectors: function () {
+                this.activesectors = [];
+                this.isSectorsDisabled = true;
+            },
+            disableFuncties: function () {
+                this.activefuncties = [];
+                this.isFunctiesDisabled = true;
+            },
             toggleActiveFunctie: function(functie){
                 if (this.activefuncties.includes(functie)) {
                     if(this.isReadAllFunctiesActive) {
@@ -198,16 +206,54 @@
                 }
                 this.isReadAllFunctiesActive = ! this.isReadAllFunctiesActive;
             },
+            toggleInleiding: function () {
+                if ( this.activealgemeen == 'Inleiding op onderzoek' ) {
+                    this.disableFuncties();
+                    this.disableSectors();
+                }
+            },
             toggleToelichtingenSectoren: function () {
                 if ( this.activealgemeen == 'Toelichting op sectoren' ) {
-                    this.activefuncties = [];
-                    this.isFunctiesDisabled = true;
+                    this.disableFuncties();
                 }
             },
             toggleBeschrijvingFuncties: function () {
                 if ( this.activealgemeen == 'Beschrijving van functies' ) {
-                    this.activesectors = [];
-                    this.isSectorsDisabled = true;
+                    this.disableSectors();
+                }
+            },
+            toggleBeschouwingFuncties: function () {
+                if ( this.activealgemeen == 'Beschouwing van functies' ) {
+                    this.disableSectors();
+                }
+            },
+            togglePrioritiseringSector: function () {
+                if ( this.activealgemeen == 'Prioritisering per sector' ) {
+                    this.disableFuncties();
+                }
+            },
+            toggleDeelnemersWerksessies: function () {
+                if ( this.activealgemeen == 'Deelnemers werksessies' ) {
+                    this.disableFuncties();
+                    this.disableSectors();
+                }
+            },
+            toggleSlotbeschouwing: function () {
+                if ( this.activealgemeen == 'Slotbeschouwing' ) {
+                    this.disableFuncties();
+                    this.disableSectors();
+                }
+            },
+            toggleRapportNaarFuncties: function () {
+                if ( this.activealgemeen == 'Compleet rapport naar functies' ) {
+                    this.disableFuncties();
+                    this.disableSectors();
+                }
+            },
+            toggleRapportNaarSectoren: function () {
+                if ( this.activealgemeen == 'Compleet rapport naar sectoren' ) {
+                    this.disableFuncties();
+                    this.disableSectors();
                 }
             },
             getSectors: function () {
