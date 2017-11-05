@@ -4,23 +4,23 @@
             <div class="selectlist selectlist--algemeen">
                 <h3>Algemeen</h3>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active': activealgemeen.includes('Inleiding op onderzoek') && compleet == false } "
+                    :class=" { 'active': activealgemeen.includes('Inleiding op onderzoek') } "
                     @click=" toggleAlgemeen('Inleiding op onderzoek') "
-                    :disabled=" compleet "
+                    :disabled=" ! isAModeSelected "
                 >
                     Inleiding op onderzoek <br>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active': activealgemeen.includes('Toelichting op sectoren') && compleet == false } "
+                    :class=" { 'active': activealgemeen.includes('Toelichting op sectoren') } "
                     @click=" toggleAlgemeen('Toelichting op sectoren') "
-                    :disabled=" compleet "
+                    :disabled=" ! isAModeSelected "
                 >
                     Toelichting op sectoren <br>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active': activealgemeen.includes('Beschrijving van functies') && compleet == false } "
+                    :class=" { 'active': activealgemeen.includes('Beschrijving van functies') } "
                     @click=" toggleAlgemeen('Beschrijving van functies') "
-                    :disabled=" compleet "
+                    :disabled=" ! isAModeSelected "
                 >
                     Beschrijving van functies <br>
                 </button><br>
@@ -39,43 +39,41 @@
                     <span class="algemeenitem--toelichting">Selecteer sectoren en functies</span>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active': activealgemeen.includes('Beschouwing van functies') && compleet == false } "
+                    :class=" { 'active': activealgemeen.includes('Beschouwing van functies') } "
                     @click=" toggleAlgemeen('Beschouwing van functies'); "
-                    :disabled=" compleet "
+                    :disabled=" ! isAModeSelected "
                 >
                     Beschouwing van functies <br>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active': activealgemeen.includes('Prioritisering per sector') && compleet == false } "
+                    :class=" { 'active': activealgemeen.includes('Prioritisering per sector') } "
                     @click=" toggleAlgemeen('Prioritisering per sector'); "
-                    :disabled=" compleet "
+                    :disabled=" ! isAModeSelected "
                 >
                     Prioritisering per sector <br>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active': activealgemeen.includes('Slotbeschouwing') && compleet == false } "
+                    :class=" { 'active': activealgemeen.includes('Slotbeschouwing') } "
                     @click=" toggleAlgemeen('Slotbeschouwing'); "
-                    :disabled=" compleet "
+                    :disabled=" ! isAModeSelected "
                 >
                     Slotbeschouwing <br>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active': activealgemeen.includes('Deelnemers werksessies') && compleet == false } "
+                    :class=" { 'active': activealgemeen.includes('Deelnemers werksessies') } "
                     @click=" toggleAlgemeen('Deelnemers werksessies'); "
-                    :disabled=" compleet "
+                    :disabled=" ! isAModeSelected "
                 >
                     Deelnemers werksessies <br>
                 </button><br>
                 Speciale selecties <br>
-                <button class="fauxlabel algemeenitem algemeenitem--modus" 
-                    :class=" { 'active--dark': modusalgemeen == 'Compleet rapport naar sectoren' } "
-                    @click=" toggleModusAlgemeen('Compleet rapport naar sectoren'); toggleRapportNaarSectoren() "
+                <button class="fauxlabel algemeenitem algemeenitem--modus algemeenitem--compleet" 
+                    @click=" toggleRapportNaarSectoren() "
                 >
                     Compleet rapport naar sectoren <br>
                 </button><br>
-                <button class="fauxlabel algemeenitem algemeenitem--modus" 
-                    :class=" { 'active--dark': modusalgemeen == 'Compleet rapport naar functies' } "
-                    @click=" toggleModusAlgemeen('Compleet rapport naar functies'); toggleRapportNaarFuncties() "
+                <button class="fauxlabel algemeenitem algemeenitem--modus algemeenitem--compleet" 
+                    @click=" toggleRapportNaarFuncties() "
                 >
                     Compleet rapport naar functies <br>
                 </button><br>
@@ -84,7 +82,7 @@
                 <h3>Sector</h3>
                 <button class="fauxlabel"
                     @click="toggleReadAllSectors"
-                    :class="{ 'active--dark' : isReadAllSectorsActive && compleet == false }"
+                    :class="{ 'active--dark' : isReadAllSectorsActive }"
                     :disabled="isSectorsDisabled"
                 >
                     READ ALL
@@ -92,7 +90,7 @@
                 <button class="fauxlabel" 
                     v-for="sector in sectors"
                     @click="toggleActiveSector(sector)"
-                    :class="{ active : isActiveSector(sector) && compleet == false }" 
+                    :class="{ active : isActiveSector(sector) }" 
                     :disabled="isSectorsDisabled"
                 >
                     {{ sector.title }}
@@ -102,7 +100,7 @@
                 <h3>Functie</h3>
                 <button class="fauxlabel"
                     @click="toggleReadAllFuncties"
-                    :class="{ 'active--dark' : isReadAllFunctiesActive && compleet == false }"
+                    :class="{ 'active--dark' : isReadAllFunctiesActive }"
                     :disabled="isFunctiesDisabled"
                 >
                     READ ALL
@@ -110,11 +108,12 @@
                 <button class="fauxlabel" 
                     v-for="functie in functies"
                     @click="toggleActiveFunctie(functie)"
-                    :class="{ active : isActiveFunctie(functie) && compleet == false }"
+                    :class="{ active : isActiveFunctie(functie) }"
                     :disabled="isFunctiesDisabled"
                 >
                     {{ functie.title }}
                 </button><br>
+                    hello {{ modusalgemeen }}
             </div>
         </div>
     </div>
@@ -135,7 +134,7 @@
                 modusalgemeen: {},
                 isReadAllSectorsActive: false,
                 isReadAllFunctiesActive: false,
-                compleet: true,
+                isAModeSelected: false,
             }
         },
 
@@ -149,10 +148,8 @@
         computed: {
             isSectorsDisabled: function() {
                 if ( this.modusalgemeen == 'Uitwerking van functies per sector' ) {
-                    console.log('uitwerking sectoren');
                     return false;
                 } else if ( this.modusalgemeen == 'Uitwerking van sectoren per functie' && this.activefuncties.length > 0 ) {
-                    console.log('uitwerking functies met 1 geselecteerd');
                     return false;
                 }
                 return true;
@@ -164,7 +161,7 @@
                     return false;
                 } 
                 return true;
-            }
+            },
         },
 
         methods: {
@@ -175,12 +172,12 @@
                 return this.activefuncties.includes(functie);
             },
             toggleModusAlgemeen: function(algemeen) {
-                this.compleet = false;
                 if(this.modusalgemeen == algemeen){
                     this.modusalgemeen = {};
-                    this.compleet = true;
+                    this.isAModeSelected = false;
                 } else {
                     this.modusalgemeen = algemeen;
+                    this.isAModeSelected = true;
                 }
             },
             toggleAlgemeen: function(algemeen) {
@@ -226,15 +223,36 @@
                 }
                 this.isReadAllFunctiesActive = ! this.isReadAllFunctiesActive;
             },
-            toggleRapportNaarFuncties: function () {
-                if ( this.modusalgemeen == 'Compleet rapport naar functies' ) {
-                    this.compleet = true;
-                }
+            activateAllAlgemeen: function () {
+                this.activealgemeen = [
+                    'Inleiding op onderzoek', 
+                    'Toelichting op sectoren', 
+                    'Beschrijving van functies', 
+                    'Beschouwing van functies', 
+                    'Prioritisering per sector', 
+                    'Slotbeschouwing', 
+                    'Deelnemers werksessies'
+                ]
+            },
+            activateAllSectors: function () {
+                this.isReadAllSectorsActive = true;
+                this.activesectors = this.sectors.slice();
+            },
+            activateAllFuncties: function () {
+                this.activefuncties = this.functies.slice();
+                this.isReadAllFunctiesActive = true;
             },
             toggleRapportNaarSectoren: function () {
-                if ( this.modusalgemeen == 'Compleet rapport naar sectoren' ) {
-                    this.compleet = true;
-                }
+                this.activateAllAlgemeen();
+                this.modusalgemeen = 'Uitwerking van functies per sector';
+                this.activateAllSectors();
+                this.activateAllFuncties();
+            },
+            toggleRapportNaarFuncties: function () {
+                this.activateAllAlgemeen();
+                this.modusalgemeen = 'Uitwerking van sectoren per functie';
+                this.activateAllFuncties();
+                this.activateAllSectors();
             },
             getSectors: function () {
                 var home = this;

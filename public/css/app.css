@@ -8523,6 +8523,11 @@ input[type="checkbox"]:checked + label,
   font-size: 14px;
 }
 
+.algemeenitem--compleet {
+  background: transparent;
+  border: none;
+}
+
 .algemeenitem--toelichting {
   font-style: italic;
   font-weight: 400;
