@@ -8514,6 +8514,15 @@ input[type="checkbox"]:checked + label,
   background: #42dc95;
 }
 
+.algemeenitem {
+  width: 22rem;
+}
+
+.algemeenitem--modus {
+  width: 26rem;
+  font-size: 14px;
+}
+
 .algemeenitem--toelichting {
   font-style: italic;
   font-weight: 400;
