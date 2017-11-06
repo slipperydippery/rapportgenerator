@@ -4,21 +4,21 @@
             <div class="selectlist selectlist--algemeen">
                 <h3>Algemeen</h3>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active': activealgemeen.includes('Inleiding op onderzoek') } "
+                    :class=" { 'active': activealgemeen.includes('Inleiding op onderzoek') && isAModeSelected } "
                     @click=" toggleAlgemeen('Inleiding op onderzoek') "
                     :disabled=" ! isAModeSelected "
                 >
                     Inleiding op onderzoek <br>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active': activealgemeen.includes('Toelichting op sectoren') } "
+                    :class=" { 'active': activealgemeen.includes('Toelichting op sectoren') && isAModeSelected } "
                     @click=" toggleAlgemeen('Toelichting op sectoren') "
                     :disabled=" ! isAModeSelected "
                 >
                     Toelichting op sectoren <br>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active': activealgemeen.includes('Beschrijving van functies') } "
+                    :class=" { 'active': activealgemeen.includes('Beschrijving van functies') && isAModeSelected } "
                     @click=" toggleAlgemeen('Beschrijving van functies') "
                     :disabled=" ! isAModeSelected "
                 >
@@ -39,28 +39,28 @@
                     <span class="algemeenitem--toelichting">Selecteer sectoren en functies</span>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active': activealgemeen.includes('Beschouwing van functies') } "
+                    :class=" { 'active': activealgemeen.includes('Beschouwing van functies') && isAModeSelected } "
                     @click=" toggleAlgemeen('Beschouwing van functies'); "
                     :disabled=" ! isAModeSelected "
                 >
                     Beschouwing van functies <br>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active': activealgemeen.includes('Prioritisering per sector') } "
+                    :class=" { 'active': activealgemeen.includes('Prioritisering per sector') && isAModeSelected } "
                     @click=" toggleAlgemeen('Prioritisering per sector'); "
                     :disabled=" ! isAModeSelected "
                 >
                     Prioritisering per sector <br>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active': activealgemeen.includes('Slotbeschouwing') } "
+                    :class=" { 'active': activealgemeen.includes('Slotbeschouwing') && isAModeSelected } "
                     @click=" toggleAlgemeen('Slotbeschouwing'); "
                     :disabled=" ! isAModeSelected "
                 >
                     Slotbeschouwing <br>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
-                    :class=" { 'active': activealgemeen.includes('Deelnemers werksessies') } "
+                    :class=" { 'active': activealgemeen.includes('Deelnemers werksessies') && isAModeSelected } "
                     @click=" toggleAlgemeen('Deelnemers werksessies'); "
                     :disabled=" ! isAModeSelected "
                 >
@@ -82,7 +82,7 @@
                 <h3>Sector</h3>
                 <button class="fauxlabel"
                     @click="toggleReadAllSectors"
-                    :class="{ 'active--dark' : isReadAllSectorsActive }"
+                    :class="{ 'active--dark' : isReadAllSectorsActive && ! isSectorsDisabled }"
                     :disabled="isSectorsDisabled"
                 >
                     READ ALL
@@ -90,7 +90,7 @@
                 <button class="fauxlabel" 
                     v-for="sector in sectors"
                     @click="toggleActiveSector(sector)"
-                    :class="{ active : isActiveSector(sector) }" 
+                    :class="{ active : isActiveSector(sector) && ! isSectorsDisabled }" 
                     :disabled="isSectorsDisabled"
                 >
                     {{ sector.title }}
@@ -100,7 +100,7 @@
                 <h3>Functie</h3>
                 <button class="fauxlabel"
                     @click="toggleReadAllFuncties"
-                    :class="{ 'active--dark' : isReadAllFunctiesActive }"
+                    :class="{ 'active--dark' : isReadAllFunctiesActive && ! isFunctiesDisabled }"
                     :disabled="isFunctiesDisabled"
                 >
                     READ ALL
@@ -108,7 +108,7 @@
                 <button class="fauxlabel" 
                     v-for="functie in functies"
                     @click="toggleActiveFunctie(functie)"
-                    :class="{ active : isActiveFunctie(functie) }"
+                    :class="{ active : isActiveFunctie(functie) && ! isFunctiesDisabled }"
                     :disabled="isFunctiesDisabled"
                 >
                     {{ functie.title }}
@@ -247,12 +247,14 @@
                 this.modusalgemeen = 'Uitwerking van functies per sector';
                 this.activateAllSectors();
                 this.activateAllFuncties();
+                this.isAModeSelected = true;
             },
             toggleRapportNaarFuncties: function () {
                 this.activateAllAlgemeen();
                 this.modusalgemeen = 'Uitwerking van sectoren per functie';
                 this.activateAllFuncties();
                 this.activateAllSectors();
+                this.isAModeSelected = true;
             },
             getSectors: function () {
                 var home = this;
