@@ -131,8 +131,8 @@
                 activealgemeen: {},
                 isReadAllSectorsActive: false,
                 isReadAllFunctiesActive: false,
-                isSectorsDisabled: false,
-                isFunctiesDisabled: false,
+                isSectorsDisabled: true,
+                isFunctiesDisabled: true,
             }
         },
 
@@ -154,8 +154,8 @@
                 return this.activefuncties.includes(functie);
             },
             toggleAlgemeen: function(algemeen) {
-                this.isSectorsDisabled = false;
-                this.isFunctiesDisabled = false;
+                this.isSectorsDisabled = true;
+                this.isFunctiesDisabled = true;
                 if(this.activealgemeen == algemeen){
                     this.activealgemeen = {};
                 } else {
@@ -166,6 +166,7 @@
                 if (this.activesectors.includes(sector)) {
                     if(this.isReadAllSectorsActive) {
                         this.isReadAllSectorsActive = false;
+                    this.isFunctiesDisabled = false;
                     };
                     this.activesectors.splice(this.activesectors.indexOf(sector), 1);
                 } else {
