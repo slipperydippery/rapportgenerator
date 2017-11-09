@@ -42790,9 +42790,282 @@ module.exports = Component.exports
 
 /***/ }),
 /* 43 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: Unexpected token (195:9)\n\n\u001b[0m \u001b[90m 193 | \u001b[39m                \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mactivealgemeen\u001b[33m.\u001b[39mpush(algemeen)\u001b[33m;\u001b[39m\n \u001b[90m 194 | \u001b[39m            }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 195 | \u001b[39m        }\u001b[33m,\u001b[39m\n \u001b[90m     | \u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 196 | \u001b[39m        toggleActiveSector\u001b[33m:\u001b[39m \u001b[36mfunction\u001b[39m(sector){\n \u001b[90m 197 | \u001b[39m            \u001b[36mif\u001b[39m (\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mactivesectors\u001b[33m.\u001b[39mincludes(sector)) {\n \u001b[90m 198 | \u001b[39m                \u001b[36mif\u001b[39m(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39misReadAllSectorsActive) {\u001b[0m\n");
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: [],
+
+    data: function data() {
+        return {
+            sectors: [],
+            activesectors: [],
+            functies: [],
+            activefuncties: [],
+            activealgemeen: [],
+            modusalgemeen: {},
+            isReadAllSectorsActive: false,
+            isReadAllFunctiesActive: false,
+            isSectorsDisabled: true,
+            isFunctiesDisabled: true,
+            isAModeSelected: false
+        };
+    },
+    mounted: function mounted() {
+        console.log('Component mounted.');
+        this.getSectors();
+        this.getFuncties();
+    },
+
+
+    computed: {
+        isSectorsDisabled: function isSectorsDisabled() {
+            if (this.modusalgemeen == 'Uitwerking van functies per sector') {
+                return false;
+            } else if (this.modusalgemeen == 'Uitwerking van sectoren per functie' && this.activefuncties.length > 0) {
+                return false;
+            }
+            return true;
+        },
+        isFunctiesDisabled: function isFunctiesDisabled() {
+            if (this.modusalgemeen == 'Uitwerking van sectoren per functie') {
+                return false;
+            } else if (this.modusalgemeen == 'Uitwerking van functies per sector' && this.activesectors.length > 0) {
+                return false;
+            }
+            return true;
+        }
+    },
+
+    methods: {
+        isActiveSector: function isActiveSector(sector) {
+            return this.activesectors.includes(sector);
+        },
+        isActiveFunctie: function isActiveFunctie(functie) {
+            return this.activefuncties.includes(functie);
+        },
+        toggleModusAlgemeen: function toggleModusAlgemeen(algemeen) {
+            if (this.modusalgemeen == algemeen) {
+                this.modusalgemeen = {};
+                this.isAModeSelected = false;
+            } else {
+                this.modusalgemeen = algemeen;
+                this.isAModeSelected = true;
+            }
+        },
+        toggleAlgemeen: function toggleAlgemeen(algemeen) {
+            this.isSectorsDisabled = true;
+            this.isFunctiesDisabled = true;
+            if (this.activealgemeen.includes(algemeen)) {
+                this.activealgemeen.splice(this.activealgemeen.indexOf(algemeen), 1);
+            } else {
+                this.activealgemeen.push(algemeen);
+            }
+        },
+        toggleActiveSector: function toggleActiveSector(sector) {
+            if (this.activesectors.includes(sector)) {
+                if (this.isReadAllSectorsActive) {
+                    this.isReadAllSectorsActive = false;
+                    this.isFunctiesDisabled = false;
+                };
+                this.activesectors.splice(this.activesectors.indexOf(sector), 1);
+            } else {
+                this.activesectors.push(sector);
+            }
+        },
+        toggleActiveFunctie: function toggleActiveFunctie(functie) {
+            if (this.activefuncties.includes(functie)) {
+                if (this.isReadAllFunctiesActive) {
+                    this.isReadAllFunctiesActive = false;
+                }
+                this.activefuncties.splice(this.activefuncties.indexOf(functie), 1);
+            } else {
+                this.activefuncties.push(functie);
+            }
+        },
+        toggleReadAllSectors: function toggleReadAllSectors() {
+            if (!this.isReadAllSectorsActive) {
+                this.activesectors = this.sectors.slice();
+            } else {
+                this.activesectors = [];
+            }
+            this.isReadAllSectorsActive = !this.isReadAllSectorsActive;
+        },
+        toggleReadAllFuncties: function toggleReadAllFuncties() {
+            if (!this.isReadAllFunctiesActive) {
+                this.activefuncties = this.functies.slice();
+            } else {
+                this.activefuncties = [];
+            }
+            this.isReadAllFunctiesActive = !this.isReadAllFunctiesActive;
+        },
+        activateAllAlgemeen: function activateAllAlgemeen() {
+            this.activealgemeen = ['Inleiding op onderzoek', 'Toelichting op sectoren', 'Beschrijving van functies', 'Beschouwing van functies', 'Prioritisering per sector', 'Slotbeschouwing', 'Deelnemers werksessies'];
+        },
+        activateAllSectors: function activateAllSectors() {
+            this.isReadAllSectorsActive = true;
+            this.activesectors = this.sectors.slice();
+        },
+        activateAllFuncties: function activateAllFuncties() {
+            this.activefuncties = this.functies.slice();
+            this.isReadAllFunctiesActive = true;
+        },
+        toggleRapportNaarSectoren: function toggleRapportNaarSectoren() {
+            this.activateAllAlgemeen();
+            this.modusalgemeen = 'Uitwerking van functies per sector';
+            this.activateAllSectors();
+            this.activateAllFuncties();
+            this.isAModeSelected = true;
+        },
+        toggleRapportNaarFuncties: function toggleRapportNaarFuncties() {
+            this.activateAllAlgemeen();
+            this.modusalgemeen = 'Uitwerking van sectoren per functie';
+            this.activateAllFuncties();
+            this.activateAllSectors();
+            this.isAModeSelected = true;
+        },
+        getSectors: function getSectors() {
+            var home = this;
+            axios.get('/api/sector').then(function (response) {
+                home.sectors = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getFuncties: function getFuncties() {
+            var home = this;
+            axios.get('api/functie').then(function (response) {
+                home.functies = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
+});
 
 /***/ }),
 /* 44 */

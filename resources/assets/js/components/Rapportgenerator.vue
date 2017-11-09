@@ -185,8 +185,6 @@
             toggleAlgemeen: function(algemeen) {
                 this.isSectorsDisabled = true;
                 this.isFunctiesDisabled = true;
-                if(this.activealgemeen == algemeen){
-                    this.activealgemeen = {};
                 if(this.activealgemeen.includes(algemeen)){
                     this.activealgemeen.splice(this.activealgemeen.indexOf(algemeen), 1);
                 } else {
