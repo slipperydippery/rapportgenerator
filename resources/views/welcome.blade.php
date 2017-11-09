@@ -73,7 +73,6 @@
                             <a href="#"><img src="img/shareicon.png" alt=""></a>
                             <a href="#"><img src="img/facebook.png" alt=""></a>
                         </div>
-                        <span class="ingelogd">U bent ingelogd als <span class="ingelogd--naam">Maarten de Jager</span></span>
                     </div>
                 </div>
                 <div class="title m-b-md">

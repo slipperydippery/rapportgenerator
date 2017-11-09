@@ -151,6 +151,20 @@ input[type="checkbox"]:checked + label, .active  {
     background: #42dc95;
 }
 
+.algemeenitem {
+    width: 22rem;
+}
+
+.algemeenitem--modus {
+    // width: 26rem;
+    // font-size: 14px;
+}
+
+.algemeenitem--compleet {
+    background: transparent;
+    border: none;
+}
+
 .algemeenitem--toelichting {
     font-style: italic;
     font-weight: 400;
