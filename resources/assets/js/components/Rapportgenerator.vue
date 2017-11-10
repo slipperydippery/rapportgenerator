@@ -3,6 +3,32 @@
         <div class="generator--selector">
             <div class="selectlist selectlist--algemeen">
                 <h3>Algemeen</h3>
+                Speciale selecties <br>
+                <button class="fauxlabel algemeenitem algemeenitem--modus" 
+                    :class=" { 'active--dark': modusalgemeen == 'Uitwerking van functies per sector' } "
+                    @click=" toggleModusAlgemeen('Uitwerking van functies per sector') "
+                >
+                    Uitwerking van functies per sector <br>
+                    <span class="algemeenitem--toelichting">Selecteer sectoren en functies</span>
+                </button><br>
+                <button class="fauxlabel algemeenitem algemeenitem--modus" 
+                    :class=" { 'active--dark': modusalgemeen == 'Uitwerking van sectoren per functie' } "
+                    @click=" toggleModusAlgemeen('Uitwerking van sectoren per functie') "
+                >
+                    Uitwerking van sectoren per functie <br>
+                    <span class="algemeenitem--toelichting">Selecteer sectoren en functies</span>
+                </button><br>
+                <button class="fauxlabel algemeenitem algemeenitem--modus algemeenitem--compleet" 
+                    @click=" toggleRapportNaarSectoren() "
+                >
+                    Compleet rapport naar sectoren <br>
+                </button><br>
+                <button class="fauxlabel algemeenitem algemeenitem--modus algemeenitem--compleet" 
+                    @click=" toggleRapportNaarFuncties() "
+                >
+                    Compleet rapport naar functies <br>
+                </button><br>
+                
                 <button class="fauxlabel algemeenitem" 
                     :class=" { 'active': activealgemeen.includes('Inleiding op onderzoek') && isAModeSelected } "
                     @click=" toggleAlgemeen('Inleiding op onderzoek') "
@@ -23,20 +49,6 @@
                     :disabled=" ! isAModeSelected "
                 >
                     Beschrijving van functies <br>
-                </button><br>
-                <button class="fauxlabel algemeenitem algemeenitem--modus" 
-                    :class=" { 'active--dark': modusalgemeen == 'Uitwerking van functies per sector' } "
-                    @click=" toggleModusAlgemeen('Uitwerking van functies per sector') "
-                >
-                    Uitwerking van functies per sector <br>
-                    <span class="algemeenitem--toelichting">Selecteer sectoren en functies</span>
-                </button><br>
-                <button class="fauxlabel algemeenitem algemeenitem--modus" 
-                    :class=" { 'active--dark': modusalgemeen == 'Uitwerking van sectoren per functie' } "
-                    @click=" toggleModusAlgemeen('Uitwerking van sectoren per functie') "
-                >
-                    Uitwerking van sectoren per functie <br>
-                    <span class="algemeenitem--toelichting">Selecteer sectoren en functies</span>
                 </button><br>
                 <button class="fauxlabel algemeenitem" 
                     :class=" { 'active': activealgemeen.includes('Beschouwing van functies') && isAModeSelected } "
@@ -65,17 +77,6 @@
                     :disabled=" ! isAModeSelected "
                 >
                     Deelnemers werksessies <br>
-                </button><br>
-                Speciale selecties <br>
-                <button class="fauxlabel algemeenitem algemeenitem--modus algemeenitem--compleet" 
-                    @click=" toggleRapportNaarSectoren() "
-                >
-                    Compleet rapport naar sectoren <br>
-                </button><br>
-                <button class="fauxlabel algemeenitem algemeenitem--modus algemeenitem--compleet" 
-                    @click=" toggleRapportNaarFuncties() "
-                >
-                    Compleet rapport naar functies <br>
                 </button><br>
             </div>
             <div class="selectlist">
@@ -113,7 +114,6 @@
                 >
                     {{ functie.title }}
                 </button><br>
-                    hello {{ modusalgemeen }}
             </div>
         </div>
     </div>

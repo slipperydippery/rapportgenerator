@@ -1,8 +1,49 @@
 $bodywidth: 1000px;
 $maxbodywidth: 80%;
 
+html, body {
+    background-color: #fff;
+    color: #636b6f;
+    font-family: ariel, sans-serif;
+    font-weight: 100;
+    height: 100vh;
+    margin: 0;
+}
+
+/**
+ *      WORKER CLASSES
+ */
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    /*align-items: center;*/
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
 button:focus {
     outline: none;
+}
+
+/**
+ *      LAYOUT
+ */
+
+.content {
+    text-align: center;
 }
 
 .menubar {
@@ -18,10 +59,18 @@ button:focus {
                 font-weight: 500;
             }
         }
+        .bereschotlogo {
+            display: inline-block;
+            float: right;
+            margin: .4rem 0 0 0;
+            img {
+                height: 3rem;
+            }
+        }
         .social--icons {
             display: inline-block;
             float: right;
-            padding: 0.2rem 1rem 0.6rem;
+            padding: 0.2rem 1rem 0.2rem;
             margin: 0 0 0 1rem;
             background: #41dc95;
             border-bottom-left-radius: 1rem;
@@ -32,34 +81,36 @@ button:focus {
     }
 }
 
+.title--wrap {
+    width: $bodywidth;
+    max-width: $maxbodywidth;
+    margin: 0 auto;
+    text-align: left;
+}
+
 .title {
     display: inline-block;
     width: 100%;
     font-size: 84px;    
     line-height: 74px;
     margin-top: 20px;
+    font-family: raleway;
 }
 .subtitle {
     width: $bodywidth;
     max-width: $maxbodywidth;
-    margin: 0 auto;
-    text-align: center;
     font-size: 30px;
-    /* font-style: italic; */
     font-weight: 500;
     margin-bottom: 20px;
+    font-family: raleway;
 }
 
-.introtext--wrap {
-    width: $bodywidth;
-    max-width: $maxbodywidth;
-    margin: 0 auto;
-    .introtext {
-        width: 70%;
-        margin: 0 auto;
-        text-align: left;
-    }
+.introtext {
+    text-align: left;
+    font-size: 1.7rem;
+    line-height: 3rem;
 }
+
 
 
 .generator--selector--wrap {
