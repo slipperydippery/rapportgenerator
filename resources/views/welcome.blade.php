@@ -12,7 +12,7 @@
             ]); ?>
         </script>
 
-        <title>Rapport Generator</title>
+        <title>Ondersteuningsstructuur Cultuursector</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -98,24 +98,7 @@
                 </div>
                 <div class="selectlist--switch"> <> </div>
                 <div class="selectlist--plus"> + </div>
-                <div class="generator--shortresults">
-                    <h2>Resultaten</h2>
-                    <ul>
-                        @foreach($elements as $element)
-                            <li><a href="#">{{ $element->title }}</a></li>
-                        @endforeach
-                    </ul>
-                </div>
-
-                <div class="generator--results">
-                    @foreach($elements as $element)
-                        <div class="result" id="Titel1">
-                            <h2>{{ $element->title }}</h2>
-                            <span class="intro"> {!! $element->short !!} </span>
-                            <span class="body"> {!! $element->body !!} </span>
-                        </div>
-                    @endforeach 
-                </div>
+                
 
             </div>
         </div>

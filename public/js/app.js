@@ -1098,6 +1098,7 @@ window.Vue = __webpack_require__(36);
 
 Vue.component('example-component', __webpack_require__(39));
 Vue.component('Rapportgenerator', __webpack_require__(42));
+Vue.component('Rapportresultaten', __webpack_require__(55));
 
 var app = new Vue({
   el: '#app'
@@ -30997,7 +30998,7 @@ module.exports.default = axios;
 /*!
  * Determine if an object is a Buffer
  *
- * @author   Feross Aboukhadijeh <https://feross.org>
+ * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
  * @license  MIT
  */
 
@@ -42646,7 +42647,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\ExampleComponent.vue"
+Component.options.__file = "resources/assets/js/components/ExampleComponent.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -42766,7 +42767,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\Rapportgenerator.vue"
+Component.options.__file = "resources/assets/js/components/Rapportgenerator.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -42915,6 +42916,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -42930,13 +42941,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             modusalgemeen: {},
             isReadAllSectorsActive: false,
             isReadAllFunctiesActive: false,
-            isSectorsDisabled: true,
-            isFunctiesDisabled: true,
             isAModeSelected: false
         };
     },
     mounted: function mounted() {
-        console.log('Component mounted.');
         this.getSectors();
         this.getFuncties();
     },
@@ -42954,19 +42962,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         isFunctiesDisabled: function isFunctiesDisabled() {
             if (this.modusalgemeen == 'Uitwerking van sectoren per functie') {
                 return false;
-            } else if (this.modusalgemeen == 'Uitwerking van functies per sector' && this.activesectors.length > 0) {
+            } else if (this.modusalgemeen == 'Uitwerking van functies per sector' && this.activeSectorsLength > 0) {
                 return false;
             }
             return true;
+        },
+        activeSectorsLength: function activeSectorsLength() {
+            var activelength = 0;
+            this.sectors.forEach(function (sector) {
+                if (sector.active) {
+                    activelength++;
+                }
+            });
+            return activelength;
+        },
+        activeFunctiesLength: function activeFunctiesLength() {
+            var activelength = 0;
+            this.functies.forEach(function (functie) {
+                if (functie.active) {
+                    activelength++;
+                }
+            });
+            return activelength;
         }
     },
 
     methods: {
         isActiveSector: function isActiveSector(sector) {
-            return this.activesectors.includes(sector);
+            return sector.active;
         },
         isActiveFunctie: function isActiveFunctie(functie) {
-            return this.activefuncties.includes(functie);
+            return functie.active;
         },
         toggleModusAlgemeen: function toggleModusAlgemeen(algemeen) {
             if (this.modusalgemeen == algemeen) {
@@ -42978,8 +43004,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         toggleAlgemeen: function toggleAlgemeen(algemeen) {
-            this.isSectorsDisabled = true;
-            this.isFunctiesDisabled = true;
             if (this.activealgemeen.includes(algemeen)) {
                 this.activealgemeen.splice(this.activealgemeen.indexOf(algemeen), 1);
             } else {
@@ -42987,6 +43011,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         toggleActiveSector: function toggleActiveSector(sector) {
+            sector.active = !sector.active;
             if (this.activesectors.includes(sector)) {
                 if (this.isReadAllSectorsActive) {
                     this.isReadAllSectorsActive = false;
@@ -42998,6 +43023,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         toggleActiveFunctie: function toggleActiveFunctie(functie) {
+            functie.active = !functie.active;
             if (this.activefuncties.includes(functie)) {
                 if (this.isReadAllFunctiesActive) {
                     this.isReadAllFunctiesActive = false;
@@ -43022,6 +43048,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.activefuncties = [];
             }
             this.isReadAllFunctiesActive = !this.isReadAllFunctiesActive;
+            var truuthy = this.isReadAllFunctiesActive;
+            this.functies.forEach(function (functie) {
+                functie.active = truuthy;
+            });
         },
         activateAllAlgemeen: function activateAllAlgemeen() {
             this.activealgemeen = ['Inleiding op onderzoek', 'Toelichting op sectoren', 'Beschrijving van functies', 'Beschouwing van functies', 'Prioritisering per sector', 'Slotbeschouwing', 'Deelnemers werksessies'];
@@ -43052,6 +43082,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var home = this;
             axios.get('/api/sector').then(function (response) {
                 home.sectors = response.data;
+                home.sectors.forEach(function (sector) {
+                    sector.active = false;
+                });
             }).catch(function (error) {
                 console.log(error);
             });
@@ -43060,6 +43093,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var home = this;
             axios.get('api/functie').then(function (response) {
                 home.functies = response.data;
+                home.functies.forEach(function (functie) {
+                    functie.active = false;
+                });
             }).catch(function (error) {
                 console.log(error);
             });
@@ -43075,338 +43111,384 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "generator--selector--wrap" }, [
-    _c("div", { staticClass: "generator--selector" }, [
-      _c("div", { staticClass: "selectlist selectlist--algemeen" }, [
-        _c("h3", [_vm._v("Algemeen")]),
-        _vm._v("\n            Speciale selecties "),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "fauxlabel algemeenitem algemeenitem--modus",
-            class: {
-              "active--dark":
-                _vm.modusalgemeen == "Uitwerking van functies per sector"
-            },
-            on: {
-              click: function($event) {
-                _vm.toggleModusAlgemeen("Uitwerking van functies per sector")
-              }
-            }
-          },
-          [
-            _vm._v("\n                Uitwerking van functies per sector "),
-            _c("br"),
+  return _c(
+    "div",
+    { staticClass: "generator--wrap" },
+    [
+      _c("div", { staticClass: "generator--selector--wrap" }, [
+        _c("div", { staticClass: "generator--selector" }, [
+          _c("div", { staticClass: "selectlist selectlist--algemeen" }, [
+            _c("h3", [_vm._v("Algemeen")]),
             _vm._v(" "),
-            _c("span", { staticClass: "algemeenitem--toelichting" }, [
-              _vm._v("Selecteer sectoren en functies")
-            ])
-          ]
-        ),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "fauxlabel algemeenitem algemeenitem--modus",
-            class: {
-              "active--dark":
-                _vm.modusalgemeen == "Uitwerking van sectoren per functie"
-            },
-            on: {
-              click: function($event) {
-                _vm.toggleModusAlgemeen("Uitwerking van sectoren per functie")
-              }
-            }
-          },
-          [
-            _vm._v("\n                Uitwerking van sectoren per functie "),
-            _c("br"),
-            _vm._v(" "),
-            _c("span", { staticClass: "algemeenitem--toelichting" }, [
-              _vm._v("Selecteer sectoren en functies")
-            ])
-          ]
-        ),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "fauxlabel algemeenitem algemeenitem--modus algemeenitem--compleet",
-            on: {
-              click: function($event) {
-                _vm.toggleRapportNaarSectoren()
-              }
-            }
-          },
-          [
-            _vm._v("\n                Compleet rapport naar sectoren "),
-            _c("br")
-          ]
-        ),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "fauxlabel algemeenitem algemeenitem--modus algemeenitem--compleet",
-            on: {
-              click: function($event) {
-                _vm.toggleRapportNaarFuncties()
-              }
-            }
-          },
-          [
-            _vm._v("\n                Compleet rapport naar functies "),
-            _c("br")
-          ]
-        ),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "fauxlabel algemeenitem",
-            class: {
-              active:
-                _vm.activealgemeen.includes("Inleiding op onderzoek") &&
-                _vm.isAModeSelected
-            },
-            attrs: { disabled: !_vm.isAModeSelected },
-            on: {
-              click: function($event) {
-                _vm.toggleAlgemeen("Inleiding op onderzoek")
-              }
-            }
-          },
-          [_vm._v("\n                Inleiding op onderzoek "), _c("br")]
-        ),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "fauxlabel algemeenitem",
-            class: {
-              active:
-                _vm.activealgemeen.includes("Toelichting op sectoren") &&
-                _vm.isAModeSelected
-            },
-            attrs: { disabled: !_vm.isAModeSelected },
-            on: {
-              click: function($event) {
-                _vm.toggleAlgemeen("Toelichting op sectoren")
-              }
-            }
-          },
-          [_vm._v("\n                Toelichting op sectoren "), _c("br")]
-        ),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "fauxlabel algemeenitem",
-            class: {
-              active:
-                _vm.activealgemeen.includes("Beschrijving van functies") &&
-                _vm.isAModeSelected
-            },
-            attrs: { disabled: !_vm.isAModeSelected },
-            on: {
-              click: function($event) {
-                _vm.toggleAlgemeen("Beschrijving van functies")
-              }
-            }
-          },
-          [_vm._v("\n                Beschrijving van functies "), _c("br")]
-        ),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "fauxlabel algemeenitem",
-            class: {
-              active:
-                _vm.activealgemeen.includes("Beschouwing van functies") &&
-                _vm.isAModeSelected
-            },
-            attrs: { disabled: !_vm.isAModeSelected },
-            on: {
-              click: function($event) {
-                _vm.toggleAlgemeen("Beschouwing van functies")
-              }
-            }
-          },
-          [_vm._v("\n                Beschouwing van functies "), _c("br")]
-        ),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "fauxlabel algemeenitem",
-            class: {
-              active:
-                _vm.activealgemeen.includes("Prioritisering per sector") &&
-                _vm.isAModeSelected
-            },
-            attrs: { disabled: !_vm.isAModeSelected },
-            on: {
-              click: function($event) {
-                _vm.toggleAlgemeen("Prioritisering per sector")
-              }
-            }
-          },
-          [_vm._v("\n                Prioritisering per sector "), _c("br")]
-        ),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "fauxlabel algemeenitem",
-            class: {
-              active:
-                _vm.activealgemeen.includes("Slotbeschouwing") &&
-                _vm.isAModeSelected
-            },
-            attrs: { disabled: !_vm.isAModeSelected },
-            on: {
-              click: function($event) {
-                _vm.toggleAlgemeen("Slotbeschouwing")
-              }
-            }
-          },
-          [_vm._v("\n                Slotbeschouwing "), _c("br")]
-        ),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "fauxlabel algemeenitem",
-            class: {
-              active:
-                _vm.activealgemeen.includes("Deelnemers werksessies") &&
-                _vm.isAModeSelected
-            },
-            attrs: { disabled: !_vm.isAModeSelected },
-            on: {
-              click: function($event) {
-                _vm.toggleAlgemeen("Deelnemers werksessies")
-              }
-            }
-          },
-          [_vm._v("\n                Deelnemers werksessies "), _c("br")]
-        ),
-        _c("br")
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "selectlist" },
-        [
-          _c("h3", [_vm._v("Sector")]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "fauxlabel",
-              class: {
-                "active--dark":
-                  _vm.isReadAllSectorsActive && !_vm.isSectorsDisabled
-              },
-              attrs: { disabled: _vm.isSectorsDisabled },
-              on: { click: _vm.toggleReadAllSectors }
-            },
-            [_vm._v("\n                READ ALL\n            ")]
-          ),
-          _vm._v(" "),
-          _vm._l(_vm.sectors, function(sector) {
-            return _c(
+            _c(
               "button",
               {
-                staticClass: "fauxlabel",
+                staticClass: "fauxlabel algemeenitem algemeenitem--modus",
                 class: {
-                  active: _vm.isActiveSector(sector) && !_vm.isSectorsDisabled
+                  "active--dark":
+                    _vm.modusalgemeen == "Uitwerking van functies per sector"
                 },
-                attrs: { disabled: _vm.isSectorsDisabled },
                 on: {
                   click: function($event) {
-                    _vm.toggleActiveSector(sector)
+                    _vm.toggleModusAlgemeen(
+                      "Uitwerking van functies per sector"
+                    )
                   }
                 }
               },
               [
                 _vm._v(
-                  "\n                " + _vm._s(sector.title) + "\n            "
-                )
+                  "\n                    Uitwerking van functies per sector "
+                ),
+                _c("br"),
+                _vm._v(" "),
+                _c("span", { staticClass: "algemeenitem--toelichting" }, [
+                  _vm._v("Selecteer sectoren en functies")
+                ])
               ]
-            )
-          }),
-          _c("br")
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "selectlist" },
-        [
-          _c("h3", [_vm._v("Functie")]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "fauxlabel",
-              class: {
-                "active--dark":
-                  _vm.isReadAllFunctiesActive && !_vm.isFunctiesDisabled
-              },
-              attrs: { disabled: _vm.isFunctiesDisabled },
-              on: { click: _vm.toggleReadAllFuncties }
-            },
-            [_vm._v("\n                READ ALL\n            ")]
-          ),
-          _vm._v(" "),
-          _vm._l(_vm.functies, function(functie) {
-            return _c(
+            ),
+            _c("br"),
+            _vm._v(" "),
+            _c(
               "button",
               {
-                staticClass: "fauxlabel",
+                staticClass: "fauxlabel algemeenitem algemeenitem--modus",
+                class: {
+                  "active--dark":
+                    _vm.modusalgemeen == "Uitwerking van sectoren per functie"
+                },
+                on: {
+                  click: function($event) {
+                    _vm.toggleModusAlgemeen(
+                      "Uitwerking van sectoren per functie"
+                    )
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                    Uitwerking van sectoren per functie "
+                ),
+                _c("br"),
+                _vm._v(" "),
+                _c("span", { staticClass: "algemeenitem--toelichting" }, [
+                  _vm._v("Selecteer sectoren en functies")
+                ])
+              ]
+            ),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "fauxlabel algemeenitem algemeenitem--modus",
+                on: {
+                  click: function($event) {
+                    _vm.toggleRapportNaarSectoren()
+                  }
+                }
+              },
+              [
+                _vm._v("\n                    Compleet rapport naar sectoren "),
+                _c("br")
+              ]
+            ),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "fauxlabel algemeenitem algemeenitem--modus",
+                on: {
+                  click: function($event) {
+                    _vm.toggleRapportNaarFuncties()
+                  }
+                }
+              },
+              [
+                _vm._v("\n                    Compleet rapport naar functies "),
+                _c("br")
+              ]
+            ),
+            _c("br"),
+            _vm._v(" "),
+            _c("h4", { staticClass: "subhead--table" }, [
+              _vm._v(" Speciale selecties")
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "fauxlabel algemeenitem",
                 class: {
                   active:
-                    _vm.isActiveFunctie(functie) && !_vm.isFunctiesDisabled
+                    _vm.activealgemeen.includes("Inleiding op onderzoek") &&
+                    _vm.isAModeSelected
                 },
-                attrs: { disabled: _vm.isFunctiesDisabled },
+                attrs: { disabled: !_vm.isAModeSelected },
                 on: {
                   click: function($event) {
-                    _vm.toggleActiveFunctie(functie)
+                    _vm.toggleAlgemeen("Inleiding op onderzoek")
                   }
                 }
               },
               [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(functie.title) +
-                    "\n            "
-                )
+                _vm._v("\n                    Inleiding op onderzoek "),
+                _c("br")
               ]
-            )
-          }),
-          _c("br")
-        ],
-        2
-      )
-    ])
-  ])
+            ),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "fauxlabel algemeenitem",
+                class: {
+                  active:
+                    _vm.activealgemeen.includes("Toelichting op sectoren") &&
+                    _vm.isAModeSelected
+                },
+                attrs: { disabled: !_vm.isAModeSelected },
+                on: {
+                  click: function($event) {
+                    _vm.toggleAlgemeen("Toelichting op sectoren")
+                  }
+                }
+              },
+              [
+                _vm._v("\n                    Toelichting op sectoren "),
+                _c("br")
+              ]
+            ),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "fauxlabel algemeenitem",
+                class: {
+                  active:
+                    _vm.activealgemeen.includes("Beschrijving van functies") &&
+                    _vm.isAModeSelected
+                },
+                attrs: { disabled: !_vm.isAModeSelected },
+                on: {
+                  click: function($event) {
+                    _vm.toggleAlgemeen("Beschrijving van functies")
+                  }
+                }
+              },
+              [
+                _vm._v("\n                    Beschrijving van functies "),
+                _c("br")
+              ]
+            ),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "fauxlabel algemeenitem",
+                class: {
+                  active:
+                    _vm.activealgemeen.includes("Beschouwing van functies") &&
+                    _vm.isAModeSelected
+                },
+                attrs: { disabled: !_vm.isAModeSelected },
+                on: {
+                  click: function($event) {
+                    _vm.toggleAlgemeen("Beschouwing van functies")
+                  }
+                }
+              },
+              [
+                _vm._v("\n                    Beschouwing van functies "),
+                _c("br")
+              ]
+            ),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "fauxlabel algemeenitem",
+                class: {
+                  active:
+                    _vm.activealgemeen.includes("Prioritisering per sector") &&
+                    _vm.isAModeSelected
+                },
+                attrs: { disabled: !_vm.isAModeSelected },
+                on: {
+                  click: function($event) {
+                    _vm.toggleAlgemeen("Prioritisering per sector")
+                  }
+                }
+              },
+              [
+                _vm._v("\n                    Prioritisering per sector "),
+                _c("br")
+              ]
+            ),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "fauxlabel algemeenitem",
+                class: {
+                  active:
+                    _vm.activealgemeen.includes("Slotbeschouwing") &&
+                    _vm.isAModeSelected
+                },
+                attrs: { disabled: !_vm.isAModeSelected },
+                on: {
+                  click: function($event) {
+                    _vm.toggleAlgemeen("Slotbeschouwing")
+                  }
+                }
+              },
+              [_vm._v("\n                    Slotbeschouwing "), _c("br")]
+            ),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "fauxlabel algemeenitem",
+                class: {
+                  active:
+                    _vm.activealgemeen.includes("Deelnemers werksessies") &&
+                    _vm.isAModeSelected
+                },
+                attrs: { disabled: !_vm.isAModeSelected },
+                on: {
+                  click: function($event) {
+                    _vm.toggleAlgemeen("Deelnemers werksessies")
+                  }
+                }
+              },
+              [
+                _vm._v("\n                    Deelnemers werksessies "),
+                _c("br")
+              ]
+            ),
+            _c("br")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "selectlist" },
+            [
+              _c("h3", [_vm._v("Sector")]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "fauxlabel",
+                  class: {
+                    "active--dark":
+                      _vm.isReadAllSectorsActive && !_vm.isSectorsDisabled
+                  },
+                  attrs: { disabled: _vm.isSectorsDisabled },
+                  on: { click: _vm.toggleReadAllSectors }
+                },
+                [_vm._v("\n                    READ ALL\n                ")]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.sectors, function(sector) {
+                return _c(
+                  "button",
+                  {
+                    staticClass: "fauxlabel",
+                    class: {
+                      active:
+                        _vm.isActiveSector(sector) && !_vm.isSectorsDisabled
+                    },
+                    attrs: { disabled: _vm.isSectorsDisabled },
+                    on: {
+                      click: function($event) {
+                        _vm.toggleActiveSector(sector)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(sector.title) +
+                        "\n                "
+                    )
+                  ]
+                )
+              }),
+              _c("br")
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "selectlist" },
+            [
+              _c("h3", [_vm._v("Functie")]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "fauxlabel",
+                  class: {
+                    "active--dark":
+                      _vm.isReadAllFunctiesActive && !_vm.isFunctiesDisabled
+                  },
+                  attrs: { disabled: _vm.isFunctiesDisabled },
+                  on: { click: _vm.toggleReadAllFuncties }
+                },
+                [_vm._v("\n                    READ ALL\n                ")]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.functies, function(functie) {
+                return _c(
+                  "button",
+                  {
+                    staticClass: "fauxlabel",
+                    class: {
+                      active:
+                        _vm.isActiveFunctie(functie) && !_vm.isFunctiesDisabled
+                    },
+                    attrs: { disabled: _vm.isFunctiesDisabled },
+                    on: {
+                      click: function($event) {
+                        _vm.toggleActiveFunctie(functie)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(functie.title) +
+                        "\n                "
+                    )
+                  ]
+                )
+              }),
+              _c("br")
+            ],
+            2
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("rapportresultaten", {
+        attrs: {
+          activesectors: _vm.activesectors,
+          activefuncties: _vm.activefuncties,
+          modusalgemeen: _vm.modusalgemeen
+        }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -43423,6 +43505,327 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(9)
+/* script */
+var __vue_script__ = __webpack_require__(56)
+/* template */
+var __vue_template__ = __webpack_require__(57)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Rapportresultaten.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-01d18834", Component.options)
+  } else {
+    hotAPI.reload("data-v-01d18834", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['sectors', 'functies', 'modusalgemeen'],
+
+    data: function data() {
+        return {};
+    },
+    mounted: function mounted() {},
+
+
+    computed: {},
+
+    methods: {}
+});
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "base" }, [
+    _c("div", { staticClass: "generator--shortresults" }, [
+      _c("h2", [_vm._v("Resultaten")]),
+      _vm._v(" "),
+      _vm.modusalgemeen == "Uitwerking van functies per sector"
+        ? _c(
+            "ul",
+            _vm._l(_vm.sectors, function(sector) {
+              return _c("li", [
+                _c("a", { attrs: { href: "#" + sector.id } }, [
+                  _vm._v(" " + _vm._s(sector.title) + " ")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "ul",
+                  _vm._l(_vm.functies, function(functie) {
+                    return _c(
+                      "a",
+                      { attrs: { href: "#" + sector.id + functie.id } },
+                      [
+                        _c("li", [
+                          _vm._v(
+                            " " +
+                              _vm._s(sector.title) +
+                              " - " +
+                              _vm._s(functie.title) +
+                              " "
+                          )
+                        ])
+                      ]
+                    )
+                  })
+                )
+              ])
+            })
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.modusalgemeen == "Uitwerking van sectoren per functie"
+        ? _c(
+            "ul",
+            _vm._l(_vm.functies, function(functie) {
+              return _c("li", [
+                _c("a", { attrs: { href: "#" + functie.id } }, [
+                  _vm._v(" " + _vm._s(functie.title) + " ")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "ul",
+                  _vm._l(_vm.sectors, function(sector) {
+                    return _c(
+                      "a",
+                      { attrs: { href: "#" + functie.id + sector.id } },
+                      [
+                        _c("li", [
+                          _vm._v(
+                            " " +
+                              _vm._s(functie.title) +
+                              " - " +
+                              _vm._s(sector.title) +
+                              " "
+                          )
+                        ])
+                      ]
+                    )
+                  })
+                )
+              ])
+            })
+          )
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "generator--results" }, [
+      _vm.modusalgemeen == "Uitwerking van functies per sector"
+        ? _c(
+            "div",
+            {},
+            _vm._l(_vm.sectors, function(sector) {
+              return _c(
+                "div",
+                { staticClass: "result", attrs: { id: sector.id } },
+                [
+                  _c("h2", [_vm._v(" " + _vm._s(sector.title) + " ")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.functies, function(functie) {
+                    return _c(
+                      "div",
+                      { attrs: { id: "" + sector.id + functie.id } },
+                      [
+                        _c("h3", [
+                          _vm._v(
+                            " " +
+                              _vm._s(sector.title) +
+                              ": " +
+                              _vm._s(functie.title) +
+                              " "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "intro" }, [
+                          _vm._v(" intro ")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "body" }, [_vm._v(" body ")])
+                      ]
+                    )
+                  })
+                ],
+                2
+              )
+            })
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.modusalgemeen == "Uitwerking van sectoren per functie"
+        ? _c(
+            "div",
+            {},
+            _vm._l(_vm.functies, function(functie) {
+              return _c(
+                "div",
+                { staticClass: "result", attrs: { id: functie.id } },
+                [
+                  _c("h2", [_vm._v(" " + _vm._s(functie.title) + " ")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.sectors, function(sector) {
+                    return _c(
+                      "div",
+                      { attrs: { id: "" + functie.id + sector.id } },
+                      [
+                        _c("h3", [
+                          _vm._v(
+                            " " +
+                              _vm._s(functie.title) +
+                              ": " +
+                              _vm._s(sector.title) +
+                              " "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "intro" }, [
+                          _vm._v(" intro ")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "body" }, [_vm._v(" body ")])
+                      ]
+                    )
+                  })
+                ],
+                2
+              )
+            })
+          )
+        : _vm._e()
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-01d18834", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

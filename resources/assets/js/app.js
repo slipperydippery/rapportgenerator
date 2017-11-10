@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('Rapportgenerator', require('./components/Rapportgenerator.vue'));
+Vue.component('Rapportresultaten', require('./components/Rapportresultaten.vue'));
 
 const app = new Vue({
     el: '#app',

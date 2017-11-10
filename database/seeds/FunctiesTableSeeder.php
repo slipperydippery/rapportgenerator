@@ -35,7 +35,7 @@ class FunctiesTableSeeder extends Seeder
             	'introduction' => ''
             ],
             [
-            	'title' => 'Netwerkvorming',
+            	'title' => 'Netwerkactivering',
             	'description' => 'ontmoeting & uitwisseling, debat & reflectie',
             	'introduction' => ''
             ],
