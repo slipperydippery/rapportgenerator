@@ -94,7 +94,7 @@
                     </div>
                 </div>
                 <div id="app">
-                    <rapportgenerator></rapportgenerator>-
+                    <rapportgenerator></rapportgenerator>
                 </div>
                 <div class="selectlist--switch"> <> </div>
                 <div class="selectlist--plus"> + </div>

@@ -1,7 +1,7 @@
 <template>
     <div class="base">
-        <div class="generator--shortresults" >
-            <h2>Resultaten</h2>
+        <div class="generator--shortresults" v-if="isAModeSelected">
+            <h2>Inhoud</h2>
             <ul>
                 <a href="#inleiding" v-if=" activealgemeen.includes('Inleiding op onderzoek') " ><li>Inleiding op onderzoek</li></a>
                 <a href="#toelichtingsectoren" v-if=" activealgemeen.includes('Toelichting op sectoren') " ><li>Toelichting op sectoren</li></a>
@@ -47,22 +47,6 @@
                 <div class="result" id="beschrijvingfuncties" v-html="specials[2].body">
                 </div>
             </div>
-            <div class="" v-if=" activealgemeen.includes('Beschouwing van functies') ">
-                <div class="result" id="beschouwingfuncties" v-html="specials[3].body">
-                </div>
-            </div>
-            <div class="" v-if=" activealgemeen.includes('Prioritering van functies') ">
-                <div class="result" id="prioritiseringsector" v-html="specials[4].body">
-                </div>
-            </div>
-            <div class="" v-if=" activealgemeen.includes('Slotbeschouwing') ">
-                <div class="result" id="slotbeschouwing" v-html="specials[5].body">
-                </div>
-            </div>
-            <div class="" v-if=" activealgemeen.includes('Deelnemers werksessies') ">
-                <div class="result" id="deelnemerswerksessies" v-html="specials[6].body">
-                </div>
-            </div>
             <div class="" v-if="modusalgemeen == 'Uitwerking van functies per sector' ">
                 <div 
                     class="result" 
@@ -105,6 +89,22 @@
                         </div>
                 </div>
             </div>
+            <div class="" v-if=" activealgemeen.includes('Beschouwing van functies') ">
+                <div class="result" id="beschouwingfuncties" v-html="specials[3].body">
+                </div>
+            </div>
+            <div class="" v-if=" activealgemeen.includes('Prioritering van functies') ">
+                <div class="result" id="prioritiseringsector" v-html="specials[4].body">
+                </div>
+            </div>
+            <div class="" v-if=" activealgemeen.includes('Slotbeschouwing') ">
+                <div class="result" id="slotbeschouwing" v-html="specials[5].body">
+                </div>
+            </div>
+            <div class="" v-if=" activealgemeen.includes('Deelnemers werksessies') ">
+                <div class="result" id="deelnemerswerksessies" v-html="specials[6].body">
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -116,7 +116,9 @@
             'activesectors',
             'activefuncties',
             'modusalgemeen',
-            'activealgemeen'
+            'activealgemeen',
+            'isAModeSelected'
+
         ],
 
         data() {

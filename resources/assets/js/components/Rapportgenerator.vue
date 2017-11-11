@@ -125,6 +125,7 @@
             :activefuncties="activefuncties"
             :modusalgemeen="modusalgemeen"
             :activealgemeen="activealgemeen"
+            :isAModeSelected="isAModeSelected"
         >    
         </rapportresultaten>
     </div>
@@ -231,6 +232,7 @@
                 }
             },
             toggleReadAllSectors: function () {
+                console.log('toggling sectors');
                 if( ! this.isReadAllSectorsActive ) {
                     this.activesectors = this.sectors.slice();
                 } else {
@@ -240,6 +242,7 @@
                 var truuthy = this.isReadAllSectorsActive;
                 this.sectors.forEach(function(sector){
                     sector.active = truuthy;
+                    console.log(sector.active);
                 })
             },
             toggleReadAllFuncties: function () {
@@ -268,10 +271,16 @@
             activateAllSectors: function () {
                 this.isReadAllSectorsActive = true;
                 this.activesectors = this.sectors.slice();
+                this.sectors.forEach(function(sector){
+                    sector.active = true;
+                })
             },
             activateAllFuncties: function () {
                 this.activefuncties = this.functies.slice();
                 this.isReadAllFunctiesActive = true;
+                this.functies.forEach(function(functie){
+                    functie.active = true;
+                });
             },
             toggleRapportNaarSectoren: function () {
                 this.activateAllAlgemeen();

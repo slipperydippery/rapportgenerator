@@ -1,0 +1,62 @@
+@media print {
+    html, body {
+    	height: auto !important;
+    	width: auto !important;
+        // background-color: lightgreen;
+    }
+
+    .generator--shortresults {
+	    width: 670px !important;
+    }
+
+    .generator--results {
+    	width: 670px !important;
+    	.result {
+	    	padding: 0 !important;
+    	}
+	}
+
+    .flex-center {
+		display: block !important;
+		align-items: left !important;
+   	} 
+
+    .position-ref {
+
+    } 
+
+    .full-height {
+		height: auto !important;
+    }
+
+    .menubar {
+    	position: fixed;
+    	.social--icons {
+    		display: none !important;
+    	}
+    	.bereschotlogo {
+    		display: none !important;
+    		width: 250px;
+    		height: auto;
+    		top: 0;
+    		right: 0;
+    		img {
+    			height: auto !important;
+    		}
+    	}
+    }
+
+    #app {
+    	margin-top: 65px !important;
+    }
+
+    .title--wrap {
+    	display: none;
+    }
+
+    .generator--selector--wrap {
+    	display: none;
+    }
+
+
+}

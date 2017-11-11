@@ -8646,6 +8646,70 @@ table tr td p {
 }
 
 .table--highlight {
-  background: #98e1ec;
+  -webkit-box-shadow: inset 0 0 0 1000px #98e1ec;
+          box-shadow: inset 0 0 0 1000px #98e1ec;
+}
+
+@media print {
+  html,
+  body {
+    height: auto !important;
+    width: auto !important;
+  }
+
+  .generator--shortresults {
+    width: 670px !important;
+  }
+
+  .generator--results {
+    width: 670px !important;
+  }
+
+  .generator--results .result {
+    padding: 0 !important;
+  }
+
+  .flex-center {
+    display: block !important;
+    -webkit-box-align: left !important;
+        -ms-flex-align: left !important;
+            align-items: left !important;
+  }
+
+  .full-height {
+    height: auto !important;
+  }
+
+  .menubar {
+    position: fixed;
+  }
+
+  .menubar .social--icons {
+    display: none !important;
+  }
+
+  .menubar .bereschotlogo {
+    display: none !important;
+    width: 250px;
+    height: auto;
+    top: 0;
+    right: 0;
+  }
+
+  .menubar .bereschotlogo img {
+    height: auto !important;
+  }
+
+  #app {
+    margin-top: 65px !important;
+  }
+
+  .title--wrap {
+    display: none;
+  }
+
+  .generator--selector--wrap {
+    display: none;
+  }
 }
 

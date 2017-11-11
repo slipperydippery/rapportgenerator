@@ -42928,6 +42928,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -43028,6 +43029,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         toggleReadAllSectors: function toggleReadAllSectors() {
+            console.log('toggling sectors');
             if (!this.isReadAllSectorsActive) {
                 this.activesectors = this.sectors.slice();
             } else {
@@ -43037,6 +43039,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var truuthy = this.isReadAllSectorsActive;
             this.sectors.forEach(function (sector) {
                 sector.active = truuthy;
+                console.log(sector.active);
             });
         },
         toggleReadAllFuncties: function toggleReadAllFuncties() {
@@ -43057,10 +43060,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         activateAllSectors: function activateAllSectors() {
             this.isReadAllSectorsActive = true;
             this.activesectors = this.sectors.slice();
+            this.sectors.forEach(function (sector) {
+                sector.active = true;
+            });
         },
         activateAllFuncties: function activateAllFuncties() {
             this.activefuncties = this.functies.slice();
             this.isReadAllFunctiesActive = true;
+            this.functies.forEach(function (functie) {
+                functie.active = true;
+            });
         },
         toggleRapportNaarSectoren: function toggleRapportNaarSectoren() {
             this.activateAllAlgemeen();
@@ -43484,7 +43493,8 @@ var render = function() {
           activesectors: _vm.activesectors,
           activefuncties: _vm.activefuncties,
           modusalgemeen: _vm.modusalgemeen,
-          activealgemeen: _vm.activealgemeen
+          activealgemeen: _vm.activealgemeen,
+          isAModeSelected: _vm.isAModeSelected
         }
       })
     ],
@@ -43669,7 +43679,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['activesectors', 'activefuncties', 'modusalgemeen', 'activealgemeen'],
+    props: ['activesectors', 'activefuncties', 'modusalgemeen', 'activealgemeen', 'isAModeSelected'],
 
     data: function data() {
         return {};
@@ -43703,123 +43713,125 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "base" }, [
-    _c("div", { staticClass: "generator--shortresults" }, [
-      _c("h2", [_vm._v("Resultaten")]),
-      _vm._v(" "),
-      _c("ul", [
-        _vm.activealgemeen.includes("Inleiding op onderzoek")
-          ? _c("a", { attrs: { href: "#inleiding" } }, [
-              _c("li", [_vm._v("Inleiding op onderzoek")])
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.activealgemeen.includes("Toelichting op sectoren")
-          ? _c("a", { attrs: { href: "#toelichtingsectoren" } }, [
-              _c("li", [_vm._v("Toelichting op sectoren")])
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.activealgemeen.includes("Beschrijving van functies")
-          ? _c("a", { attrs: { href: "#beschrijvingfuncties" } }, [
-              _c("li", [_vm._v("Beschrijving van functies")])
-            ])
-          : _vm._e()
-      ]),
-      _vm._v(" "),
-      _vm.modusalgemeen == "Uitwerking van functies per sector"
-        ? _c(
-            "ul",
-            _vm._l(_vm.activesectors, function(sector) {
-              return _c("li", [
-                _c("a", { attrs: { href: "#" + sector.id } }, [
-                  _vm._v(" " + _vm._s(sector.title) + " ")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "ul",
-                  _vm._l(_vm.activefuncties, function(functie) {
-                    return _c(
-                      "a",
-                      { attrs: { href: "#" + sector.id + functie.id } },
-                      [
-                        _c("li", [
-                          _vm._v(
-                            " " +
-                              _vm._s(sector.title) +
-                              " - " +
-                              _vm._s(functie.title) +
-                              " "
-                          )
-                        ])
-                      ]
+    _vm.isAModeSelected
+      ? _c("div", { staticClass: "generator--shortresults" }, [
+          _c("h2", [_vm._v("Inhoud")]),
+          _vm._v(" "),
+          _c("ul", [
+            _vm.activealgemeen.includes("Inleiding op onderzoek")
+              ? _c("a", { attrs: { href: "#inleiding" } }, [
+                  _c("li", [_vm._v("Inleiding op onderzoek")])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.activealgemeen.includes("Toelichting op sectoren")
+              ? _c("a", { attrs: { href: "#toelichtingsectoren" } }, [
+                  _c("li", [_vm._v("Toelichting op sectoren")])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.activealgemeen.includes("Beschrijving van functies")
+              ? _c("a", { attrs: { href: "#beschrijvingfuncties" } }, [
+                  _c("li", [_vm._v("Beschrijving van functies")])
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _vm.modusalgemeen == "Uitwerking van functies per sector"
+            ? _c(
+                "ul",
+                _vm._l(_vm.activesectors, function(sector) {
+                  return _c("li", [
+                    _c("a", { attrs: { href: "#" + sector.id } }, [
+                      _vm._v(" " + _vm._s(sector.title) + " ")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      _vm._l(_vm.activefuncties, function(functie) {
+                        return _c(
+                          "a",
+                          { attrs: { href: "#" + sector.id + functie.id } },
+                          [
+                            _c("li", [
+                              _vm._v(
+                                " " +
+                                  _vm._s(sector.title) +
+                                  " - " +
+                                  _vm._s(functie.title) +
+                                  " "
+                              )
+                            ])
+                          ]
+                        )
+                      })
                     )
-                  })
-                )
-              ])
-            })
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.modusalgemeen == "Uitwerking van sectoren per functie"
-        ? _c(
-            "ul",
-            _vm._l(_vm.activefuncties, function(functie) {
-              return _c("li", [
-                _c("a", { attrs: { href: "#" + functie.id } }, [
-                  _vm._v(" " + _vm._s(functie.title) + " ")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "ul",
-                  _vm._l(_vm.activesectors, function(sector) {
-                    return _c(
-                      "a",
-                      { attrs: { href: "#" + functie.id + sector.id } },
-                      [
-                        _c("li", [
-                          _vm._v(
-                            " " +
-                              _vm._s(functie.title) +
-                              " - " +
-                              _vm._s(sector.title) +
-                              " "
-                          )
-                        ])
-                      ]
+                  ])
+                })
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.modusalgemeen == "Uitwerking van sectoren per functie"
+            ? _c(
+                "ul",
+                _vm._l(_vm.activefuncties, function(functie) {
+                  return _c("li", [
+                    _c("a", { attrs: { href: "#" + functie.id } }, [
+                      _vm._v(" " + _vm._s(functie.title) + " ")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      _vm._l(_vm.activesectors, function(sector) {
+                        return _c(
+                          "a",
+                          { attrs: { href: "#" + functie.id + sector.id } },
+                          [
+                            _c("li", [
+                              _vm._v(
+                                " " +
+                                  _vm._s(functie.title) +
+                                  " - " +
+                                  _vm._s(sector.title) +
+                                  " "
+                              )
+                            ])
+                          ]
+                        )
+                      })
                     )
-                  })
-                )
-              ])
-            })
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("ul", [
-        _vm.activealgemeen.includes("Beschouwing van functies")
-          ? _c("a", { attrs: { href: "#beschouwingfuncties" } }, [
-              _c("li", [_vm._v(" Beschouwing van functies ")])
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.activealgemeen.includes("Prioritering van functies")
-          ? _c("a", { attrs: { href: "#prioritiseringsector" } }, [
-              _c("li", [_vm._v(" Prioritering van functies ")])
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.activealgemeen.includes("Slotbeschouwing")
-          ? _c("a", { attrs: { href: "#slotbeschouwing" } }, [
-              _c("li", [_vm._v(" Slotbeschouwing ")])
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.activealgemeen.includes("Deelnemers werksessies")
-          ? _c("a", { attrs: { href: "#deelnemerswerksessies" } }, [
-              _c("li", [_vm._v(" Deelnemers werksessies ")])
-            ])
-          : _vm._e()
-      ])
-    ]),
+                  ])
+                })
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("ul", [
+            _vm.activealgemeen.includes("Beschouwing van functies")
+              ? _c("a", { attrs: { href: "#beschouwingfuncties" } }, [
+                  _c("li", [_vm._v(" Beschouwing van functies ")])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.activealgemeen.includes("Prioritering van functies")
+              ? _c("a", { attrs: { href: "#prioritiseringsector" } }, [
+                  _c("li", [_vm._v(" Prioritering van functies ")])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.activealgemeen.includes("Slotbeschouwing")
+              ? _c("a", { attrs: { href: "#slotbeschouwing" } }, [
+                  _c("li", [_vm._v(" Slotbeschouwing ")])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.activealgemeen.includes("Deelnemers werksessies")
+              ? _c("a", { attrs: { href: "#deelnemerswerksessies" } }, [
+                  _c("li", [_vm._v(" Deelnemers werksessies ")])
+                ])
+              : _vm._e()
+          ])
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "generator--results" }, [
       _vm.activealgemeen.includes("Inleiding op onderzoek")
@@ -43848,46 +43860,6 @@ var render = function() {
               staticClass: "result",
               attrs: { id: "beschrijvingfuncties" },
               domProps: { innerHTML: _vm._s(_vm.specials[2].body) }
-            })
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.activealgemeen.includes("Beschouwing van functies")
-        ? _c("div", {}, [
-            _c("div", {
-              staticClass: "result",
-              attrs: { id: "beschouwingfuncties" },
-              domProps: { innerHTML: _vm._s(_vm.specials[3].body) }
-            })
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.activealgemeen.includes("Prioritering van functies")
-        ? _c("div", {}, [
-            _c("div", {
-              staticClass: "result",
-              attrs: { id: "prioritiseringsector" },
-              domProps: { innerHTML: _vm._s(_vm.specials[4].body) }
-            })
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.activealgemeen.includes("Slotbeschouwing")
-        ? _c("div", {}, [
-            _c("div", {
-              staticClass: "result",
-              attrs: { id: "slotbeschouwing" },
-              domProps: { innerHTML: _vm._s(_vm.specials[5].body) }
-            })
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.activealgemeen.includes("Deelnemers werksessies")
-        ? _c("div", {}, [
-            _c("div", {
-              staticClass: "result",
-              attrs: { id: "deelnemerswerksessies" },
-              domProps: { innerHTML: _vm._s(_vm.specials[6].body) }
             })
           ])
         : _vm._e(),
@@ -43970,6 +43942,46 @@ var render = function() {
               )
             })
           )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.activealgemeen.includes("Beschouwing van functies")
+        ? _c("div", {}, [
+            _c("div", {
+              staticClass: "result",
+              attrs: { id: "beschouwingfuncties" },
+              domProps: { innerHTML: _vm._s(_vm.specials[3].body) }
+            })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.activealgemeen.includes("Prioritering van functies")
+        ? _c("div", {}, [
+            _c("div", {
+              staticClass: "result",
+              attrs: { id: "prioritiseringsector" },
+              domProps: { innerHTML: _vm._s(_vm.specials[4].body) }
+            })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.activealgemeen.includes("Slotbeschouwing")
+        ? _c("div", {}, [
+            _c("div", {
+              staticClass: "result",
+              attrs: { id: "slotbeschouwing" },
+              domProps: { innerHTML: _vm._s(_vm.specials[5].body) }
+            })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.activealgemeen.includes("Deelnemers werksessies")
+        ? _c("div", {}, [
+            _c("div", {
+              staticClass: "result",
+              attrs: { id: "deelnemerswerksessies" },
+              domProps: { innerHTML: _vm._s(_vm.specials[6].body) }
+            })
+          ])
         : _vm._e()
     ])
   ])
