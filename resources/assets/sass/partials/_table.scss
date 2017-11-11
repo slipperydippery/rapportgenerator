@@ -1,0 +1,16 @@
+table {
+	tr {
+		td {
+			border: 1px solid black;
+			padding: .1rem 2rem;
+			p {
+				margin: 0;
+			}
+		}
+	}
+}	
+
+
+.table--highlight {
+	background: #98e1ec;
+}

@@ -1,6 +1,5 @@
 <template>
-    <div class="">
-        <p v-html="element.body"></p>
+    <div class="" v-html="element.body">
     </div>
 
 </template>

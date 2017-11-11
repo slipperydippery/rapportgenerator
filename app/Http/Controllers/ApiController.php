@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Sector;
 use App\Element;
 use App\Functie;
+use App\Special;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -27,5 +28,11 @@ class ApiController extends Controller
         // return $sector->elements;       
         $element = $sector->elements->intersect($functie->elements)->first();
         return $element;
+    }
+
+    public function getspecials()
+    {
+        $specials = Special::all();
+        return $specials;
     }
 }

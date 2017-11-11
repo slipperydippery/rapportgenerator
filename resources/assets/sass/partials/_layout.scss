@@ -170,7 +170,7 @@ button:focus {
 }
 
 .subhead--table {
-    margin: 0;
+    margin: 1rem 0 ;
 }
 
 input[type="checkbox"]{
@@ -245,7 +245,7 @@ input[type="checkbox"]:checked + label, .active  {
 
     .result {
         position: relative;
-        background: #f3f3f3;
+        background: none;
         margin: 0;
         padding: 2rem;
         h2 {

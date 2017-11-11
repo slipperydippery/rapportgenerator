@@ -42927,6 +42927,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -43051,7 +43052,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         activateAllAlgemeen: function activateAllAlgemeen() {
-            this.activealgemeen = ['Inleiding op onderzoek', 'Toelichting op sectoren', 'Beschrijving van functies', 'Beschouwing van functies', 'Prioritisering per sector', 'Slotbeschouwing', 'Deelnemers werksessies'];
+            this.activealgemeen = ['Inleiding op onderzoek', 'Toelichting op sectoren', 'Beschrijving van functies', 'Beschouwing van functies', 'Prioritering van functies', 'Slotbeschouwing', 'Deelnemers werksessies'];
         },
         activateAllSectors: function activateAllSectors() {
             this.isReadAllSectorsActive = true;
@@ -43213,8 +43214,6 @@ var render = function() {
               _vm._v(" Speciale selecties")
             ]),
             _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
             _c(
               "button",
               {
@@ -43313,18 +43312,18 @@ var render = function() {
                 staticClass: "fauxlabel algemeenitem",
                 class: {
                   active:
-                    _vm.activealgemeen.includes("Prioritisering per sector") &&
+                    _vm.activealgemeen.includes("Prioritering van functies") &&
                     _vm.isAModeSelected
                 },
                 attrs: { disabled: !_vm.isAModeSelected },
                 on: {
                   click: function($event) {
-                    _vm.toggleAlgemeen("Prioritisering per sector")
+                    _vm.toggleAlgemeen("Prioritering van functies")
                   }
                 }
               },
               [
-                _vm._v("\n                    Prioritisering per sector "),
+                _vm._v("\n                    Prioritering van functies "),
                 _c("br")
               ]
             ),
@@ -43480,7 +43479,8 @@ var render = function() {
         attrs: {
           activesectors: _vm.activesectors,
           activefuncties: _vm.activefuncties,
-          modusalgemeen: _vm.modusalgemeen
+          modusalgemeen: _vm.modusalgemeen,
+          activealgemeen: _vm.activealgemeen
         }
       })
     ],
@@ -43623,20 +43623,71 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['activesectors', 'activefuncties', 'modusalgemeen'],
+    props: ['activesectors', 'activefuncties', 'modusalgemeen', 'activealgemeen'],
 
     data: function data() {
         return {};
     },
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        this.getSpecials();
+    },
 
 
     computed: {},
 
-    methods: {}
+    methods: {
+        getSpecials: function getSpecials() {
+            var home = this;
+            axios.get('/api/specials').then(function (response) {
+                home.specials = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+
+    }
 });
 
 /***/ }),
@@ -43650,6 +43701,26 @@ var render = function() {
   return _c("div", { staticClass: "base" }, [
     _c("div", { staticClass: "generator--shortresults" }, [
       _c("h2", [_vm._v("Resultaten")]),
+      _vm._v(" "),
+      _c("ul", [
+        _vm.activealgemeen.includes("Inleiding op onderzoek")
+          ? _c("a", { attrs: { href: "#inleiding" } }, [
+              _c("li", [_vm._v("Inleiding op onderzoek")])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.activealgemeen.includes("Toelichting op sectoren")
+          ? _c("a", { attrs: { href: "#toelichtingsectoren" } }, [
+              _c("li", [_vm._v("Toelichting op sectoren")])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.activealgemeen.includes("Beschrijving van functies")
+          ? _c("a", { attrs: { href: "#beschrijvingfuncties" } }, [
+              _c("li", [_vm._v("Beschrijving van functies")])
+            ])
+          : _vm._e()
+      ]),
       _vm._v(" "),
       _vm.modusalgemeen == "Uitwerking van functies per sector"
         ? _c(
@@ -43717,10 +43788,106 @@ var render = function() {
               ])
             })
           )
-        : _vm._e()
+        : _vm._e(),
+      _vm._v(" "),
+      _c("ul", [
+        _vm.activealgemeen.includes("Beschouwing van functies")
+          ? _c("a", { attrs: { href: "#beschouwingfuncties" } }, [
+              _c("li", [_vm._v(" Beschouwing van functies ")])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.activealgemeen.includes("Prioritering van functies")
+          ? _c("a", { attrs: { href: "#prioritiseringsector" } }, [
+              _c("li", [_vm._v(" Prioritering van functies ")])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.activealgemeen.includes("Slotbeschouwing")
+          ? _c("a", { attrs: { href: "#slotbeschouwing" } }, [
+              _c("li", [_vm._v(" Slotbeschouwing ")])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.activealgemeen.includes("Deelnemers werksessies")
+          ? _c("a", { attrs: { href: "#deelnemerswerksessies" } }, [
+              _c("li", [_vm._v(" Deelnemers werksessies ")])
+            ])
+          : _vm._e()
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "generator--results" }, [
+      _vm.activealgemeen.includes("Inleiding op onderzoek")
+        ? _c("div", {}, [
+            _c("div", {
+              staticClass: "result",
+              attrs: { id: "inleiding" },
+              domProps: { innerHTML: _vm._s(_vm.specials[0].body) }
+            })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.activealgemeen.includes("Toelichting op sectoren")
+        ? _c("div", {}, [
+            _c("div", {
+              staticClass: "result",
+              attrs: { id: "toelichtingsectoren" },
+              domProps: { innerHTML: _vm._s(_vm.specials[1].body) }
+            })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.activealgemeen.includes("Beschrijving van functies")
+        ? _c("div", {}, [
+            _c("div", {
+              staticClass: "result",
+              attrs: { id: "beschrijvingfuncties" },
+              domProps: { innerHTML: _vm._s(_vm.specials[2].body) }
+            })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.activealgemeen.includes("Beschouwing van functies")
+        ? _c("div", {}, [
+            _c("div", {
+              staticClass: "result",
+              attrs: { id: "beschouwingfuncties" },
+              domProps: { innerHTML: _vm._s(_vm.specials[3].body) }
+            })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.activealgemeen.includes("Prioritering van functies")
+        ? _c("div", {}, [
+            _c("div", {
+              staticClass: "result",
+              attrs: { id: "prioritiseringsector" },
+              domProps: { innerHTML: _vm._s(_vm.specials[4].body) }
+            })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.activealgemeen.includes("Slotbeschouwing")
+        ? _c("div", {}, [
+            _c("div", {
+              staticClass: "result",
+              attrs: { id: "slotbeschouwing" },
+              domProps: { innerHTML: _vm._s(_vm.specials[5].body) }
+            })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.activealgemeen.includes("Deelnemers werksessies")
+        ? _c("div", {}, [
+            _c("div", {
+              staticClass: "result",
+              attrs: { id: "deelnemerswerksessies" },
+              domProps: { innerHTML: _vm._s(_vm.specials[6].body) }
+            })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _vm.modusalgemeen == "Uitwerking van functies per sector"
         ? _c(
             "div",
@@ -43891,7 +44058,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -43930,9 +44096,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", {}, [
-    _c("p", { domProps: { innerHTML: _vm._s(_vm.element.body) } })
-  ])
+  return _c("div", { domProps: { innerHTML: _vm._s(_vm.element.body) } })
 }
 var staticRenderFns = []
 render._withStripped = true

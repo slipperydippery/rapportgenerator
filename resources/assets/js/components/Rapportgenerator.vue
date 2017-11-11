@@ -29,7 +29,7 @@
                         Compleet rapport naar functies <br>
                     </button><br>
                     
-                    <h4 class="subhead--table"> Speciale selecties</h4> <br>
+                    <h4 class="subhead--table"> Speciale selecties</h4>
                     <button class="fauxlabel algemeenitem" 
                         :class=" { 'active': activealgemeen.includes('Inleiding op onderzoek') && isAModeSelected } "
                         @click=" toggleAlgemeen('Inleiding op onderzoek') "
@@ -59,11 +59,11 @@
                         Beschouwing van functies <br>
                     </button><br>
                     <button class="fauxlabel algemeenitem" 
-                        :class=" { 'active': activealgemeen.includes('Prioritisering per sector') && isAModeSelected } "
-                        @click=" toggleAlgemeen('Prioritisering per sector'); "
+                        :class=" { 'active': activealgemeen.includes('Prioritering van functies') && isAModeSelected } "
+                        @click=" toggleAlgemeen('Prioritering van functies'); "
                         :disabled=" ! isAModeSelected "
                     >
-                        Prioritisering per sector <br>
+                        Prioritering van functies <br>
                     </button><br>
                     <button class="fauxlabel algemeenitem" 
                         :class=" { 'active': activealgemeen.includes('Slotbeschouwing') && isAModeSelected } "
@@ -124,6 +124,7 @@
             :activesectors="activesectors"
             :activefuncties="activefuncties"
             :modusalgemeen="modusalgemeen"
+            :activealgemeen="activealgemeen"
         >    
         </rapportresultaten>
     </div>
@@ -259,7 +260,7 @@
                     'Toelichting op sectoren', 
                     'Beschrijving van functies', 
                     'Beschouwing van functies', 
-                    'Prioritisering per sector', 
+                    'Prioritering van functies', 
                     'Slotbeschouwing', 
                     'Deelnemers werksessies'
                 ]

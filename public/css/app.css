@@ -8535,7 +8535,7 @@ button:focus {
 }
 
 .subhead--table {
-  margin: 0;
+  margin: 1rem 0;
 }
 
 input[type="checkbox"] {
@@ -8606,7 +8606,7 @@ input[type="checkbox"]:checked + label,
 
 .generator--results .result {
   position: relative;
-  background: #f3f3f3;
+  background: none;
   margin: 0;
   padding: 2rem;
 }
@@ -8634,5 +8634,18 @@ input[type="checkbox"]:checked + label,
   right: 10px;
   width: 2rem;
   height: 2rem;
+}
+
+table tr td {
+  border: 1px solid black;
+  padding: .1rem 2rem;
+}
+
+table tr td p {
+  margin: 0;
+}
+
+.table--highlight {
+  background: #98e1ec;
 }
 

@@ -2,6 +2,11 @@
     <div class="base">
         <div class="generator--shortresults" >
             <h2>Resultaten</h2>
+            <ul>
+                <a href="#inleiding" v-if=" activealgemeen.includes('Inleiding op onderzoek') " ><li>Inleiding op onderzoek</li></a>
+                <a href="#toelichtingsectoren" v-if=" activealgemeen.includes('Toelichting op sectoren') " ><li>Toelichting op sectoren</li></a>
+                <a href="#beschrijvingfuncties" v-if=" activealgemeen.includes('Beschrijving van functies') " ><li>Beschrijving van functies</li></a>
+            </ul>
             <ul v-if="modusalgemeen == 'Uitwerking van functies per sector' ">
                 <li v-for="sector in activesectors">
                     <a :href="'#' + sector.id "> {{ sector.title }} </a>
@@ -22,8 +27,42 @@
                     </ul>
                 </li>
             </ul>
+            <ul>
+                <a href="#beschouwingfuncties" v-if=" activealgemeen.includes('Beschouwing van functies') "> <li> Beschouwing van functies </li> </a>
+                <a href="#prioritiseringsector" v-if=" activealgemeen.includes('Prioritering van functies') "> <li> Prioritering van functies </li> </a>
+                <a href="#slotbeschouwing" v-if=" activealgemeen.includes('Slotbeschouwing') "> <li> Slotbeschouwing </li> </a>
+                <a href="#deelnemerswerksessies" v-if=" activealgemeen.includes('Deelnemers werksessies') "> <li> Deelnemers werksessies </li> </a>
+            </ul>
         </div>
         <div class="generator--results">
+            <div class="" v-if=" activealgemeen.includes('Inleiding op onderzoek') " >
+                <div class="result" id="inleiding" v-html="specials[0].body">
+                </div>
+            </div>
+            <div class="" v-if=" activealgemeen.includes('Toelichting op sectoren') " >
+                <div class="result" id="toelichtingsectoren" v-html="specials[1].body">
+                </div>
+            </div>
+            <div class="" v-if=" activealgemeen.includes('Beschrijving van functies') " >
+                <div class="result" id="beschrijvingfuncties" v-html="specials[2].body">
+                </div>
+            </div>
+            <div class="" v-if=" activealgemeen.includes('Beschouwing van functies') ">
+                <div class="result" id="beschouwingfuncties" v-html="specials[3].body">
+                </div>
+            </div>
+            <div class="" v-if=" activealgemeen.includes('Prioritering van functies') ">
+                <div class="result" id="prioritiseringsector" v-html="specials[4].body">
+                </div>
+            </div>
+            <div class="" v-if=" activealgemeen.includes('Slotbeschouwing') ">
+                <div class="result" id="slotbeschouwing" v-html="specials[5].body">
+                </div>
+            </div>
+            <div class="" v-if=" activealgemeen.includes('Deelnemers werksessies') ">
+                <div class="result" id="deelnemerswerksessies" v-html="specials[6].body">
+                </div>
+            </div>
             <div class="" v-if="modusalgemeen == 'Uitwerking van functies per sector' ">
                 <div 
                     class="result" 
@@ -76,16 +115,17 @@
         props: [
             'activesectors',
             'activefuncties',
-            'modusalgemeen'
+            'modusalgemeen',
+            'activealgemeen'
         ],
 
         data() {
             return {
-
             }
         },
 
         mounted() {
+            this.getSpecials();
         },
 
 
@@ -93,6 +133,16 @@
         },
 
         methods: {
+            getSpecials: function () {
+                var home = this;
+                axios.get('/api/specials')
+                    .then(function(response){
+                        home.specials = response.data;
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    });
+            },
 
         }
     }
