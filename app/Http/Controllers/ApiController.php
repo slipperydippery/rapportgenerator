@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Sector;
+use App\Element;
 use App\Functie;
 use Illuminate\Http\Request;
 
@@ -18,5 +19,13 @@ class ApiController extends Controller
     {
     	$functie = Functie::all();
     	return $functie;
+    }
+
+    public function getElement(Sector $sector, Functie $functie)
+    {
+        // return $functie->elements;  
+        // return $sector->elements;       
+        $element = $sector->elements->intersect($functie->elements)->first();
+        return $element;
     }
 }

@@ -8357,6 +8357,8 @@ body {
   font-family: ariel, sans-serif;
   font-weight: 100;
   height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
   margin: 0;
 }
 

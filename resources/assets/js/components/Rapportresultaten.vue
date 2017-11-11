@@ -3,20 +3,20 @@
         <div class="generator--shortresults" >
             <h2>Resultaten</h2>
             <ul v-if="modusalgemeen == 'Uitwerking van functies per sector' ">
-                <li v-for="sector in sectors">
+                <li v-for="sector in activesectors">
                     <a :href="'#' + sector.id "> {{ sector.title }} </a>
                     <ul>
-                        <a :href="'#' + sector.id + functie.id " v-for="functie in functies">
+                        <a :href="'#' + sector.id + functie.id " v-for="functie in activefuncties">
                             <li> {{ sector.title }} - {{ functie.title }} </li>
                         </a>
                     </ul>
                 </li>
             </ul>
             <ul v-if="modusalgemeen == 'Uitwerking van sectoren per functie'">
-                <li v-for="functie in functies">
+                <li v-for="functie in activefuncties">
                     <a :href="'#' + functie.id "> {{ functie.title }} </a>
                     <ul>
-                        <a :href="'#' + functie.id + sector.id " v-for="sector in sectors">
+                        <a :href="'#' + functie.id + sector.id " v-for="sector in activesectors">
                             <li> {{ functie.title }} - {{ sector.title }} </li>
                         </a>
                     </ul>
@@ -28,17 +28,20 @@
                 <div 
                     class="result" 
                     :id="sector.id"
-                    v-for="sector in sectors"
+                    v-for="sector in activesectors"
                 >
                     <h2> {{ sector.title }} </h2>
                         <div 
                             class="" 
                             :id="'' + sector.id + functie.id"
-                            v-for="functie in functies"
+                            v-for="functie in activefuncties"
                         >
                             <h3> {{ sector.title }}: {{ functie.title }} </h3>
-                            <span class="intro"> intro </span>
-                            <span class="body"> body </span>
+                            <rapportelement
+                                :sector="sector"
+                                :functie="functie"
+                            >
+                            </rapportelement>
                         </div>
                 </div>
             </div>
@@ -46,17 +49,20 @@
                 <div 
                     class="result" 
                     :id="functie.id"
-                    v-for="functie in functies"
+                    v-for="functie in activefuncties"
                 >
                     <h2> {{ functie.title }} </h2>
                         <div 
                             class="" 
                             :id="'' + functie.id + sector.id"
-                            v-for="sector in sectors"
+                            v-for="sector in activesectors"
                         >
                             <h3> {{ functie.title }}: {{ sector.title }} </h3>
-                            <span class="intro"> intro </span>
-                            <span class="body"> body </span>
+                            <rapportelement
+                                :sector="sector"
+                                :functie="functie"
+                            >
+                            </rapportelement>
                         </div>
                 </div>
             </div>
@@ -68,8 +74,8 @@
 
     export default {
         props: [
-            'sectors',
-            'functies',
+            'activesectors',
+            'activefuncties',
             'modusalgemeen'
         ],
 

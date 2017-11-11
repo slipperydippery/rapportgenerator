@@ -15,8 +15,6 @@ class CreateElementsTable extends Migration
 	{
 		Schema::create('elements', function (Blueprint $table) {
 			$table->increments('id');
-			$table->string('title');
-			$table->text('short');
 			$table->text('body');
 			$table->integer('sector_id')->unsigned();
 			$table->foreign('sector_id')->references('id')->on('sectors')->onDelete('cascade');

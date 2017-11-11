@@ -166,29 +166,11 @@
             isFunctiesDisabled: function() {
                 if ( this.modusalgemeen == 'Uitwerking van sectoren per functie' ) {
                     return false;
-                } else if ( this.modusalgemeen == 'Uitwerking van functies per sector' && this.activeSectorsLength > 0 ) {
+                } else if ( this.modusalgemeen == 'Uitwerking van functies per sector' && this.activesectors.length > 0 ) {
                     return false;
                 } 
                 return true;
-            },
-            activeSectorsLength: function() {
-                var activelength = 0;
-                this.sectors.forEach(function(sector){
-                    if (sector.active) {
-                        activelength ++;
-                    }
-                });
-                return activelength;
-            },
-            activeFunctiesLength: function() {
-                var activelength = 0;
-                this.functies.forEach(function(functie){
-                    if( functie.active ) {
-                        activelength ++;
-                    }
-                });
-                return activelength;
-            }            
+            },         
         },
 
         methods: {
@@ -217,24 +199,34 @@
             toggleActiveSector: function(sector){
                 sector.active = !sector.active;
                 if (this.activesectors.includes(sector)) {
-                    if(this.isReadAllSectorsActive) {
-                        this.isReadAllSectorsActive = false;
-                    this.isFunctiesDisabled = false;
-                    };
                     this.activesectors.splice(this.activesectors.indexOf(sector), 1);
                 } else {
-                    this.activesectors.push(sector);
+                    var temparray = this.activesectors.slice(0);
+                    this.activesectors = [];
+                    temparray.push(sector);
+                    var home = this;
+                    this.sectors.forEach(function(basesector) {
+                        if(temparray.includes(basesector)){
+                            home.activesectors.push(basesector);
+                        }
+                    })
                 }
             },
             toggleActiveFunctie: function(functie){
                 functie.active = ! functie.active;
                 if (this.activefuncties.includes(functie)) {
-                    if(this.isReadAllFunctiesActive) {
-                        this.isReadAllFunctiesActive = false;
-                    }
                     this.activefuncties.splice(this.activefuncties.indexOf(functie), 1);
                 } else {
-                    this.activefuncties.push(functie);
+                    // Add to this.activefuncties, but maintain the order of functies
+                    var temparray = this.activefuncties.slice(0);
+                    this.activefuncties = [];
+                    temparray.push(functie);
+                    var home = this;
+                    this.functies.forEach(function(basefunctie) {
+                        if(temparray.includes(basefunctie)){
+                            home.activefuncties.push(basefunctie);
+                        }
+                    } );
                 }
             },
             toggleReadAllSectors: function () {
@@ -244,6 +236,10 @@
                     this.activesectors = [];    
                 }
                 this.isReadAllSectorsActive = ! this.isReadAllSectorsActive;
+                var truuthy = this.isReadAllSectorsActive;
+                this.sectors.forEach(function(sector){
+                    sector.active = truuthy;
+                })
             },
             toggleReadAllFuncties: function () {
                 if ( ! this.isReadAllFunctiesActive ) {
