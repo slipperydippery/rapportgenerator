@@ -104,7 +104,13 @@ class ElementsTableSeeder extends Seeder
                 'functie_id' => '7'
             ],
             [
-                'body' => '',
+                'body' => '<p>Er is veel informatie beschikbaar over de sector, maar het is gefragmenteerd en dus niet op &eacute;&eacute;n plek te vinden. Men heeft de indruk zelf informatie bij elkaar te moeten zoeken en ervaart vervolgens regelmatig het probleem dat informatie niet vergelijkbaar is. Men haalt informatie uit Cultuur in Beeld, doet navraag bij collega-instellingen en raadpleegt de Boekmanstichting, DutchCulture en het Mondriaan Fonds. De informatie waarover het fonds beschikt is echter niet altijd (vrij) beschikbaar, of wordt zo ervaren door instellingen. Op beleidsniveau wordt informatie beter gevonden, maar in het veld zelf heeft men vaak geen idee waar de zoektocht naar de gewenste informatie te beginnen. Het veld zou dan ook graag meer digitaal beschikbare informatie willen hebben die bovendien gemakkelijk op &eacute;&eacute;n plek terug te vinden is. </p>
+
+<p>Het Mondriaan Fonds geeft publicaties uit die zijn verbonden aan de eigen activiteiten, zoals de Prix de Rome, de Nederlandse inzending voor de Bi&euml;nnale van Veneti&euml; en Prospects &amp; Concepts. Daarnaast brengt het fonds regelmatig essays uit van schrijvers, denkers en bemiddelaars over actuele onderwerpen binnen de beeldende kunst en erfgoed. Een overzicht van alle publicaties staat op hun website. Daar zijn ook de jaarverslagen en beleidsplannen te downloaden en publicaties zijn te bestellen bij het fonds en bij diverse boekhandels. Er is dus wel degelijk informatie beschikbaar via het fonds, maar de crux van de informatiebehoefte van de sector lijkt hem te zitten in het type informatie (thematisch, passend bij de eigen werkzaamheden) en de vrije beschikbaarheid (soms tegen betaling). </p>
+
+<p>Het Mondriaan Fonds ervaart zelf ook een gebrek aan algemene sectorinformatie en heeft daarom, namens Beeldende Kunst Nederland (BKNL) de regie over verspreiding van de Collectieve Selfie, het jaarlijks overzicht waarin alle gegevens over de sector op een rij worden gezet en voorzien van nieuw aanvullend onderzoek. Dit onderzoek is vrij beschikbaar en wordt actief verspreid. </p>
+
+<p>Ook informatie van een ander soort wordt gemist; er is namelijk nog maar amper kunstjournalistiek in Nederland. Een groot deel daarvan wordt gedaan op vrijwillige basis, vanwege gebrek aan financi&euml;le middelen. Niemand is echter de aangewezen en onafhankelijke partij hierin. Als er meer ruimte zou zijn voor kunstkritiek dan levert dat ook een schat aan informatie op voor de sector: wat gebeurt waar en welke waarde heeft het voor de sector?  </p>',
                 'sector_id' => '2',
                 'functie_id' => '1'
             ],
