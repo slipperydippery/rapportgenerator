@@ -84,7 +84,7 @@
                     <h3>Sector</h3>
                     <button class="fauxlabel"
                         @click="toggleReadAllSectors"
-                        :class="{ 'active--dark' : isReadAllSectorsActive && ! isSectorsDisabled }"
+                        :class="{ 'active--dark' : isReadAllSectorsActive && ! isSectorsDisabled && activesectors.length == 11}"
                         :disabled="isSectorsDisabled"
                     >
                         READ ALL
@@ -102,7 +102,7 @@
                     <h3>Functie</h3>
                     <button class="fauxlabel"
                         @click="toggleReadAllFuncties"
-                        :class="{ 'active--dark' : isReadAllFunctiesActive && ! isFunctiesDisabled }"
+                        :class="{ 'active--dark' : isReadAllFunctiesActive && ! isFunctiesDisabled && activefuncties.length == 7 }"
                         :disabled="isFunctiesDisabled"
                     >
                         READ ALL

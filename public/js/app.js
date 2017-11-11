@@ -43385,7 +43385,9 @@ var render = function() {
                   staticClass: "fauxlabel",
                   class: {
                     "active--dark":
-                      _vm.isReadAllSectorsActive && !_vm.isSectorsDisabled
+                      _vm.isReadAllSectorsActive &&
+                      !_vm.isSectorsDisabled &&
+                      _vm.activesectors.length == 11
                   },
                   attrs: { disabled: _vm.isSectorsDisabled },
                   on: { click: _vm.toggleReadAllSectors }
@@ -43435,7 +43437,9 @@ var render = function() {
                   staticClass: "fauxlabel",
                   class: {
                     "active--dark":
-                      _vm.isReadAllFunctiesActive && !_vm.isFunctiesDisabled
+                      _vm.isReadAllFunctiesActive &&
+                      !_vm.isFunctiesDisabled &&
+                      _vm.activefuncties.length == 7
                   },
                   attrs: { disabled: _vm.isFunctiesDisabled },
                   on: { click: _vm.toggleReadAllFuncties }
