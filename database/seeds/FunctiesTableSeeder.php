@@ -20,7 +20,7 @@ class FunctiesTableSeeder extends Seeder
             	'introduction' => ''
             ],
             [
-            	'title' => 'Onderzoek & Ontwikkeling,',
+            	'title' => 'Onderzoek & Ontwikkeling',
             	'description' => 'verkenning, duiding, monitoring & evaluatie',
             	'introduction' => ''
             ],
