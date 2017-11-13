@@ -8661,6 +8661,10 @@ input[type="checkbox"]:checked + label,
   height: 2rem;
 }
 
+.generator--results .tablereplacement {
+  display: none;
+}
+
 table tr td {
   border: 1px solid black;
   padding: .1rem 2rem;
@@ -8696,6 +8700,14 @@ table tr td p {
 
   .generator--results .result {
     padding: 0 !important;
+  }
+
+  .generator--results table {
+    display: none;
+  }
+
+  .generator--results .tablereplacement {
+    display: block;
   }
 
   .flex-center {
