@@ -1,6 +1,12 @@
 <template>
     <div class="base">
         <div class="generator--shortresults" v-if="isAModeSelected">
+            <input type="button" 
+                onClick="window.print()" 
+                value="Print deze pagina"
+                class="print"
+            />
+            </body>
             <h2>Inhoud</h2>
             <ul>
                 <a href="#inleiding" v-if=" activealgemeen.includes('Inleiding op onderzoek') " ><li>Inleiding op onderzoek</li></a>
