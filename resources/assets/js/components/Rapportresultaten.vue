@@ -7,37 +7,37 @@
                 class="print"
             />
             </body>
-            <h2>Inhoud</h2>
+            <h2 class="inhoud">Inhoud</h2>
             <ul>
-                <a href="#inleiding" v-if=" activealgemeen.includes('Inleiding op onderzoek') " ><li>Inleiding op onderzoek</li></a>
-                <a href="#toelichtingsectoren" v-if=" activealgemeen.includes('Toelichting op sectoren') " ><li>Toelichting op sectoren</li></a>
-                <a href="#beschrijvingfuncties" v-if=" activealgemeen.includes('Beschrijving van functies') " ><li>Beschrijving van functies</li></a>
+                <a href="#inleiding" v-if=" activealgemeen.includes('Inleiding op onderzoek') " ><li> 1. Inleiding op onderzoek</li></a>
+                <a href="#toelichtingsectoren" v-if=" activealgemeen.includes('Toelichting op sectoren') " ><li> {{ countToelichtingSectoren }} Toelichting op sectoren</li></a>
+                <a href="#beschrijvingfuncties" v-if=" activealgemeen.includes('Beschrijving van functies') " ><li> {{ countBeschrijvingFuncties }} Beschrijving van functies</li></a>
             </ul>
             <ul v-if="modusalgemeen == 'Uitwerking van functies per sector' ">
                 <li v-for="sector in activesectors">
-                    <a :href="'#' + sector.id "> {{ sector.title }} </a>
+                    <a :href="'#' + sector.id "> {{ sector.id + countPreSF }}. <span v-html="sector.title"></span> </a>
                     <ul>
                         <a :href="'#' + sector.id + functie.id " v-for="functie in activefuncties">
-                            <li> {{ sector.title }} - {{ functie.title }} </li>
+                            <li> {{ sector.id + countPreSF }}.{{ functie.id }} <span v-html="sector.title"></span> - <span v-html="functie.title"></span> </li>
                         </a>
                     </ul>
                 </li>
             </ul>
             <ul v-if="modusalgemeen == 'Uitwerking van sectoren per functie'">
                 <li v-for="functie in activefuncties">
-                    <a :href="'#' + functie.id "> {{ functie.title }} </a>
+                    <a :href="'#' + functie.id "> {{ functie.id + countPreSF }}. <span v-html="functie.title"></span> </a>
                     <ul>
                         <a :href="'#' + functie.id + sector.id " v-for="sector in activesectors">
-                            <li> {{ functie.title }} - {{ sector.title }} </li>
+                            <li> {{ functie.id + countPreSF }}.{{ sector.id }} <span v-html="functie.title"></span> - <span v-html="sector.title"></span> </li>
                         </a>
                     </ul>
                 </li>
             </ul>
             <ul>
-                <a href="#beschouwingfuncties" v-if=" activealgemeen.includes('Beschouwing van functies') "> <li> Beschouwing van functies </li> </a>
-                <a href="#prioritiseringsector" v-if=" activealgemeen.includes('Prioritering van functies') "> <li> Prioritering van functies </li> </a>
-                <a href="#slotbeschouwing" v-if=" activealgemeen.includes('Slotbeschouwing') "> <li> Slotbeschouwing </li> </a>
-                <a href="#deelnemerswerksessies" v-if=" activealgemeen.includes('Deelnemers werksessies') "> <li> Deelnemers werksessies </li> </a>
+                <a href="#beschouwingfuncties" v-if=" activealgemeen.includes('Beschouwing van functies') "> <li> {{ countBeschouwingFuncties }} Beschouwing van functies </li> </a>
+                <a href="#prioritiseringsector" v-if=" activealgemeen.includes('Prioritering van functies') "> <li> {{ countPrioriteringFuncties }} Prioritering van functies </li> </a>
+                <a href="#slotbeschouwing" v-if=" activealgemeen.includes('Slotbeschouwing') "> <li> {{ countSlotbeschouwing }} Slotbeschouwing </li> </a>
+                <a href="#deelnemerswerksessies" v-if=" activealgemeen.includes('Deelnemers werksessies') "> <li> {{ countDeelnemersWerksessies }} Deelnemers werksessies </li> </a>
             </ul>
         </div>
         <div class="generator--results">
@@ -46,11 +46,33 @@
                 </div>
             </div>
             <div class="" v-if=" activealgemeen.includes('Toelichting op sectoren') " >
-                <div class="result" id="toelichtingsectoren" v-html="specials[1].body">
+                <div class="result" id="toelichtingsectoren">
+                    <h2> {{ countToelichtingSectoren }}. <span v-html="specials[1].title"></span> </h2>
+                    <h3> {{ countToelichtingSectoren }}.1 Afbakening </h3>
+                    <div class="" v-html="specials[1].body"></div>
+                </div>
+                <div class="result" 
+                    v-for="toelichtingsector in toelichtingsectors"
+                >
+                    <h3> {{ countToelichtingSectoren }}.{{ toelichtingsector.id + 1 }} <span v-html="toelichtingsector.title"></span> </h3>
+                    <div class=""
+                        v-html="toelichtingsector.body"
+                    ></div>
                 </div>
             </div>
             <div class="" v-if=" activealgemeen.includes('Beschrijving van functies') " >
-                <div class="result" id="beschrijvingfuncties" v-html="specials[2].body">
+                <div class="result" id="beschrijvingfuncties">
+                    <h2> {{ countBeschrijvingFuncties }}. <span v-html="specials[2].title"></span> </h2>
+                    <h3> {{ countBeschrijvingFuncties }}.1 Inleiding</h3>
+                    <div v-html="specials[2].body"></div>
+                </div>
+                <div class="result"
+                    v-for="beschrijvingfunctie in beschrijvingfuncties"
+                >
+                    <h3> {{ countBeschrijvingFuncties }}.{{ beschrijvingfunctie.id + 1}} <span v-html="beschrijvingfunctie.title"></span> </h3>
+                    <div class=""
+                        v-html="beschrijvingfunctie.body"
+                    ></div>
                 </div>
             </div>
             <div class="" v-if="modusalgemeen == 'Uitwerking van functies per sector' ">
@@ -59,13 +81,13 @@
                     :id="sector.id"
                     v-for="sector in activesectors"
                 >
-                    <h2> {{ sector.title }} </h2>
+                    <h2> {{ sector.id + countPreSF }}. <span v-html="sector.title"></span> </h2>
                         <div 
                             class="" 
                             :id="'' + sector.id + functie.id"
                             v-for="functie in activefuncties"
                         >
-                            <h3> {{ sector.title }}: {{ functie.title }} </h3>
+                            <h3> {{ sector.id + countPreSF }}.{{ functie.id }} <span v-html="sector.title"></span>: <span v-html="functie.title"></span> </h3>
                             <rapportelement
                                 :sector="sector"
                                 :functie="functie"
@@ -80,13 +102,13 @@
                     :id="functie.id"
                     v-for="functie in activefuncties"
                 >
-                    <h2> {{ functie.title }} </h2>
+                    <h2> {{ functie.id + countPreSF }}. <span v-html="functie.title"></span> </h2>
                         <div 
                             class="" 
                             :id="'' + functie.id + sector.id"
                             v-for="sector in activesectors"
                         >
-                            <h3> {{ functie.title }}: {{ sector.title }} </h3>
+                            <h3> {{ functie.id + countPreSF }}.{{ sector.id }} <span v-html="functie.title"></span>: <span v-html="sector.title"></span> </h3>
                             <rapportelement
                                 :sector="sector"
                                 :functie="functie"
@@ -96,19 +118,53 @@
                 </div>
             </div>
             <div class="" v-if=" activealgemeen.includes('Beschouwing van functies') ">
-                <div class="result" id="beschouwingfuncties" v-html="specials[3].body">
+                <div class="result" id="beschouwingfuncties"> 
+                    <h2> {{ countBeschouwingFuncties }}. <span v-html="specials[3].title"></span> </h2>
+                    <h3> {{ countBeschouwingFuncties }}.1 Inleiding over beschouwing</h3>
+                    <div v-html="specials[3].body"></div>
                 </div>
-            </div>
+                <div class="result"
+                    v-for="beschouwingfunctie in beschouwingfuncties"
+                >
+                    <h3> {{ countBeschouwingFuncties }}.{{ beschouwingfunctie.id + 1 }} <span v-html="beschouwingfunctie.title"></span> </h3>
+                    <div class=""
+                        v-html="beschouwingfunctie.body"
+                    ></div>
+                </div>
+
+            </div>          
             <div class="" v-if=" activealgemeen.includes('Prioritering van functies') ">
-                <div class="result" id="prioritiseringsector" v-html="specials[4].body">
+                <div class="result" id="prioritiseringsector">
+                    <h2> {{ countPrioriteringFuncties }}. <span v-html="specials[4].title"></span> </h2>
+                    <h3> {{ countPrioriteringFuncties }}.1 Prioritering en nuancering </h3>
+                    <div v-html="specials[4].body"></div>
+                </div>
+                <div class="result"
+                    v-for="prioriteringfunctie in prioriteringfuncties"
+                >
+                    <h3> {{ countPrioriteringFuncties }}.{{ prioriteringfunctie.id + 1 }} <span v-html="prioriteringfunctie.title"></span> </h3>
+                    <div class=""
+                        v-html="prioriteringfunctie.body"
+                    ></div>
                 </div>
             </div>
             <div class="" v-if=" activealgemeen.includes('Slotbeschouwing') ">
-                <div class="result" id="slotbeschouwing" v-html="specials[5].body">
+                <div class="result" id="slotbeschouwing">
+                    <h2> {{ countSlotbeschouwing }}. <span v-html="specials[5].title"></span> </h2>
+                    <div class="" v-html="specials[5].body"></div>
                 </div>
             </div>
             <div class="" v-if=" activealgemeen.includes('Deelnemers werksessies') ">
-                <div class="result" id="deelnemerswerksessies" v-html="specials[6].body">
+                <div class="result" id="deelnemerswerksessies">
+                    <h2> {{ countDeelnemersWerksessies }}. <span v-html="specials[6].title"></span> </h2>
+                </div>
+                <div class="result"
+                    v-for="deelnemerswerksessie in deelnemerswerksessies"
+                >
+                    <h3> {{ countDeelnemersWerksessies }}.{{ deelnemerswerksessie.id + 1 }} <span v-html="deelnemerswerksessie.title"></span> </h3>
+                    <div class=""
+                        v-html="deelnemerswerksessie.body"
+                    ></div>
                 </div>
             </div>
         </div>
@@ -124,23 +180,122 @@
             'modusalgemeen',
             'activealgemeen',
             'isAModeSelected'
-
         ],
 
         data() {
             return {
+                specials: [],
+                toelichtingsectors: [],
+                beschrijvingfuncties: [],
+                beschouwingfuncties: [],
+                prioriteringfuncties: [],
+                deelnemerswerksessies: [],
             }
         },
 
         mounted() {
             this.getSpecials();
+            this.getToelichtingSectors();
+            this.getBeschrijvingFuncties();
+            this.getBeschouwingFuncties();
+            this.getPrioriteringFuncties();
+            this.getDeelnemersWerksessies();
         },
 
 
         computed: {
+            countToelichtingSectoren: function() {
+                var counter = 1;
+                if(this.activealgemeen.includes('Inleiding op onderzoek')){ counter ++ };
+                return counter;
+            },
+            countBeschrijvingFuncties: function() {
+                var counter = 1;
+                if(this.activealgemeen.includes('Inleiding op onderzoek')){ counter ++ };
+                if(this.activealgemeen.includes('Toelichting op sectoren')){ counter ++ };
+                return counter;
+            },
+            countPreSF: function () {
+                var counter = 0;
+                if(this.activealgemeen.includes('Inleiding op onderzoek')){ counter ++ };
+                if(this.activealgemeen.includes('Toelichting op sectoren')){ counter ++ };
+                if(this.activealgemeen.includes('Beschrijving van functies')){ counter ++ };
+                return counter
+            },
+            countBeschouwingFuncties: function() {
+                var counter = 1;
+                if(this.modusalgemeen == 'Uitwerking van functies per sector') {
+                    counter += this.activesectors.length;
+                } else if (this.modusalgemeen == 'Uitwerking van sectoren per functie') {
+                    counter += this.activefuncties.length;
+                }
+                if(this.activealgemeen.includes('Inleiding op onderzoek')){ counter ++ };
+                if(this.activealgemeen.includes('Toelichting op sectoren')){ counter ++ };
+                if(this.activealgemeen.includes('Beschrijving van functies')){ counter ++ };
+                return counter;
+            },
+            countPrioriteringFuncties: function() {
+                var counter = 1;
+                if(this.modusalgemeen == 'Uitwerking van functies per sector') {
+                    counter += this.activesectors.length;
+                } else if (this.modusalgemeen == 'Uitwerking van sectoren per functie') {
+                    counter += this.activefuncties.length;
+                }
+                if(this.activealgemeen.includes('Inleiding op onderzoek')){ counter ++ };
+                if(this.activealgemeen.includes('Toelichting op sectoren')){ counter ++ };
+                if(this.activealgemeen.includes('Beschrijving van functies')){ counter ++ };
+                if(this.activealgemeen.includes('Beschouwing van functies')){ counter ++ };
+                return counter;
+            },
+            countSlotbeschouwing: function() {
+                var counter = 1;
+                if(this.modusalgemeen == 'Uitwerking van functies per sector') {
+                    counter += this.activesectors.length;
+                } else if (this.modusalgemeen == 'Uitwerking van sectoren per functie') {
+                    counter += this.activefuncties.length;
+                }
+                if(this.activealgemeen.includes('Inleiding op onderzoek')){ counter ++ };
+                if(this.activealgemeen.includes('Toelichting op sectoren')){ counter ++ };
+                if(this.activealgemeen.includes('Beschrijving van functies')){ counter ++ };
+                if(this.activealgemeen.includes('Beschouwing van functies')){ counter ++ };
+                if(this.activealgemeen.includes('Prioritering van functies')){ counter ++ };
+                return counter;
+            },
+            countDeelnemersWerksessies: function() {
+                var counter = 1;
+                if(this.modusalgemeen == 'Uitwerking van functies per sector') {
+                    counter += this.activesectors.length;
+                } else if (this.modusalgemeen == 'Uitwerking van sectoren per functie') {
+                    counter += this.activefuncties.length;
+                }
+                if(this.activealgemeen.includes('Inleiding op onderzoek')){ counter ++ };
+                if(this.activealgemeen.includes('Toelichting op sectoren')){ counter ++ };
+                if(this.activealgemeen.includes('Beschrijving van functies')){ counter ++ };
+                if(this.activealgemeen.includes('Beschouwing van functies')){ counter ++ };
+                if(this.activealgemeen.includes('Prioritering van functies')){ counter ++ };
+                if(this.activealgemeen.includes('Slotbeschouwing')){ counter ++ };
+                return counter;
+            },
         },
 
         methods: {
+            countSectorFunctie: function () {
+                if(this.modusalgemeen == 'Uitwerking van functies per sector') {
+                    return this.activesectors.length;
+                } else if (this.modusalgemeen == 'Uitwerking van sectoren per functie') {
+                    return this.activefuncties.length;
+                }
+                return 0;
+            },
+            countSpecial: function(algemeen) {
+                var counter = 1;
+                this.activealgemeen.forEach(function(algemeenactive){
+                    if(algemeen == algemeenactive) {
+                        return counter;
+                    }
+                    counter++;
+                })
+            },
             getSpecials: function () {
                 var home = this;
                 axios.get('/api/specials')
@@ -151,7 +306,56 @@
                         console.log(error);
                     });
             },
-
+            getToelichtingSectors: function () {
+                var home = this;
+                axios.get('/api/toelichtingsectors')
+                    .then(function(response){
+                        home.toelichtingsectors = response.data;
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    });
+            },
+            getBeschrijvingFuncties: function() {
+                var home = this;
+                axios.get('/api/beschrijvingfuncties')
+                    .then(function(response){
+                        home.beschrijvingfuncties = response.data;
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    });                
+            },
+            getBeschouwingFuncties: function() {
+                var home = this;
+                axios.get('/api/beschouwingfuncties')
+                    .then(function(response){
+                        home.beschouwingfuncties = response.data;
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    });
+            },
+            getPrioriteringFuncties: function() {
+                var home = this;
+                axios.get('/api/prioriteringfuncties')
+                    .then(function(response){
+                        home.prioriteringfuncties = response.data;
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    });
+            },
+            getDeelnemersWerksessies: function() {
+                var home = this;
+                axios.get('/api/bijlages')
+                    .then(function(response){
+                        home.deelnemerswerksessies = response.data;
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    });
+            },
         }
     }
 </script>

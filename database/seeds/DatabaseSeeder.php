@@ -15,5 +15,10 @@ class DatabaseSeeder extends Seeder
         $this->call(FunctiesTableSeeder::class);
         $this->call(ElementsTableSeeder::class);
         $this->call(SpecialsTableSeeder::class);
+        $this->call(ToelichtingsectorsSeeder::class);
+        $this->call(BeschrijvingfunctiesSeeder::class);
+        $this->call(BeschouwingfunctiesSeeder::class);
+        $this->call(PrioriteringfunctiesSeeder::class);
+        $this->call(BijlagesTableSeeder::class);
     }
 }

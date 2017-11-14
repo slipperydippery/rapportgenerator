@@ -142,6 +142,15 @@
                 activesectors: [],
                 functies: [],
                 activefuncties: [],
+                algemeen: [
+                    'Inleiding op onderzoek', 
+                    'Toelichting op sectoren', 
+                    'Beschrijving van functies', 
+                    'Beschouwing van functies', 
+                    'Prioritering van functies', 
+                    'Slotbeschouwing', 
+                    'Deelnemers werksessies'
+                ],
                 activealgemeen: [],
                 modusalgemeen: {},
                 isReadAllSectorsActive: false,
@@ -195,7 +204,15 @@
                 if(this.activealgemeen.includes(algemeen)){
                     this.activealgemeen.splice(this.activealgemeen.indexOf(algemeen), 1);
                 } else {
-                    this.activealgemeen.push(algemeen);
+                    var temparray = this.activealgemeen.slice(0);
+                    this.activealgemeen = [];
+                    temparray.push(algemeen);
+                    var home = this;
+                    this.algemeen.forEach(function(basealgemeen) {
+                        if(temparray.includes(basealgemeen)){
+                            home.activealgemeen.push(basealgemeen);
+                        }
+                    });
                 }
             },
             toggleActiveSector: function(sector){
@@ -258,15 +275,7 @@
                 });
             },
             activateAllAlgemeen: function () {
-                this.activealgemeen = [
-                    'Inleiding op onderzoek', 
-                    'Toelichting op sectoren', 
-                    'Beschrijving van functies', 
-                    'Beschouwing van functies', 
-                    'Prioritering van functies', 
-                    'Slotbeschouwing', 
-                    'Deelnemers werksessies'
-                ]
+                this.activealgemeen = this.algemeen.slice();
             },
             activateAllSectors: function () {
                 this.isReadAllSectorsActive = true;

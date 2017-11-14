@@ -42940,6 +42940,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             activesectors: [],
             functies: [],
             activefuncties: [],
+            algemeen: ['Inleiding op onderzoek', 'Toelichting op sectoren', 'Beschrijving van functies', 'Beschouwing van functies', 'Prioritering van functies', 'Slotbeschouwing', 'Deelnemers werksessies'],
             activealgemeen: [],
             modusalgemeen: {},
             isReadAllSectorsActive: false,
@@ -42992,7 +42993,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.activealgemeen.includes(algemeen)) {
                 this.activealgemeen.splice(this.activealgemeen.indexOf(algemeen), 1);
             } else {
-                this.activealgemeen.push(algemeen);
+                var temparray = this.activealgemeen.slice(0);
+                this.activealgemeen = [];
+                temparray.push(algemeen);
+                var home = this;
+                this.algemeen.forEach(function (basealgemeen) {
+                    if (temparray.includes(basealgemeen)) {
+                        home.activealgemeen.push(basealgemeen);
+                    }
+                });
             }
         },
         toggleActiveSector: function toggleActiveSector(sector) {
@@ -43055,7 +43064,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         activateAllAlgemeen: function activateAllAlgemeen() {
-            this.activealgemeen = ['Inleiding op onderzoek', 'Toelichting op sectoren', 'Beschrijving van functies', 'Beschouwing van functies', 'Prioritering van functies', 'Slotbeschouwing', 'Deelnemers werksessies'];
+            this.activealgemeen = this.algemeen.slice();
         },
         activateAllSectors: function activateAllSectors() {
             this.isReadAllSectorsActive = true;
@@ -43682,22 +43691,228 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['activesectors', 'activefuncties', 'modusalgemeen', 'activealgemeen', 'isAModeSelected'],
 
     data: function data() {
-        return {};
+        return {
+            specials: [],
+            toelichtingsectors: [],
+            beschrijvingfuncties: [],
+            beschouwingfuncties: [],
+            prioriteringfuncties: [],
+            deelnemerswerksessies: []
+        };
     },
     mounted: function mounted() {
         this.getSpecials();
+        this.getToelichtingSectors();
+        this.getBeschrijvingFuncties();
+        this.getBeschouwingFuncties();
+        this.getPrioriteringFuncties();
+        this.getDeelnemersWerksessies();
     },
 
 
-    computed: {},
+    computed: {
+        countToelichtingSectoren: function countToelichtingSectoren() {
+            var counter = 1;
+            if (this.activealgemeen.includes('Inleiding op onderzoek')) {
+                counter++;
+            };
+            return counter;
+        },
+        countBeschrijvingFuncties: function countBeschrijvingFuncties() {
+            var counter = 1;
+            if (this.activealgemeen.includes('Inleiding op onderzoek')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Toelichting op sectoren')) {
+                counter++;
+            };
+            return counter;
+        },
+        countPreSF: function countPreSF() {
+            var counter = 0;
+            if (this.activealgemeen.includes('Inleiding op onderzoek')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Toelichting op sectoren')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Beschrijving van functies')) {
+                counter++;
+            };
+            return counter;
+        },
+        countBeschouwingFuncties: function countBeschouwingFuncties() {
+            var counter = 1;
+            if (this.modusalgemeen == 'Uitwerking van functies per sector') {
+                counter += this.activesectors.length;
+            } else if (this.modusalgemeen == 'Uitwerking van sectoren per functie') {
+                counter += this.activefuncties.length;
+            }
+            if (this.activealgemeen.includes('Inleiding op onderzoek')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Toelichting op sectoren')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Beschrijving van functies')) {
+                counter++;
+            };
+            return counter;
+        },
+        countPrioriteringFuncties: function countPrioriteringFuncties() {
+            var counter = 1;
+            if (this.modusalgemeen == 'Uitwerking van functies per sector') {
+                counter += this.activesectors.length;
+            } else if (this.modusalgemeen == 'Uitwerking van sectoren per functie') {
+                counter += this.activefuncties.length;
+            }
+            if (this.activealgemeen.includes('Inleiding op onderzoek')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Toelichting op sectoren')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Beschrijving van functies')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Beschouwing van functies')) {
+                counter++;
+            };
+            return counter;
+        },
+        countSlotbeschouwing: function countSlotbeschouwing() {
+            var counter = 1;
+            if (this.modusalgemeen == 'Uitwerking van functies per sector') {
+                counter += this.activesectors.length;
+            } else if (this.modusalgemeen == 'Uitwerking van sectoren per functie') {
+                counter += this.activefuncties.length;
+            }
+            if (this.activealgemeen.includes('Inleiding op onderzoek')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Toelichting op sectoren')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Beschrijving van functies')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Beschouwing van functies')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Prioritering van functies')) {
+                counter++;
+            };
+            return counter;
+        },
+        countDeelnemersWerksessies: function countDeelnemersWerksessies() {
+            var counter = 1;
+            if (this.modusalgemeen == 'Uitwerking van functies per sector') {
+                counter += this.activesectors.length;
+            } else if (this.modusalgemeen == 'Uitwerking van sectoren per functie') {
+                counter += this.activefuncties.length;
+            }
+            if (this.activealgemeen.includes('Inleiding op onderzoek')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Toelichting op sectoren')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Beschrijving van functies')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Beschouwing van functies')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Prioritering van functies')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Slotbeschouwing')) {
+                counter++;
+            };
+            return counter;
+        }
+    },
 
     methods: {
+        countSectorFunctie: function countSectorFunctie() {
+            if (this.modusalgemeen == 'Uitwerking van functies per sector') {
+                return this.activesectors.length;
+            } else if (this.modusalgemeen == 'Uitwerking van sectoren per functie') {
+                return this.activefuncties.length;
+            }
+            return 0;
+        },
+        countSpecial: function countSpecial(algemeen) {
+            var counter = 1;
+            this.activealgemeen.forEach(function (algemeenactive) {
+                if (algemeen == algemeenactive) {
+                    return counter;
+                }
+                counter++;
+            });
+        },
         getSpecials: function getSpecials() {
             var home = this;
             axios.get('/api/specials').then(function (response) {
@@ -43705,8 +43920,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 console.log(error);
             });
+        },
+        getToelichtingSectors: function getToelichtingSectors() {
+            var home = this;
+            axios.get('/api/toelichtingsectors').then(function (response) {
+                home.toelichtingsectors = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getBeschrijvingFuncties: function getBeschrijvingFuncties() {
+            var home = this;
+            axios.get('/api/beschrijvingfuncties').then(function (response) {
+                home.beschrijvingfuncties = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getBeschouwingFuncties: function getBeschouwingFuncties() {
+            var home = this;
+            axios.get('/api/beschouwingfuncties').then(function (response) {
+                home.beschouwingfuncties = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getPrioriteringFuncties: function getPrioriteringFuncties() {
+            var home = this;
+            axios.get('/api/prioriteringfuncties').then(function (response) {
+                home.prioriteringfuncties = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getDeelnemersWerksessies: function getDeelnemersWerksessies() {
+            var home = this;
+            axios.get('/api/bijlages').then(function (response) {
+                home.deelnemerswerksessies = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
-
     }
 });
 
@@ -43730,24 +43984,36 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("h2", [_vm._v("Inhoud")]),
+          _c("h2", { staticClass: "inhoud" }, [_vm._v("Inhoud")]),
           _vm._v(" "),
           _c("ul", [
             _vm.activealgemeen.includes("Inleiding op onderzoek")
               ? _c("a", { attrs: { href: "#inleiding" } }, [
-                  _c("li", [_vm._v("Inleiding op onderzoek")])
+                  _c("li", [_vm._v(" 1. Inleiding op onderzoek")])
                 ])
               : _vm._e(),
             _vm._v(" "),
             _vm.activealgemeen.includes("Toelichting op sectoren")
               ? _c("a", { attrs: { href: "#toelichtingsectoren" } }, [
-                  _c("li", [_vm._v("Toelichting op sectoren")])
+                  _c("li", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countToelichtingSectoren) +
+                        " Toelichting op sectoren"
+                    )
+                  ])
                 ])
               : _vm._e(),
             _vm._v(" "),
             _vm.activealgemeen.includes("Beschrijving van functies")
               ? _c("a", { attrs: { href: "#beschrijvingfuncties" } }, [
-                  _c("li", [_vm._v("Beschrijving van functies")])
+                  _c("li", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countBeschrijvingFuncties) +
+                        " Beschrijving van functies"
+                    )
+                  ])
                 ])
               : _vm._e()
           ]),
@@ -43758,7 +44024,10 @@ var render = function() {
                 _vm._l(_vm.activesectors, function(sector) {
                   return _c("li", [
                     _c("a", { attrs: { href: "#" + sector.id } }, [
-                      _vm._v(" " + _vm._s(sector.title) + " ")
+                      _vm._v(" " + _vm._s(sector.id + _vm.countPreSF) + ". "),
+                      _c("span", {
+                        domProps: { innerHTML: _vm._s(sector.title) }
+                      })
                     ]),
                     _vm._v(" "),
                     _c(
@@ -43771,11 +44040,18 @@ var render = function() {
                             _c("li", [
                               _vm._v(
                                 " " +
-                                  _vm._s(sector.title) +
-                                  " - " +
-                                  _vm._s(functie.title) +
+                                  _vm._s(sector.id + _vm.countPreSF) +
+                                  "." +
+                                  _vm._s(functie.id) +
                                   " "
-                              )
+                              ),
+                              _c("span", {
+                                domProps: { innerHTML: _vm._s(sector.title) }
+                              }),
+                              _vm._v(" - "),
+                              _c("span", {
+                                domProps: { innerHTML: _vm._s(functie.title) }
+                              })
                             ])
                           ]
                         )
@@ -43792,7 +44068,10 @@ var render = function() {
                 _vm._l(_vm.activefuncties, function(functie) {
                   return _c("li", [
                     _c("a", { attrs: { href: "#" + functie.id } }, [
-                      _vm._v(" " + _vm._s(functie.title) + " ")
+                      _vm._v(" " + _vm._s(functie.id + _vm.countPreSF) + ". "),
+                      _c("span", {
+                        domProps: { innerHTML: _vm._s(functie.title) }
+                      })
                     ]),
                     _vm._v(" "),
                     _c(
@@ -43805,11 +44084,18 @@ var render = function() {
                             _c("li", [
                               _vm._v(
                                 " " +
-                                  _vm._s(functie.title) +
-                                  " - " +
-                                  _vm._s(sector.title) +
+                                  _vm._s(functie.id + _vm.countPreSF) +
+                                  "." +
+                                  _vm._s(sector.id) +
                                   " "
-                              )
+                              ),
+                              _c("span", {
+                                domProps: { innerHTML: _vm._s(functie.title) }
+                              }),
+                              _vm._v(" - "),
+                              _c("span", {
+                                domProps: { innerHTML: _vm._s(sector.title) }
+                              })
                             ])
                           ]
                         )
@@ -43823,25 +44109,49 @@ var render = function() {
           _c("ul", [
             _vm.activealgemeen.includes("Beschouwing van functies")
               ? _c("a", { attrs: { href: "#beschouwingfuncties" } }, [
-                  _c("li", [_vm._v(" Beschouwing van functies ")])
+                  _c("li", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countBeschouwingFuncties) +
+                        " Beschouwing van functies "
+                    )
+                  ])
                 ])
               : _vm._e(),
             _vm._v(" "),
             _vm.activealgemeen.includes("Prioritering van functies")
               ? _c("a", { attrs: { href: "#prioritiseringsector" } }, [
-                  _c("li", [_vm._v(" Prioritering van functies ")])
+                  _c("li", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countPrioriteringFuncties) +
+                        " Prioritering van functies "
+                    )
+                  ])
                 ])
               : _vm._e(),
             _vm._v(" "),
             _vm.activealgemeen.includes("Slotbeschouwing")
               ? _c("a", { attrs: { href: "#slotbeschouwing" } }, [
-                  _c("li", [_vm._v(" Slotbeschouwing ")])
+                  _c("li", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countSlotbeschouwing) +
+                        " Slotbeschouwing "
+                    )
+                  ])
                 ])
               : _vm._e(),
             _vm._v(" "),
             _vm.activealgemeen.includes("Deelnemers werksessies")
               ? _c("a", { attrs: { href: "#deelnemerswerksessies" } }, [
-                  _c("li", [_vm._v(" Deelnemers werksessies ")])
+                  _c("li", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countDeelnemersWerksessies) +
+                        " Deelnemers werksessies "
+                    )
+                  ])
                 ])
               : _vm._e()
           ])
@@ -43860,23 +44170,116 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.activealgemeen.includes("Toelichting op sectoren")
-        ? _c("div", {}, [
-            _c("div", {
-              staticClass: "result",
-              attrs: { id: "toelichtingsectoren" },
-              domProps: { innerHTML: _vm._s(_vm.specials[1].body) }
-            })
-          ])
+        ? _c(
+            "div",
+            {},
+            [
+              _c(
+                "div",
+                { staticClass: "result", attrs: { id: "toelichtingsectoren" } },
+                [
+                  _c("h2", [
+                    _vm._v(" " + _vm._s(_vm.countToelichtingSectoren) + ". "),
+                    _c("span", {
+                      domProps: { innerHTML: _vm._s(_vm.specials[1].title) }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("h3", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countToelichtingSectoren) +
+                        ".1 Afbakening "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", {
+                    domProps: { innerHTML: _vm._s(_vm.specials[1].body) }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.toelichtingsectors, function(toelichtingsector) {
+                return _c("div", { staticClass: "result" }, [
+                  _c("h3", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countToelichtingSectoren) +
+                        "." +
+                        _vm._s(toelichtingsector.id + 1) +
+                        " "
+                    ),
+                    _c("span", {
+                      domProps: { innerHTML: _vm._s(toelichtingsector.title) }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", {
+                    domProps: { innerHTML: _vm._s(toelichtingsector.body) }
+                  })
+                ])
+              })
+            ],
+            2
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm.activealgemeen.includes("Beschrijving van functies")
-        ? _c("div", {}, [
-            _c("div", {
-              staticClass: "result",
-              attrs: { id: "beschrijvingfuncties" },
-              domProps: { innerHTML: _vm._s(_vm.specials[2].body) }
-            })
-          ])
+        ? _c(
+            "div",
+            {},
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "result",
+                  attrs: { id: "beschrijvingfuncties" }
+                },
+                [
+                  _c("h2", [
+                    _vm._v(" " + _vm._s(_vm.countBeschrijvingFuncties) + ". "),
+                    _c("span", {
+                      domProps: { innerHTML: _vm._s(_vm.specials[2].title) }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("h3", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countBeschrijvingFuncties) +
+                        ".1 Inleiding"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", {
+                    domProps: { innerHTML: _vm._s(_vm.specials[2].body) }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.beschrijvingfuncties, function(beschrijvingfunctie) {
+                return _c("div", { staticClass: "result" }, [
+                  _c("h3", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countBeschrijvingFuncties) +
+                        "." +
+                        _vm._s(beschrijvingfunctie.id + 1) +
+                        " "
+                    ),
+                    _c("span", {
+                      domProps: { innerHTML: _vm._s(beschrijvingfunctie.title) }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", {
+                    domProps: { innerHTML: _vm._s(beschrijvingfunctie.body) }
+                  })
+                ])
+              })
+            ],
+            2
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm.modusalgemeen == "Uitwerking van functies per sector"
@@ -43888,7 +44291,12 @@ var render = function() {
                 "div",
                 { staticClass: "result", attrs: { id: sector.id } },
                 [
-                  _c("h2", [_vm._v(" " + _vm._s(sector.title) + " ")]),
+                  _c("h2", [
+                    _vm._v(" " + _vm._s(sector.id + _vm.countPreSF) + ". "),
+                    _c("span", {
+                      domProps: { innerHTML: _vm._s(sector.title) }
+                    })
+                  ]),
                   _vm._v(" "),
                   _vm._l(_vm.activefuncties, function(functie) {
                     return _c(
@@ -43898,11 +44306,18 @@ var render = function() {
                         _c("h3", [
                           _vm._v(
                             " " +
-                              _vm._s(sector.title) +
-                              ": " +
-                              _vm._s(functie.title) +
+                              _vm._s(sector.id + _vm.countPreSF) +
+                              "." +
+                              _vm._s(functie.id) +
                               " "
-                          )
+                          ),
+                          _c("span", {
+                            domProps: { innerHTML: _vm._s(sector.title) }
+                          }),
+                          _vm._v(": "),
+                          _c("span", {
+                            domProps: { innerHTML: _vm._s(functie.title) }
+                          })
                         ]),
                         _vm._v(" "),
                         _c("rapportelement", {
@@ -43928,7 +44343,12 @@ var render = function() {
                 "div",
                 { staticClass: "result", attrs: { id: functie.id } },
                 [
-                  _c("h2", [_vm._v(" " + _vm._s(functie.title) + " ")]),
+                  _c("h2", [
+                    _vm._v(" " + _vm._s(functie.id + _vm.countPreSF) + ". "),
+                    _c("span", {
+                      domProps: { innerHTML: _vm._s(functie.title) }
+                    })
+                  ]),
                   _vm._v(" "),
                   _vm._l(_vm.activesectors, function(sector) {
                     return _c(
@@ -43938,11 +44358,18 @@ var render = function() {
                         _c("h3", [
                           _vm._v(
                             " " +
-                              _vm._s(functie.title) +
-                              ": " +
-                              _vm._s(sector.title) +
+                              _vm._s(functie.id + _vm.countPreSF) +
+                              "." +
+                              _vm._s(sector.id) +
                               " "
-                          )
+                          ),
+                          _c("span", {
+                            domProps: { innerHTML: _vm._s(functie.title) }
+                          }),
+                          _vm._v(": "),
+                          _c("span", {
+                            domProps: { innerHTML: _vm._s(sector.title) }
+                          })
                         ]),
                         _vm._v(" "),
                         _c("rapportelement", {
@@ -43960,43 +44387,185 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.activealgemeen.includes("Beschouwing van functies")
-        ? _c("div", {}, [
-            _c("div", {
-              staticClass: "result",
-              attrs: { id: "beschouwingfuncties" },
-              domProps: { innerHTML: _vm._s(_vm.specials[3].body) }
-            })
-          ])
+        ? _c(
+            "div",
+            {},
+            [
+              _c(
+                "div",
+                { staticClass: "result", attrs: { id: "beschouwingfuncties" } },
+                [
+                  _c("h2", [
+                    _vm._v(" " + _vm._s(_vm.countBeschouwingFuncties) + ". "),
+                    _c("span", {
+                      domProps: { innerHTML: _vm._s(_vm.specials[3].title) }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("h3", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countBeschouwingFuncties) +
+                        ".1 Inleiding over beschouwing"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", {
+                    domProps: { innerHTML: _vm._s(_vm.specials[3].body) }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.beschouwingfuncties, function(beschouwingfunctie) {
+                return _c("div", { staticClass: "result" }, [
+                  _c("h3", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countBeschouwingFuncties) +
+                        "." +
+                        _vm._s(beschouwingfunctie.id + 1) +
+                        " "
+                    ),
+                    _c("span", {
+                      domProps: { innerHTML: _vm._s(beschouwingfunctie.title) }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", {
+                    domProps: { innerHTML: _vm._s(beschouwingfunctie.body) }
+                  })
+                ])
+              })
+            ],
+            2
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm.activealgemeen.includes("Prioritering van functies")
-        ? _c("div", {}, [
-            _c("div", {
-              staticClass: "result",
-              attrs: { id: "prioritiseringsector" },
-              domProps: { innerHTML: _vm._s(_vm.specials[4].body) }
-            })
-          ])
+        ? _c(
+            "div",
+            {},
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "result",
+                  attrs: { id: "prioritiseringsector" }
+                },
+                [
+                  _c("h2", [
+                    _vm._v(" " + _vm._s(_vm.countPrioriteringFuncties) + ". "),
+                    _c("span", {
+                      domProps: { innerHTML: _vm._s(_vm.specials[4].title) }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("h3", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countPrioriteringFuncties) +
+                        ".1 Prioritering en nuancering "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", {
+                    domProps: { innerHTML: _vm._s(_vm.specials[4].body) }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.prioriteringfuncties, function(prioriteringfunctie) {
+                return _c("div", { staticClass: "result" }, [
+                  _c("h3", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countPrioriteringFuncties) +
+                        "." +
+                        _vm._s(prioriteringfunctie.id + 1) +
+                        " "
+                    ),
+                    _c("span", {
+                      domProps: { innerHTML: _vm._s(prioriteringfunctie.title) }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", {
+                    domProps: { innerHTML: _vm._s(prioriteringfunctie.body) }
+                  })
+                ])
+              })
+            ],
+            2
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm.activealgemeen.includes("Slotbeschouwing")
         ? _c("div", {}, [
-            _c("div", {
-              staticClass: "result",
-              attrs: { id: "slotbeschouwing" },
-              domProps: { innerHTML: _vm._s(_vm.specials[5].body) }
-            })
+            _c(
+              "div",
+              { staticClass: "result", attrs: { id: "slotbeschouwing" } },
+              [
+                _c("h2", [
+                  _vm._v(" " + _vm._s(_vm.countSlotbeschouwing) + ". "),
+                  _c("span", {
+                    domProps: { innerHTML: _vm._s(_vm.specials[5].title) }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", {
+                  domProps: { innerHTML: _vm._s(_vm.specials[5].body) }
+                })
+              ]
+            )
           ])
         : _vm._e(),
       _vm._v(" "),
       _vm.activealgemeen.includes("Deelnemers werksessies")
-        ? _c("div", {}, [
-            _c("div", {
-              staticClass: "result",
-              attrs: { id: "deelnemerswerksessies" },
-              domProps: { innerHTML: _vm._s(_vm.specials[6].body) }
-            })
-          ])
+        ? _c(
+            "div",
+            {},
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "result",
+                  attrs: { id: "deelnemerswerksessies" }
+                },
+                [
+                  _c("h2", [
+                    _vm._v(" " + _vm._s(_vm.countDeelnemersWerksessies) + ". "),
+                    _c("span", {
+                      domProps: { innerHTML: _vm._s(_vm.specials[6].title) }
+                    })
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.deelnemerswerksessies, function(deelnemerswerksessie) {
+                return _c("div", { staticClass: "result" }, [
+                  _c("h3", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countDeelnemersWerksessies) +
+                        "." +
+                        _vm._s(deelnemerswerksessie.id + 1) +
+                        " "
+                    ),
+                    _c("span", {
+                      domProps: {
+                        innerHTML: _vm._s(deelnemerswerksessie.title)
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", {
+                    domProps: { innerHTML: _vm._s(deelnemerswerksessie.body) }
+                  })
+                ])
+              })
+            ],
+            2
+          )
         : _vm._e()
     ])
   ])

@@ -1,3 +1,10 @@
+@page  
+{ 
+    size: auto;   /* auto is the initial value */ 
+    /* this affects the margin in the printer settings */ 
+    margin: 30mm 15mm 20mm 15mm;  
+} 
+
 @media print {
     html, body {
     	height: auto !important;
@@ -17,46 +24,49 @@
     	.result {
 	    	padding: 0 !important;
     	}
-    	table {
+    	.tabletoreplace {
     		display: none;
     	}
     	.tablereplacement {
     		display: block;
     	}
 	}
+	h2.inhoud {
+		margin-top: 0 !important;
+	}
 
-    .flex-center {
+    .flex-center, .content, #app, .generator--wrap, .base,  {
 		display: block !important;
 		align-items: left !important;
    	} 
 
     .position-ref {
-
+		position: absolute !important;
+		top: 0 !important;
     } 
 
     .full-height {
 		height: auto !important;
     }
 
+	.bereschotlogo--print {
+		display: none;
+		position: fixed;
+		width: 250px;
+		height: auto;
+		top: -5mm;
+		right: 0;
+		img {
+			height: auto !important;
+		}
+	}
+
     .menubar {
-    	position: fixed;
-    	.social--icons {
-    		display: none !important;
-    	}
-    	.bereschotlogo {
-    		display: none !important;
-    		width: 250px;
-    		height: auto;
-    		top: 0;
-    		right: 0;
-    		img {
-    			height: auto !important;
-    		}
-    	}
+		display: none !important;	
     }
 
     #app {
-    	margin-top: 65px !important;
+    	// margin-top: 65px !important;
     }
 
     .title--wrap {
@@ -69,3 +79,4 @@
 
 
 }
+

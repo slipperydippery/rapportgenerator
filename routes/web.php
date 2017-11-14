@@ -21,3 +21,8 @@ Route::get('/api/sector/', 'ApiController@indexsector');
 Route::get('/api/functie/', 'ApiController@indexfunctie');
 Route::get('/api/element/{sector}/{functie}', 'ApiController@getelement');
 Route::get('/api/specials', 'ApiController@getspecials');
+Route::get('/api/toelichtingsectors', 'ApiController@gettoelichtingsectors');
+Route::get('/api/beschrijvingfuncties ', 'ApiController@getbeschrijvingfuncties');
+Route::get('/api/beschouwingfuncties', 'ApiController@getbeschouwingfuncties');
+Route::get('/api/prioriteringfuncties', 'ApiController@getprioriteringfuncties');
+Route::get('/api/bijlages', 'ApiController@getbijlages');

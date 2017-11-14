@@ -67,6 +67,9 @@
             @endif
 
             <div class="content">
+                <div class="bereschotlogo--print">
+                    <img src="img/berenschot-logo.svg" alt="">
+                </div>
                 <div class="menubar">
                     <div class="menubar--content clearfix">
                         <div class="social--icons">
