@@ -5,25 +5,27 @@
                 <div class="selectlist selectlist--algemeen">
                     <h3>Algemeen</h3>
                     <button class="fauxlabel algemeenitem algemeenitem--modus" 
-                        :class=" { 'active--dark': modusalgemeen == 'Uitwerking van functies per sector' } "
+                        :class=" { 'active': modusalgemeen == 'Uitwerking van functies per sector' } "
                         @click=" toggleModusAlgemeen('Uitwerking van functies per sector') "
                     >
                         Uitwerking van functies per sector <br>
                         <span class="algemeenitem--toelichting">Selecteer sectoren en functies</span>
                     </button><br>
                     <button class="fauxlabel algemeenitem algemeenitem--modus" 
-                        :class=" { 'active--dark': modusalgemeen == 'Uitwerking van sectoren per functie' } "
+                        :class=" { 'active': modusalgemeen == 'Uitwerking van sectoren per functie' } "
                         @click=" toggleModusAlgemeen('Uitwerking van sectoren per functie') "
                     >
                         Uitwerking van sectoren per functie <br>
                         <span class="algemeenitem--toelichting">Selecteer sectoren en functies</span>
                     </button><br>
                     <button class="fauxlabel algemeenitem algemeenitem--modus" 
+                        :class=" { 'active--dark': isRapportCompleetNaarSectoren } "
                         @click=" toggleRapportNaarSectoren() "
                     >
                         Compleet rapport naar sectoren <br>
                     </button><br>
                     <button class="fauxlabel algemeenitem algemeenitem--modus" 
+                        :class=" { 'active--dark': isRapportCompleetNaarFuncties } "
                         @click=" toggleRapportNaarFuncties() "
                     >
                         Compleet rapport naar functies <br>
@@ -84,7 +86,7 @@
                     <h3>Sector</h3>
                     <button class="fauxlabel"
                         @click="toggleReadAllSectors"
-                        :class="{ 'active--dark' : isReadAllSectorsActive && ! isSectorsDisabled && activesectors.length == 11}"
+                        :class="{ 'active--dark' : ! isSectorsDisabled && activesectors.length == 11}"
                         :disabled="isSectorsDisabled"
                     >
                         READ ALL
@@ -102,7 +104,7 @@
                     <h3>Functie</h3>
                     <button class="fauxlabel"
                         @click="toggleReadAllFuncties"
-                        :class="{ 'active--dark' : isReadAllFunctiesActive && ! isFunctiesDisabled && activefuncties.length == 7 }"
+                        :class="{ 'active--dark' : ! isFunctiesDisabled && activefuncties.length == 7 }"
                         :disabled="isFunctiesDisabled"
                     >
                         READ ALL
@@ -166,6 +168,20 @@
 
 
         computed: {
+            isRapportCompleetNaarSectoren: function() {
+                var specials = this.algemeen.length == this.activealgemeen.length ? true : false;
+                var sectors = this.sectors.length == this.activesectors.length ? true : false;
+                var functies = this.functies.length == this.activefuncties.length ? true : false;
+                var modus = this.modusalgemeen == 'Uitwerking van functies per sector';
+                return specials && sectors && functies && modus;
+            },
+            isRapportCompleetNaarFuncties: function() {
+                var specials = this.algemeen.length == this.activealgemeen.length ? true : false;
+                var sectors = this.sectors.length == this.activesectors.length ? true : false;
+                var functies = this.functies.length == this.activefuncties.length ? true : false;
+                var modus = this.modusalgemeen == 'Uitwerking van sectoren per functie';
+                return specials && sectors && functies && modus;
+            },
             isSectorsDisabled: function() {
                 if ( this.modusalgemeen == 'Uitwerking van functies per sector' ) {
                     return false;

@@ -30999,7 +30999,7 @@ module.exports.default = axios;
 /*!
  * Determine if an object is a Buffer
  *
- * @author   Feross Aboukhadijeh <https://feross.org>
+ * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
  * @license  MIT
  */
 
@@ -42648,7 +42648,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\ExampleComponent.vue"
+Component.options.__file = "resources/assets/js/components/ExampleComponent.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -42768,7 +42768,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\Rapportgenerator.vue"
+Component.options.__file = "resources/assets/js/components/Rapportgenerator.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -42929,6 +42929,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -42955,6 +42957,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     computed: {
+        isRapportCompleetNaarSectoren: function isRapportCompleetNaarSectoren() {
+            var specials = this.algemeen.length == this.activealgemeen.length ? true : false;
+            var sectors = this.sectors.length == this.activesectors.length ? true : false;
+            var functies = this.functies.length == this.activefuncties.length ? true : false;
+            var modus = this.modusalgemeen == 'Uitwerking van functies per sector';
+            return specials && sectors && functies && modus;
+        },
+        isRapportCompleetNaarFuncties: function isRapportCompleetNaarFuncties() {
+            var specials = this.algemeen.length == this.activealgemeen.length ? true : false;
+            var sectors = this.sectors.length == this.activesectors.length ? true : false;
+            var functies = this.functies.length == this.activefuncties.length ? true : false;
+            var modus = this.modusalgemeen == 'Uitwerking van sectoren per functie';
+            return specials && sectors && functies && modus;
+        },
         isSectorsDisabled: function isSectorsDisabled() {
             if (this.modusalgemeen == 'Uitwerking van functies per sector') {
                 return false;
@@ -43141,7 +43157,7 @@ var render = function() {
               {
                 staticClass: "fauxlabel algemeenitem algemeenitem--modus",
                 class: {
-                  "active--dark":
+                  active:
                     _vm.modusalgemeen == "Uitwerking van functies per sector"
                 },
                 on: {
@@ -43170,7 +43186,7 @@ var render = function() {
               {
                 staticClass: "fauxlabel algemeenitem algemeenitem--modus",
                 class: {
-                  "active--dark":
+                  active:
                     _vm.modusalgemeen == "Uitwerking van sectoren per functie"
                 },
                 on: {
@@ -43198,6 +43214,7 @@ var render = function() {
               "button",
               {
                 staticClass: "fauxlabel algemeenitem algemeenitem--modus",
+                class: { "active--dark": _vm.isRapportCompleetNaarSectoren },
                 on: {
                   click: function($event) {
                     _vm.toggleRapportNaarSectoren()
@@ -43215,6 +43232,7 @@ var render = function() {
               "button",
               {
                 staticClass: "fauxlabel algemeenitem algemeenitem--modus",
+                class: { "active--dark": _vm.isRapportCompleetNaarFuncties },
                 on: {
                   click: function($event) {
                     _vm.toggleRapportNaarFuncties()
@@ -43403,9 +43421,7 @@ var render = function() {
                   staticClass: "fauxlabel",
                   class: {
                     "active--dark":
-                      _vm.isReadAllSectorsActive &&
-                      !_vm.isSectorsDisabled &&
-                      _vm.activesectors.length == 11
+                      !_vm.isSectorsDisabled && _vm.activesectors.length == 11
                   },
                   attrs: { disabled: _vm.isSectorsDisabled },
                   on: { click: _vm.toggleReadAllSectors }
@@ -43455,9 +43471,7 @@ var render = function() {
                   staticClass: "fauxlabel",
                   class: {
                     "active--dark":
-                      _vm.isReadAllFunctiesActive &&
-                      !_vm.isFunctiesDisabled &&
-                      _vm.activefuncties.length == 7
+                      !_vm.isFunctiesDisabled && _vm.activefuncties.length == 7
                   },
                   attrs: { disabled: _vm.isFunctiesDisabled },
                   on: { click: _vm.toggleReadAllFuncties }
@@ -43546,7 +43560,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\Rapportresultaten.vue"
+Component.options.__file = "resources/assets/js/components/Rapportresultaten.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -43574,6 +43588,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -43975,14 +43992,7 @@ var render = function() {
   return _c("div", { staticClass: "base" }, [
     _vm.isAModeSelected
       ? _c("div", { staticClass: "generator--shortresults" }, [
-          _c("input", {
-            staticClass: "print",
-            attrs: {
-              type: "button",
-              onClick: "window.print()",
-              value: "Print deze pagina"
-            }
-          }),
+          _vm._m(0),
           _vm._v(" "),
           _c("h2", { staticClass: "inhoud" }, [_vm._v("Inhoud")]),
           _vm._v(" "),
@@ -44570,7 +44580,31 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "print" }, [
+      _c("input", {
+        staticClass: "button",
+        attrs: {
+          type: "button",
+          onClick: "window.print()",
+          value: "Print deze pagina"
+        }
+      }),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("span", { staticClass: "print--toelichting" }, [
+        _vm._v(
+          ' Om als PDF op te slaan selecteer "Print to PDF" onder de Print Bestemming '
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -44606,7 +44640,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\Rapportelement.vue"
+Component.options.__file = "resources/assets/js/components/Rapportelement.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */

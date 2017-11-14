@@ -244,22 +244,35 @@ input[type="checkbox"]:checked + label, .active  {
         position: absolute;
         right: 0;
         top: 0px;
-        display: inline-block;
-        padding: 1.2rem;
+        width: 22rem;
         text-align: center;
-        border: 1px solid rgba(0, 0, 0, 0.33);
-        border-radius: 1rem;
-        margin: 0;
-        font-size: 12px;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        font-weight: bold;
-        color: black;
-        background: white;
-        transition: all .5s;
+        .button {
+            display: inline-block;
+            padding: 1.2rem;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.33);
+            border-radius: 1rem;
+            margin: 0;
+            font-size: 12px;
+            box-sizing: border-box;
+            font-weight: bold;
+            color: black;
+            background: white;
+            transition: all .5s;
+        }    
+        .button:hover {
+            background: #99fdd0;
+        }
+        .print--toelichting {
+            display: inline-block;
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-top: .5rem;
+            transition: all .5s;
+        }
     }
-    .print:hover {
-        background: #99fdd0;
+    .print:hover .print--toelichting {
+        color: #c10000;
     }
 }
 

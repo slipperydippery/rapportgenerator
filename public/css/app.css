@@ -8606,6 +8606,11 @@ input[type="checkbox"]:checked + label,
   position: absolute;
   right: 0;
   top: 0px;
+  width: 22rem;
+  text-align: center;
+}
+
+.generator--shortresults .print .button {
   display: inline-block;
   padding: 1.2rem;
   text-align: center;
@@ -8614,7 +8619,7 @@ input[type="checkbox"]:checked + label,
   margin: 0;
   font-size: 12px;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   font-weight: bold;
   color: black;
   background: white;
@@ -8622,8 +8627,21 @@ input[type="checkbox"]:checked + label,
   transition: all .5s;
 }
 
-.generator--shortresults .print:hover {
+.generator--shortresults .print .button:hover {
   background: #99fdd0;
+}
+
+.generator--shortresults .print .print--toelichting {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-top: .5rem;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.generator--shortresults .print:hover .print--toelichting {
+  color: #c10000;
 }
 
 .generator--results {

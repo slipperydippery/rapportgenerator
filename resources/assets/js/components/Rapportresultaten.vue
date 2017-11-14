@@ -1,11 +1,14 @@
 <template>
     <div class="base">
         <div class="generator--shortresults" v-if="isAModeSelected">
-            <input type="button" 
-                onClick="window.print()" 
-                value="Print deze pagina"
-                class="print"
-            />
+            <div class="print">
+                <input type="button" 
+                    onClick="window.print()" 
+                    value="Print deze pagina"
+                    class="button"
+                /> <br>
+                <span class="print--toelichting"> Om als PDF op te slaan selecteer "Print to PDF" onder de Print Bestemming </span>
+            </div>
             </body>
             <h2 class="inhoud">Inhoud</h2>
             <ul>
@@ -116,7 +119,7 @@
                             </rapportelement>
                         </div>
                 </div>
-            </div>
+            </div> 
             <div class="" v-if=" activealgemeen.includes('Beschouwing van functies') ">
                 <div class="result" id="beschouwingfuncties"> 
                     <h2> {{ countBeschouwingFuncties }}. <span v-html="specials[3].title"></span> </h2>
