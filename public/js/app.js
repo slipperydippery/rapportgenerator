@@ -30999,7 +30999,7 @@ module.exports.default = axios;
 /*!
  * Determine if an object is a Buffer
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 
@@ -42648,7 +42648,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/ExampleComponent.vue"
+Component.options.__file = "resources\\assets\\js\\components\\ExampleComponent.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -42768,7 +42768,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/Rapportgenerator.vue"
+Component.options.__file = "resources\\assets\\js\\components\\Rapportgenerator.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -42931,6 +42931,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -42947,12 +42953,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             modusalgemeen: {},
             isReadAllSectorsActive: false,
             isReadAllFunctiesActive: false,
-            isAModeSelected: false
+            isAModeSelected: false,
+            specials: [],
+            toelichtingsectors: [],
+            activetoelichtingsectors: [],
+            beschrijvingfuncties: [],
+            activebeschrijvingfuncties: [],
+            beschouwingfuncties: [],
+            activebeschouwingfuncties: [],
+            prioriteringfuncties: [],
+            activeprioriteringfuncties: [],
+            deelnemerswerksessies: []
         };
     },
     mounted: function mounted() {
         this.getSectors();
         this.getFuncties();
+        this.getSpecials();
+        this.getToelichtingSectors();
+        this.getBeschrijvingFuncties();
+        this.getBeschouwingFuncties();
+        this.getPrioriteringFuncties();
+        this.getDeelnemersWerksessies();
     },
 
 
@@ -43023,43 +43045,73 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         toggleActiveSector: function toggleActiveSector(sector) {
             sector.active = !sector.active;
             if (this.activesectors.includes(sector)) {
+                this.activetoelichtingsectors.splice(this.activesectors.indexOf(sector), 1);
+                this.activeprioriteringfuncties.splice(this.activesectors.indexOf(sector), 1);
                 this.activesectors.splice(this.activesectors.indexOf(sector), 1);
             } else {
-                var temparray = this.activesectors.slice(0);
-                this.activesectors = [];
-                temparray.push(sector);
-                var home = this;
-                this.sectors.forEach(function (basesector) {
-                    if (temparray.includes(basesector)) {
-                        home.activesectors.push(basesector);
-                    }
-                });
+                this.activesectors.push(sector);
+                this.activetoelichtingsectors.push(this.toelichtingsectors[sector.id - 1]);
+                this.activeprioriteringfuncties.push(this.prioriteringfuncties[sector.id - 1]);
             }
+            this.sortActiveSectors();
+            this.sortActiveToelichtingSectors();
+            this.sortActivePrioriteringFuncties();
+        },
+        sortActiveSectors: function sortActiveSectors() {
+            var temparray = this.activesectors.slice(0);
+            this.activesectors = [];
+            var counter = 1;
+            var home = this;
+            this.sectors.forEach(function (basesector) {
+                if (temparray.includes(basesector)) {
+                    basesector.count = counter;
+                    home.activesectors.push(basesector);
+                    counter++;
+                }
+            });
         },
         toggleActiveFunctie: function toggleActiveFunctie(functie) {
             functie.active = !functie.active;
             if (this.activefuncties.includes(functie)) {
+                this.activebeschrijvingfuncties.splice(this.activefuncties.indexOf(functie), 1);
+                this.activebeschouwingfuncties.splice(this.activefuncties.indexOf(functie), 1);
                 this.activefuncties.splice(this.activefuncties.indexOf(functie), 1);
             } else {
-                // Add to this.activefuncties, but maintain the order of functies
-                var temparray = this.activefuncties.slice(0);
-                this.activefuncties = [];
-                temparray.push(functie);
-                var home = this;
-                this.functies.forEach(function (basefunctie) {
-                    if (temparray.includes(basefunctie)) {
-                        home.activefuncties.push(basefunctie);
-                    }
-                });
+                this.activefuncties.push(functie);
+                this.activebeschrijvingfuncties.push(this.beschrijvingfuncties[functie.id - 1]);
+                this.activebeschouwingfuncties.push(this.beschouwingfuncties[functie.id - 1]);
             }
+            this.sortActiveFuncties();
+            this.sortActiveBeschrijvingFuncties();
+            this.sortActiveBeschouwingFuncties();
+        },
+        sortActiveFuncties: function sortActiveFuncties() {
+            var temparray = this.activefuncties.slice(0);
+            this.activefuncties = [];
+            var counter = 1;
+            var home = this;
+            this.functies.forEach(function (basefunctie) {
+                if (temparray.includes(basefunctie)) {
+                    basefunctie.count = counter;
+                    home.activefuncties.push(basefunctie);
+                    counter++;
+                }
+            });
         },
         toggleReadAllSectors: function toggleReadAllSectors() {
             console.log('toggling sectors');
             if (!this.isReadAllSectorsActive) {
                 this.activesectors = this.sectors.slice();
+                this.activetoelichtingsectors = this.toelichtingsectors.slice();
+                this.activeprioriteringfuncties = this.prioriteringfuncties.slice();
             } else {
                 this.activesectors = [];
+                this.activetoelichtingsectors = [];
+                this.prioriteringfuncties = [];
             }
+            this.sortActiveSectors();
+            this.sortActiveToelichtingSectors();
+            this.sortActivePrioriteringFuncties();
             this.isReadAllSectorsActive = !this.isReadAllSectorsActive;
             var truuthy = this.isReadAllSectorsActive;
             this.sectors.forEach(function (sector) {
@@ -43070,9 +43122,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         toggleReadAllFuncties: function toggleReadAllFuncties() {
             if (!this.isReadAllFunctiesActive) {
                 this.activefuncties = this.functies.slice();
+                this.activebeschrijvingfuncties = this.beschrijvingfuncties.slice();
+                this.activebeschouwingfuncties = this.beschouwingfuncties.slice();
             } else {
                 this.activefuncties = [];
+                this.activebeschrijvingfuncties = [];
+                this.activebeschouwingfuncties = [];
             }
+            this.sortActiveFuncties();
+            this.sortActiveBeschrijvingFuncties();
+            this.sortActiveBeschouwingFuncties();
             this.isReadAllFunctiesActive = !this.isReadAllFunctiesActive;
             var truuthy = this.isReadAllFunctiesActive;
             this.functies.forEach(function (functie) {
@@ -43085,13 +43144,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         activateAllSectors: function activateAllSectors() {
             this.isReadAllSectorsActive = true;
             this.activesectors = this.sectors.slice();
+            this.activetoelichtingsectors = this.toelichtingsectors.slice();
+            this.activeprioriteringfuncties = this.prioriteringfuncties.slice();
+            this.sortActiveSectors();
+            this.sortActiveToelichtingSectors();
+            this.sortActivePrioriteringFuncties();
             this.sectors.forEach(function (sector) {
                 sector.active = true;
             });
         },
         activateAllFuncties: function activateAllFuncties() {
-            this.activefuncties = this.functies.slice();
             this.isReadAllFunctiesActive = true;
+            this.activefuncties = this.functies.slice();
+            this.activebeschrijvingfuncties = this.beschrijvingfuncties.slice();
+            this.activebeschouwingfuncties = this.beschouwingfuncties.slice();
+            this.sortActiveFuncties();
+            this.sortActiveBeschrijvingFuncties();
+            this.sortActiveBeschouwingFuncties();
             this.functies.forEach(function (functie) {
                 functie.active = true;
             });
@@ -43128,6 +43197,106 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 home.functies.forEach(function (functie) {
                     functie.active = false;
                 });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getSpecials: function getSpecials() {
+            var home = this;
+            axios.get('/api/specials').then(function (response) {
+                home.specials = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getToelichtingSectors: function getToelichtingSectors() {
+            var home = this;
+            axios.get('/api/toelichtingsectors').then(function (response) {
+                home.toelichtingsectors = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        sortActiveToelichtingSectors: function sortActiveToelichtingSectors() {
+            var temparray = this.activetoelichtingsectors.slice(0);
+            this.activetoelichtingsectors = [];
+            var counter = 1;
+            var home = this;
+            this.toelichtingsectors.forEach(function (basesector) {
+                if (temparray.includes(basesector)) {
+                    basesector.count = counter;
+                    home.activetoelichtingsectors.push(basesector);
+                    counter++;
+                }
+            });
+        },
+        getBeschrijvingFuncties: function getBeschrijvingFuncties() {
+            var home = this;
+            axios.get('/api/beschrijvingfuncties').then(function (response) {
+                home.beschrijvingfuncties = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        sortActiveBeschrijvingFuncties: function sortActiveBeschrijvingFuncties() {
+            var temparray = this.activebeschrijvingfuncties.slice(0);
+            this.activebeschrijvingfuncties = [];
+            var counter = 1;
+            var home = this;
+            this.beschrijvingfuncties.forEach(function (basefunctie) {
+                if (temparray.includes(basefunctie)) {
+                    basefunctie.count = counter;
+                    home.activebeschrijvingfuncties.push(basefunctie);
+                    counter++;
+                }
+            });
+        },
+        getBeschouwingFuncties: function getBeschouwingFuncties() {
+            var home = this;
+            axios.get('/api/beschouwingfuncties').then(function (response) {
+                home.beschouwingfuncties = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        sortActiveBeschouwingFuncties: function sortActiveBeschouwingFuncties() {
+            var temparray = this.activebeschouwingfuncties.slice(0);
+            this.activebeschouwingfuncties = [];
+            var counter = 1;
+            var home = this;
+            this.beschouwingfuncties.forEach(function (basefunctie) {
+                if (temparray.includes(basefunctie)) {
+                    basefunctie.count = counter;
+                    home.activebeschouwingfuncties.push(basefunctie);
+                    counter++;
+                }
+            });
+        },
+        getPrioriteringFuncties: function getPrioriteringFuncties() {
+            var home = this;
+            axios.get('/api/prioriteringfuncties').then(function (response) {
+                home.prioriteringfuncties = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        sortActivePrioriteringFuncties: function sortActivePrioriteringFuncties() {
+            var temparray = this.activeprioriteringfuncties.slice(0);
+            this.activeprioriteringfuncties = [];
+            var counter = 1;
+            var home = this;
+            this.prioriteringfuncties.forEach(function (basesector) {
+                if (temparray.includes(basesector)) {
+                    basesector.count = counter;
+                    home.activeprioriteringfuncties.push(basesector);
+                    counter++;
+                }
+            });
+        },
+        getDeelnemersWerksessies: function getDeelnemersWerksessies() {
+            var home = this;
+            axios.get('/api/bijlages').then(function (response) {
+                home.deelnemerswerksessies = response.data;
             }).catch(function (error) {
                 console.log(error);
             });
@@ -43517,7 +43686,13 @@ var render = function() {
           activefuncties: _vm.activefuncties,
           modusalgemeen: _vm.modusalgemeen,
           activealgemeen: _vm.activealgemeen,
-          isAModeSelected: _vm.isAModeSelected
+          isAModeSelected: _vm.isAModeSelected,
+          specials: _vm.specials,
+          toelichtingsectors: _vm.activetoelichtingsectors,
+          beschrijvingfuncties: _vm.activebeschrijvingfuncties,
+          beschouwingfuncties: _vm.activebeschouwingfuncties,
+          prioriteringfuncties: _vm.activeprioriteringfuncties,
+          deelnemerswerksessies: _vm.deelnemerswerksessies
         }
       })
     ],
@@ -43560,7 +43735,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/Rapportresultaten.vue"
+Component.options.__file = "resources\\assets\\js\\components\\Rapportresultaten.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -43767,26 +43942,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['activesectors', 'activefuncties', 'modusalgemeen', 'activealgemeen', 'isAModeSelected'],
+    props: ['activesectors', 'activefuncties', 'modusalgemeen', 'activealgemeen', 'isAModeSelected', 'specials', 'toelichtingsectors', 'beschrijvingfuncties', 'beschouwingfuncties', 'prioriteringfuncties', 'deelnemerswerksessies'],
 
     data: function data() {
-        return {
-            specials: [],
-            toelichtingsectors: [],
-            beschrijvingfuncties: [],
-            beschouwingfuncties: [],
-            prioriteringfuncties: [],
-            deelnemerswerksessies: []
-        };
+        return {};
     },
-    mounted: function mounted() {
-        this.getSpecials();
-        this.getToelichtingSectors();
-        this.getBeschrijvingFuncties();
-        this.getBeschouwingFuncties();
-        this.getPrioriteringFuncties();
-        this.getDeelnemersWerksessies();
-    },
+    mounted: function mounted() {},
 
 
     computed: {
@@ -43910,6 +44071,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
             return counter;
         }
+
     },
 
     methods: {
@@ -43928,54 +44090,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return counter;
                 }
                 counter++;
-            });
-        },
-        getSpecials: function getSpecials() {
-            var home = this;
-            axios.get('/api/specials').then(function (response) {
-                home.specials = response.data;
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        getToelichtingSectors: function getToelichtingSectors() {
-            var home = this;
-            axios.get('/api/toelichtingsectors').then(function (response) {
-                home.toelichtingsectors = response.data;
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        getBeschrijvingFuncties: function getBeschrijvingFuncties() {
-            var home = this;
-            axios.get('/api/beschrijvingfuncties').then(function (response) {
-                home.beschrijvingfuncties = response.data;
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        getBeschouwingFuncties: function getBeschouwingFuncties() {
-            var home = this;
-            axios.get('/api/beschouwingfuncties').then(function (response) {
-                home.beschouwingfuncties = response.data;
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        getPrioriteringFuncties: function getPrioriteringFuncties() {
-            var home = this;
-            axios.get('/api/prioriteringfuncties').then(function (response) {
-                home.prioriteringfuncties = response.data;
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        getDeelnemersWerksessies: function getDeelnemersWerksessies() {
-            var home = this;
-            axios.get('/api/bijlages').then(function (response) {
-                home.deelnemerswerksessies = response.data;
-            }).catch(function (error) {
-                console.log(error);
             });
         }
     }
@@ -44034,7 +44148,9 @@ var render = function() {
                 _vm._l(_vm.activesectors, function(sector) {
                   return _c("li", [
                     _c("a", { attrs: { href: "#" + sector.id } }, [
-                      _vm._v(" " + _vm._s(sector.id + _vm.countPreSF) + ". "),
+                      _vm._v(
+                        " " + _vm._s(sector.count + _vm.countPreSF) + ". "
+                      ),
                       _c("span", {
                         domProps: { innerHTML: _vm._s(sector.title) }
                       })
@@ -44050,9 +44166,9 @@ var render = function() {
                             _c("li", [
                               _vm._v(
                                 " " +
-                                  _vm._s(sector.id + _vm.countPreSF) +
+                                  _vm._s(sector.count + _vm.countPreSF) +
                                   "." +
-                                  _vm._s(functie.id) +
+                                  _vm._s(functie.count) +
                                   " "
                               ),
                               _c("span", {
@@ -44078,7 +44194,9 @@ var render = function() {
                 _vm._l(_vm.activefuncties, function(functie) {
                   return _c("li", [
                     _c("a", { attrs: { href: "#" + functie.id } }, [
-                      _vm._v(" " + _vm._s(functie.id + _vm.countPreSF) + ". "),
+                      _vm._v(
+                        " " + _vm._s(functie.count + _vm.countPreSF) + ". "
+                      ),
                       _c("span", {
                         domProps: { innerHTML: _vm._s(functie.title) }
                       })
@@ -44094,9 +44212,9 @@ var render = function() {
                             _c("li", [
                               _vm._v(
                                 " " +
-                                  _vm._s(functie.id + _vm.countPreSF) +
+                                  _vm._s(functie.count + _vm.countPreSF) +
                                   "." +
-                                  _vm._s(sector.id) +
+                                  _vm._s(sector.count) +
                                   " "
                               ),
                               _c("span", {
@@ -44216,7 +44334,7 @@ var render = function() {
                       " " +
                         _vm._s(_vm.countToelichtingSectoren) +
                         "." +
-                        _vm._s(toelichtingsector.id + 1) +
+                        _vm._s(toelichtingsector.count + 1) +
                         " "
                     ),
                     _c("span", {
@@ -44274,7 +44392,7 @@ var render = function() {
                       " " +
                         _vm._s(_vm.countBeschrijvingFuncties) +
                         "." +
-                        _vm._s(beschrijvingfunctie.id + 1) +
+                        _vm._s(beschrijvingfunctie.count + 1) +
                         " "
                     ),
                     _c("span", {
@@ -44302,7 +44420,7 @@ var render = function() {
                 { staticClass: "result", attrs: { id: sector.id } },
                 [
                   _c("h2", [
-                    _vm._v(" " + _vm._s(sector.id + _vm.countPreSF) + ". "),
+                    _vm._v(" " + _vm._s(sector.count + _vm.countPreSF) + ". "),
                     _c("span", {
                       domProps: { innerHTML: _vm._s(sector.title) }
                     })
@@ -44316,9 +44434,9 @@ var render = function() {
                         _c("h3", [
                           _vm._v(
                             " " +
-                              _vm._s(sector.id + _vm.countPreSF) +
+                              _vm._s(sector.count + _vm.countPreSF) +
                               "." +
-                              _vm._s(functie.id) +
+                              _vm._s(functie.count) +
                               " "
                           ),
                           _c("span", {
@@ -44354,7 +44472,7 @@ var render = function() {
                 { staticClass: "result", attrs: { id: functie.id } },
                 [
                   _c("h2", [
-                    _vm._v(" " + _vm._s(functie.id + _vm.countPreSF) + ". "),
+                    _vm._v(" " + _vm._s(functie.count + _vm.countPreSF) + ". "),
                     _c("span", {
                       domProps: { innerHTML: _vm._s(functie.title) }
                     })
@@ -44368,9 +44486,9 @@ var render = function() {
                         _c("h3", [
                           _vm._v(
                             " " +
-                              _vm._s(functie.id + _vm.countPreSF) +
+                              _vm._s(functie.count + _vm.countPreSF) +
                               "." +
-                              _vm._s(sector.id) +
+                              _vm._s(sector.count) +
                               " "
                           ),
                           _c("span", {
@@ -44433,7 +44551,7 @@ var render = function() {
                       " " +
                         _vm._s(_vm.countBeschouwingFuncties) +
                         "." +
-                        _vm._s(beschouwingfunctie.id + 1) +
+                        _vm._s(beschouwingfunctie.count + 1) +
                         " "
                     ),
                     _c("span", {
@@ -44491,7 +44609,7 @@ var render = function() {
                       " " +
                         _vm._s(_vm.countPrioriteringFuncties) +
                         "." +
-                        _vm._s(prioriteringfunctie.id + 1) +
+                        _vm._s(prioriteringfunctie.count + 1) +
                         " "
                     ),
                     _c("span", {
@@ -44640,7 +44758,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/Rapportelement.vue"
+Component.options.__file = "resources\\assets\\js\\components\\Rapportelement.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */

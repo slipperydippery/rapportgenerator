@@ -18,20 +18,20 @@
             </ul>
             <ul v-if="modusalgemeen == 'Uitwerking van functies per sector' ">
                 <li v-for="sector in activesectors">
-                    <a :href="'#' + sector.id "> {{ sector.id + countPreSF }}. <span v-html="sector.title"></span> </a>
+                    <a :href="'#' + sector.id "> {{ sector.count + countPreSF }}. <span v-html="sector.title"></span> </a>
                     <ul>
                         <a :href="'#' + sector.id + functie.id " v-for="functie in activefuncties">
-                            <li> {{ sector.id + countPreSF }}.{{ functie.id }} <span v-html="sector.title"></span> - <span v-html="functie.title"></span> </li>
+                            <li> {{ sector.count + countPreSF }}.{{ functie.count }} <span v-html="sector.title"></span> - <span v-html="functie.title"></span> </li>
                         </a>
                     </ul>
                 </li>
             </ul>
             <ul v-if="modusalgemeen == 'Uitwerking van sectoren per functie'">
                 <li v-for="functie in activefuncties">
-                    <a :href="'#' + functie.id "> {{ functie.id + countPreSF }}. <span v-html="functie.title"></span> </a>
+                    <a :href="'#' + functie.id "> {{ functie.count + countPreSF }}. <span v-html="functie.title"></span> </a>
                     <ul>
                         <a :href="'#' + functie.id + sector.id " v-for="sector in activesectors">
-                            <li> {{ functie.id + countPreSF }}.{{ sector.id }} <span v-html="functie.title"></span> - <span v-html="sector.title"></span> </li>
+                            <li> {{ functie.count + countPreSF }}.{{ sector.count }} <span v-html="functie.title"></span> - <span v-html="sector.title"></span> </li>
                         </a>
                     </ul>
                 </li>
@@ -57,7 +57,7 @@
                 <div class="result" 
                     v-for="toelichtingsector in toelichtingsectors"
                 >
-                    <h3> {{ countToelichtingSectoren }}.{{ toelichtingsector.id + 1 }} <span v-html="toelichtingsector.title"></span> </h3>
+                    <h3> {{ countToelichtingSectoren }}.{{ toelichtingsector.count + 1 }} <span v-html="toelichtingsector.title"></span> </h3>
                     <div class=""
                         v-html="toelichtingsector.body"
                     ></div>
@@ -72,7 +72,7 @@
                 <div class="result"
                     v-for="beschrijvingfunctie in beschrijvingfuncties"
                 >
-                    <h3> {{ countBeschrijvingFuncties }}.{{ beschrijvingfunctie.id + 1}} <span v-html="beschrijvingfunctie.title"></span> </h3>
+                    <h3> {{ countBeschrijvingFuncties }}.{{ beschrijvingfunctie.count + 1}} <span v-html="beschrijvingfunctie.title"></span> </h3>
                     <div class=""
                         v-html="beschrijvingfunctie.body"
                     ></div>
@@ -84,13 +84,13 @@
                     :id="sector.id"
                     v-for="sector in activesectors"
                 >
-                    <h2> {{ sector.id + countPreSF }}. <span v-html="sector.title"></span> </h2>
+                    <h2> {{ sector.count + countPreSF }}. <span v-html="sector.title"></span> </h2>
                         <div 
                             class="" 
                             :id="'' + sector.id + functie.id"
                             v-for="functie in activefuncties"
                         >
-                            <h3> {{ sector.id + countPreSF }}.{{ functie.id }} <span v-html="sector.title"></span>: <span v-html="functie.title"></span> </h3>
+                            <h3> {{ sector.count + countPreSF }}.{{ functie.count }} <span v-html="sector.title"></span>: <span v-html="functie.title"></span> </h3>
                             <rapportelement
                                 :sector="sector"
                                 :functie="functie"
@@ -105,13 +105,13 @@
                     :id="functie.id"
                     v-for="functie in activefuncties"
                 >
-                    <h2> {{ functie.id + countPreSF }}. <span v-html="functie.title"></span> </h2>
+                    <h2> {{ functie.count + countPreSF }}. <span v-html="functie.title"></span> </h2>
                         <div 
                             class="" 
                             :id="'' + functie.id + sector.id"
                             v-for="sector in activesectors"
                         >
-                            <h3> {{ functie.id + countPreSF }}.{{ sector.id }} <span v-html="functie.title"></span>: <span v-html="sector.title"></span> </h3>
+                            <h3> {{ functie.count + countPreSF }}.{{ sector.count }} <span v-html="functie.title"></span>: <span v-html="sector.title"></span> </h3>
                             <rapportelement
                                 :sector="sector"
                                 :functie="functie"
@@ -129,7 +129,7 @@
                 <div class="result"
                     v-for="beschouwingfunctie in beschouwingfuncties"
                 >
-                    <h3> {{ countBeschouwingFuncties }}.{{ beschouwingfunctie.id + 1 }} <span v-html="beschouwingfunctie.title"></span> </h3>
+                    <h3> {{ countBeschouwingFuncties }}.{{ beschouwingfunctie.count + 1 }} <span v-html="beschouwingfunctie.title"></span> </h3>
                     <div class=""
                         v-html="beschouwingfunctie.body"
                     ></div>
@@ -145,7 +145,7 @@
                 <div class="result"
                     v-for="prioriteringfunctie in prioriteringfuncties"
                 >
-                    <h3> {{ countPrioriteringFuncties }}.{{ prioriteringfunctie.id + 1 }} <span v-html="prioriteringfunctie.title"></span> </h3>
+                    <h3> {{ countPrioriteringFuncties }}.{{ prioriteringfunctie.count + 1 }} <span v-html="prioriteringfunctie.title"></span> </h3>
                     <div class=""
                         v-html="prioriteringfunctie.body"
                     ></div>
@@ -182,27 +182,21 @@
             'activefuncties',
             'modusalgemeen',
             'activealgemeen',
-            'isAModeSelected'
+            'isAModeSelected',            
+            'specials',
+            'toelichtingsectors',
+            'beschrijvingfuncties',
+            'beschouwingfuncties',
+            'prioriteringfuncties',
+            'deelnemerswerksessies',
         ],
 
         data() {
             return {
-                specials: [],
-                toelichtingsectors: [],
-                beschrijvingfuncties: [],
-                beschouwingfuncties: [],
-                prioriteringfuncties: [],
-                deelnemerswerksessies: [],
             }
         },
 
         mounted() {
-            this.getSpecials();
-            this.getToelichtingSectors();
-            this.getBeschrijvingFuncties();
-            this.getBeschouwingFuncties();
-            this.getPrioriteringFuncties();
-            this.getDeelnemersWerksessies();
         },
 
 
@@ -279,6 +273,7 @@
                 if(this.activealgemeen.includes('Slotbeschouwing')){ counter ++ };
                 return counter;
             },
+
         },
 
         methods: {
@@ -298,66 +293,6 @@
                     }
                     counter++;
                 })
-            },
-            getSpecials: function () {
-                var home = this;
-                axios.get('/api/specials')
-                    .then(function(response){
-                        home.specials = response.data;
-                    })
-                    .catch(function(error){
-                        console.log(error);
-                    });
-            },
-            getToelichtingSectors: function () {
-                var home = this;
-                axios.get('/api/toelichtingsectors')
-                    .then(function(response){
-                        home.toelichtingsectors = response.data;
-                    })
-                    .catch(function(error){
-                        console.log(error);
-                    });
-            },
-            getBeschrijvingFuncties: function() {
-                var home = this;
-                axios.get('/api/beschrijvingfuncties')
-                    .then(function(response){
-                        home.beschrijvingfuncties = response.data;
-                    })
-                    .catch(function(error){
-                        console.log(error);
-                    });                
-            },
-            getBeschouwingFuncties: function() {
-                var home = this;
-                axios.get('/api/beschouwingfuncties')
-                    .then(function(response){
-                        home.beschouwingfuncties = response.data;
-                    })
-                    .catch(function(error){
-                        console.log(error);
-                    });
-            },
-            getPrioriteringFuncties: function() {
-                var home = this;
-                axios.get('/api/prioriteringfuncties')
-                    .then(function(response){
-                        home.prioriteringfuncties = response.data;
-                    })
-                    .catch(function(error){
-                        console.log(error);
-                    });
-            },
-            getDeelnemersWerksessies: function() {
-                var home = this;
-                axios.get('/api/bijlages')
-                    .then(function(response){
-                        home.deelnemerswerksessies = response.data;
-                    })
-                    .catch(function(error){
-                        console.log(error);
-                    });
             },
         }
     }
