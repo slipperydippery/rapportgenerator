@@ -66,7 +66,7 @@
                 </div>
             @endif
 
-            <div class="content">
+            <div class="content clearfix">
                 <div class="bereschotlogo--print">
                     <img src="img/berenschot-logo.svg" alt="">
                 </div>
@@ -90,9 +90,16 @@
                     </div>
                     <div class="introtext--wrap">
                         <div class="introtext">
-                            <p>Deze rapportgenerator maakt het mogelijk om informatie over de ondersteuningsstructuur van de cultuursector te lezen vanuit sector- of functieperspectief. Om het rapport te lezen vanuit sectorperspectief selecteert u de sector en kiest u daarbij de bijbehorende functie. Wilt u het rapport lezen vanuit functieperspectief selecteert u eerst een functie. U kunt deze onderdelen uit het rapport op uw eigen clipboard bewaren, of de geselecteerde informatie delen. Wilt u het hele rapport lezen, klik op <a href="#">read all</a>. 
-                        
-                            <p>Deze rapportgenerator geeft de mogelijkheid om informatie te lezen waarin u zelf geïnteresseerd bent.</p>
+                            <p>Deze website geeft het rapport Ondersteuningsstructuur Cultuursector weer. Dit rapport is in november 2017 opgesteld door Berenschot. Het beschrijft de uitkomsten van het onderzoek naar de ondersteuningsstructuur van de cultuursector, dat Berenschot heeft uitgevoerd in opdracht van het ministerie van OCW. Berenschot heeft 6 sectoren en 5 bovensectorale onderwerpen onderzocht en 7 ondersteuningsfuncties onderscheiden.</p>
+
+<p>Deze rapportgenerator geeft u de mogelijkheid om uw eigen selectie te maken uit het rapport 'Ondersteuningsstructuur cultuursector'. U kunt het rapport ordenen en vervolgens lezen vanuit verschillende perspectieven:</p>
+<ul>
+    <li>u kunt het complete rapport selecteren vanuit sector- of functieperspectief {NB: volgorde omgedraaid}</li>
+    <li>u kunt onderdelen uit het rapport selecteren vanuit sector- of functieperspectief</li>
+    <li>en u kunt kiezen voor speciale selecties met verschillende andere onderdelen uit het rapport</li>
+</ul>
+
+<p>Maak een eerst een keuze in het menu [algemeen] en selecteer daarna een of meerdere onderdelen uit het menu 'sector' en het menu 'functie'. De rapportgenerator laat u direct het resultaat zien. U kunt uw selectie naar behoefte aanpassen. U kunt uw selectie vervolgens in printen en/of als PDF downloaden met de [print]knop.</p>
                         </div>
                     </div>
                 </div>
