@@ -81,6 +81,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="title--print">
+                        <h1>Ondersteuningsstructuur Cultuursector</h1>
+                        <h2>Conceptrapport Berenschot</h2>
+                </div>
                 <div class="title--wrap">   
                     <div class="title m-b-md">
                         Rapportgenerator

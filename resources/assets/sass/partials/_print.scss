@@ -3,6 +3,7 @@
     size: auto;   /* auto is the initial value */ 
     /* this affects the margin in the printer settings */ 
     margin: 30mm 25mm 20mm 25mm;  
+    border: 1px solid black;
 } 
 
 @media print {
@@ -12,14 +13,31 @@
         // background-color: lightgreen;
     }
 
+    .title--print {
+        display: block;
+        box-sizing: border-box;
+        // height: 920px;
+        padding-top: 200px;
+        page-break-after: always;
+        .title {
+            font-size: 30px;
+        }
+    }
+
+    #app {
+        margin-top: 2rem;
+    }
+
     .generator--shortresults {
 	    max-width: 670px !important;
 	    .print {
 	    	display: none;
 	    }
+        page-break-after: always;
     }
 
     .generator--results {
+        margin-top: 0;
     	max-width: 670px !important;
     	.result {
 	    	padding: 0 !important;
@@ -41,7 +59,7 @@
    	} 
 
     .position-ref {
-		position: absolute !important;
+		// position: absolute !important;
 		top: 0 !important;
     } 
 

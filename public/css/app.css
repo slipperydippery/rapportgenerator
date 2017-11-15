@@ -8459,6 +8459,10 @@ button:focus {
   text-align: left;
 }
 
+.title--print {
+  display: none;
+}
+
 .title {
   display: inline-block;
   width: 100%;
@@ -8606,6 +8610,10 @@ input[type="checkbox"]:checked + label,
   text-align: left;
 }
 
+.generator--shortresults ul {
+  margin-bottom: 0;
+}
+
 .generator--shortresults .print {
   position: absolute;
   right: 0;
@@ -8651,7 +8659,7 @@ input[type="checkbox"]:checked + label,
 .generator--results {
   width: 1000px;
   max-width: 80%;
-  margin: 0 auto;
+  margin: 2rem auto;
   text-align: left;
 }
 
@@ -8710,6 +8718,7 @@ table tr td p {
   /* auto is the initial value */
   /* this affects the margin in the printer settings */
   margin: 30mm 25mm 20mm 25mm;
+  border: 1px solid black;
 }
 
 @media print {
@@ -8719,8 +8728,25 @@ table tr td p {
     width: auto !important;
   }
 
+  .title--print {
+    display: block;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding-top: 200px;
+    page-break-after: always;
+  }
+
+  .title--print .title {
+    font-size: 30px;
+  }
+
+  #app {
+    margin-top: 2rem;
+  }
+
   .generator--shortresults {
     max-width: 670px !important;
+    page-break-after: always;
   }
 
   .generator--shortresults .print {
@@ -8728,6 +8754,7 @@ table tr td p {
   }
 
   .generator--results {
+    margin-top: 0;
     max-width: 670px !important;
   }
 
@@ -8759,7 +8786,6 @@ table tr td p {
   }
 
   .position-ref {
-    position: absolute !important;
     top: 0 !important;
   }
 

@@ -98,6 +98,10 @@ button:focus {
     text-align: left;
 }
 
+.title--print {
+    display: none;
+}
+
 .title {
     display: inline-block;
     width: 100%;
@@ -242,7 +246,7 @@ input[type="checkbox"]:checked + label, .active  {
 	margin: 0 auto;
 	text-align: left;
 	ul {
-		// list-style: none;
+		margin-bottom: 0;
 	}
     .print {
         position: absolute;
@@ -283,7 +287,7 @@ input[type="checkbox"]:checked + label, .active  {
 .generator--results {
     width: $bodywidth;
 	max-width: $maxbodywidth;
-	margin: 0 auto;
+	margin: 2rem auto;
 	text-align: left;
 
     .result {
