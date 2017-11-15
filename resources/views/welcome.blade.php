@@ -96,7 +96,7 @@
                         <div class="introtext">
                             <p>Deze website geeft het rapport Ondersteuningsstructuur Cultuursector weer. Dit rapport is in november 2017 opgesteld door Berenschot. Het beschrijft de uitkomsten van het onderzoek naar de ondersteuningsstructuur van de cultuursector, dat Berenschot heeft uitgevoerd in opdracht van het ministerie van OCW. Berenschot heeft 6 sectoren en 5 bovensectorale onderwerpen onderzocht en 7 ondersteuningsfuncties onderscheiden.</p>
 
-<p>Deze rapportgenerator geeft u de mogelijkheid om uw eigen selectie te maken uit het rapport 'Ondersteuningsstructuur cultuursector'. U kunt het rapport ordenen en vervolgens lezen vanuit verschillende perspectieven:</p>
+<p>Deze rapportgenerator geeft u de mogelijkheid om uw eigen selectie te maken uit het rapport 'Ondersteuningsstructuur Cultuursector'. U kunt het rapport ordenen en vervolgens lezen vanuit verschillende perspectieven:</p>
 <ul>
     <li>u kunt het complete rapport selecteren vanuit sector- of functieperspectief</li>
     <li>u kunt onderdelen uit het rapport selecteren vanuit sector- of functieperspectief</li>
