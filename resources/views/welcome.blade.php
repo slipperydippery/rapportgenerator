@@ -83,7 +83,7 @@
                 </div>
                 <div class="title--print">
                         <h1>Ondersteuningsstructuur Cultuursector</h1>
-                        <h2>Conceptrapport Berenschot</h2>
+                        <h2></h2>
                 </div>
                 <div class="title--wrap">   
                     <div class="title m-b-md">
@@ -98,12 +98,12 @@
 
 <p>Deze rapportgenerator geeft u de mogelijkheid om uw eigen selectie te maken uit het rapport 'Ondersteuningsstructuur cultuursector'. U kunt het rapport ordenen en vervolgens lezen vanuit verschillende perspectieven:</p>
 <ul>
-    <li>u kunt het complete rapport selecteren vanuit sector- of functieperspectief {NB: volgorde omgedraaid}</li>
+    <li>u kunt het complete rapport selecteren vanuit sector- of functieperspectief</li>
     <li>u kunt onderdelen uit het rapport selecteren vanuit sector- of functieperspectief</li>
     <li>en u kunt kiezen voor speciale selecties met verschillende andere onderdelen uit het rapport</li>
 </ul>
 
-<p>Maak een eerst een keuze in het menu [algemeen] en selecteer daarna een of meerdere onderdelen uit het menu 'sector' en het menu 'functie'. De rapportgenerator laat u direct het resultaat zien. U kunt uw selectie naar behoefte aanpassen. U kunt uw selectie vervolgens in printen en/of als PDF downloaden met de [print]knop.</p>
+<p>Maak eerst een keuze in het menu 'algemeen' en selecteer daarna een of meerdere onderdelen uit het menu 'sector' en het menu 'functie'. De rapportgenerator laat u direct het resultaat zien. U kunt uw selectie naar behoefte aanpassen. U kunt uw selectie vervolgens in printen en/of als PDF downloaden met de printknop.</p>
                         </div>
                     </div>
                 </div>
