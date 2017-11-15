@@ -103,7 +103,7 @@
     <li>en u kunt kiezen voor speciale selecties met verschillende andere onderdelen uit het rapport</li>
 </ul>
 
-<p>Maak eerst een keuze in het menu 'algemeen' en selecteer daarna een of meerdere onderdelen uit het menu 'sector' en het menu 'functie'. De rapportgenerator laat u direct het resultaat zien. U kunt uw selectie naar behoefte aanpassen. U kunt uw selectie vervolgens in printen en/of als PDF downloaden met de printknop.</p>
+<p>Maak eerst een keuze in het menu 'algemeen' en selecteer daarna een of meerdere onderdelen uit het menu 'sector' en het menu 'functie'. De rapportgenerator laat u direct het resultaat zien. U kunt uw selectie naar behoefte aanpassen. U kunt uw selectie vervolgens printen en/of als PDF downloaden met de printknop.</p>
                         </div>
                     </div>
                 </div>
