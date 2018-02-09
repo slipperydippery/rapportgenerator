@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BeschouwingfunctiesSeeder::class);
         $this->call(PrioriteringfunctiesSeeder::class);
         $this->call(BijlagesTableSeeder::class);
+        $this->call(BronsTableSeeder::class);
     }
 }

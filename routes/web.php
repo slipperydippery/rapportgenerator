@@ -26,3 +26,4 @@ Route::get('/api/beschrijvingfuncties ', 'ApiController@getbeschrijvingfuncties'
 Route::get('/api/beschouwingfuncties', 'ApiController@getbeschouwingfuncties');
 Route::get('/api/prioriteringfuncties', 'ApiController@getprioriteringfuncties');
 Route::get('/api/bijlages', 'ApiController@getbijlages');
+Route::get('/api/bronnen', 'ApiController@getbronnen');

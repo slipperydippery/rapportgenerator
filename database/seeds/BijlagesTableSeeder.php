@@ -31,7 +31,7 @@ class BijlagesTableSeeder extends Seeder
 </tr>
 <tr>
 <td width="306">
-<p>Productiehuis Rotterdam/ Grachtenfestival</p>
+<p>Grachtenfestival</p>
 </td>
 <td width="128">
 <p>mevrouw</p>

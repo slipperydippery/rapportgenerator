@@ -68,18 +68,25 @@
                         Prioritering van functies <br>
                     </button><br>
                     <button class="fauxlabel algemeenitem" 
-                        :class=" { 'active': activealgemeen.includes('Slotbeschouwing') && isAModeSelected } "
-                        @click=" toggleAlgemeen('Slotbeschouwing'); "
+                        :class=" { 'active': activealgemeen.includes('Bronnen') && isAModeSelected } "
+                        @click=" toggleAlgemeen('Bronnen'); "
                         :disabled=" ! isAModeSelected "
                     >
-                        Slotbeschouwing <br>
-                    </button><br>
+                        Bronnen <br>
+                    </button><br>                    
                     <button class="fauxlabel algemeenitem" 
                         :class=" { 'active': activealgemeen.includes('Deelnemers werksessies') && isAModeSelected } "
                         @click=" toggleAlgemeen('Deelnemers werksessies'); "
                         :disabled=" ! isAModeSelected "
                     >
                         Deelnemers werksessies <br>
+                    </button><br>
+                    <button class="fauxlabel algemeenitem" 
+                        :class=" { 'active': activealgemeen.includes('Slotbeschouwing') && isAModeSelected } "
+                        @click=" toggleAlgemeen('Slotbeschouwing'); "
+                        :disabled=" ! isAModeSelected "
+                    >
+                        Slotbeschouwing <br>
                     </button><br>
                 </div>
                 <div class="selectlist">
@@ -134,6 +141,7 @@
             :beschouwingfuncties="activebeschouwingfuncties"
             :prioriteringfuncties="activeprioriteringfuncties"
             :deelnemerswerksessies="deelnemerswerksessies"
+            :bronnen="activebronnen"
         >    
         </rapportresultaten>
     </div>
@@ -156,8 +164,9 @@
                     'Beschrijving van functies', 
                     'Beschouwing van functies', 
                     'Prioritering van functies', 
+                    'Bronnen',
+                    'Deelnemers werksessies',
                     'Slotbeschouwing', 
-                    'Deelnemers werksessies'
                 ],
                 activealgemeen: [],
                 modusalgemeen: {},
@@ -174,6 +183,8 @@
                 prioriteringfuncties: [],
                 activeprioriteringfuncties: [],
                 deelnemerswerksessies: [],
+                bronnen: [],
+                activebronnen: [],
             }
         },
 
@@ -186,6 +197,7 @@
             this.getBeschouwingFuncties();
             this.getPrioriteringFuncties();
             this.getDeelnemersWerksessies();
+            this.getBronnen();
         },
 
 
@@ -258,15 +270,18 @@
                 if (this.activesectors.includes(sector)) {
                     this.activetoelichtingsectors.splice(this.activesectors.indexOf(sector), 1);
                     this.activeprioriteringfuncties.splice(this.activesectors.indexOf(sector), 1);
+                    this.activebronnen.splice(this.activesectors.indexOf(sector), 1);
                     this.activesectors.splice(this.activesectors.indexOf(sector), 1);
                 } else {
                     this.activesectors.push(sector);
                     this.activetoelichtingsectors.push(this.toelichtingsectors[sector.id - 1]);
                     this.activeprioriteringfuncties.push(this.prioriteringfuncties[sector.id - 1]);
+                    this.activebronnen.push(this.bronnen[sector.id - 1]);
                 }
                 this.sortActiveSectors();
                 this.sortActiveToelichtingSectors();
                 this.sortActivePrioriteringFuncties();
+                this.sortActiveBronnen();
             },
             sortActiveSectors: function() {
                 var temparray = this.activesectors.slice(0);
@@ -315,6 +330,7 @@
                     this.activesectors = this.sectors.slice();
                     this.activetoelichtingsectors = this.toelichtingsectors.slice();
                     this.activeprioriteringfuncties = this.prioriteringfuncties.slice();
+                    this.activebronnen = this.prioriteringfuncties.slice();
                 } else {
                     this.activesectors = [];    
                     this.activetoelichtingsectors = [];
@@ -323,6 +339,7 @@
                 this.sortActiveSectors();
                 this.sortActiveToelichtingSectors();
                 this.sortActivePrioriteringFuncties();
+                this.sortActiveBronnen();
                 this.isReadAllSectorsActive = ! this.isReadAllSectorsActive;
                 var truuthy = this.isReadAllSectorsActive;
                 this.sectors.forEach(function(sector){
@@ -357,9 +374,11 @@
                 this.activesectors = this.sectors.slice();
                 this.activetoelichtingsectors = this.toelichtingsectors.slice();
                 this.activeprioriteringfuncties = this.prioriteringfuncties.slice();
+                this.activebronnen = this.prioriteringfuncties.slice();
                 this.sortActiveSectors();
                 this.sortActiveToelichtingSectors();
                 this.sortActivePrioriteringFuncties();
+                this.sortActiveBronnen();
                 this.sectors.forEach(function(sector){
                     sector.active = true;
                 })
@@ -527,7 +546,30 @@
                     .catch(function(error){
                         console.log(error);
                     });
+            },    
+            getBronnen: function() {
+                var home = this;
+                axios.get('/api/bronnen')
+                    .then(function(response){
+                        home.bronnen = response.data;
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    });
             },
+            sortActiveBronnen: function () {
+                var temparray = this.activebronnen.slice(0);
+                this.activebronnen = [];
+                var counter = 1;
+                var home = this;
+                this.bronnen.forEach(function(basesector) {
+                    if(temparray.includes(basesector)){
+                        basesector.count = counter;
+                        home.activebronnen.push(basesector);
+                        counter++;
+                    }
+                })
+            }, 
         }
     }
 </script>

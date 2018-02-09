@@ -51856,6 +51856,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -51867,7 +51875,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             activesectors: [],
             functies: [],
             activefuncties: [],
-            algemeen: ['Inleiding op onderzoek', 'Toelichting op sectoren', 'Beschrijving van functies', 'Beschouwing van functies', 'Prioritering van functies', 'Slotbeschouwing', 'Deelnemers werksessies'],
+            algemeen: ['Inleiding op onderzoek', 'Toelichting op sectoren', 'Beschrijving van functies', 'Beschouwing van functies', 'Prioritering van functies', 'Bronnen', 'Deelnemers werksessies', 'Slotbeschouwing'],
             activealgemeen: [],
             modusalgemeen: {},
             isReadAllSectorsActive: false,
@@ -51882,7 +51890,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             activebeschouwingfuncties: [],
             prioriteringfuncties: [],
             activeprioriteringfuncties: [],
-            deelnemerswerksessies: []
+            deelnemerswerksessies: [],
+            bronnen: [],
+            activebronnen: []
         };
     },
     mounted: function mounted() {
@@ -51894,6 +51904,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.getBeschouwingFuncties();
         this.getPrioriteringFuncties();
         this.getDeelnemersWerksessies();
+        this.getBronnen();
     },
 
 
@@ -51966,15 +51977,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.activesectors.includes(sector)) {
                 this.activetoelichtingsectors.splice(this.activesectors.indexOf(sector), 1);
                 this.activeprioriteringfuncties.splice(this.activesectors.indexOf(sector), 1);
+                this.activebronnen.splice(this.activesectors.indexOf(sector), 1);
                 this.activesectors.splice(this.activesectors.indexOf(sector), 1);
             } else {
                 this.activesectors.push(sector);
                 this.activetoelichtingsectors.push(this.toelichtingsectors[sector.id - 1]);
                 this.activeprioriteringfuncties.push(this.prioriteringfuncties[sector.id - 1]);
+                this.activebronnen.push(this.bronnen[sector.id - 1]);
             }
             this.sortActiveSectors();
             this.sortActiveToelichtingSectors();
             this.sortActivePrioriteringFuncties();
+            this.sortActiveBronnen();
         },
         sortActiveSectors: function sortActiveSectors() {
             var temparray = this.activesectors.slice(0);
@@ -52023,6 +52037,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.activesectors = this.sectors.slice();
                 this.activetoelichtingsectors = this.toelichtingsectors.slice();
                 this.activeprioriteringfuncties = this.prioriteringfuncties.slice();
+                this.activebronnen = this.prioriteringfuncties.slice();
             } else {
                 this.activesectors = [];
                 this.activetoelichtingsectors = [];
@@ -52031,6 +52046,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.sortActiveSectors();
             this.sortActiveToelichtingSectors();
             this.sortActivePrioriteringFuncties();
+            this.sortActiveBronnen();
             this.isReadAllSectorsActive = !this.isReadAllSectorsActive;
             var truuthy = this.isReadAllSectorsActive;
             this.sectors.forEach(function (sector) {
@@ -52065,9 +52081,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.activesectors = this.sectors.slice();
             this.activetoelichtingsectors = this.toelichtingsectors.slice();
             this.activeprioriteringfuncties = this.prioriteringfuncties.slice();
+            this.activebronnen = this.prioriteringfuncties.slice();
             this.sortActiveSectors();
             this.sortActiveToelichtingSectors();
             this.sortActivePrioriteringFuncties();
+            this.sortActiveBronnen();
             this.sectors.forEach(function (sector) {
                 sector.active = true;
             });
@@ -52218,6 +52236,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 home.deelnemerswerksessies = response.data;
             }).catch(function (error) {
                 console.log(error);
+            });
+        },
+        getBronnen: function getBronnen() {
+            var home = this;
+            axios.get('/api/bronnen').then(function (response) {
+                home.bronnen = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        sortActiveBronnen: function sortActiveBronnen() {
+            var temparray = this.activebronnen.slice(0);
+            this.activebronnen = [];
+            var counter = 1;
+            var home = this;
+            this.bronnen.forEach(function (basesector) {
+                if (temparray.includes(basesector)) {
+                    basesector.count = counter;
+                    home.activebronnen.push(basesector);
+                    counter++;
+                }
             });
         }
     }
@@ -52459,17 +52498,17 @@ var render = function() {
                 staticClass: "fauxlabel algemeenitem",
                 class: {
                   active:
-                    _vm.activealgemeen.includes("Slotbeschouwing") &&
+                    _vm.activealgemeen.includes("Bronnen") &&
                     _vm.isAModeSelected
                 },
                 attrs: { disabled: !_vm.isAModeSelected },
                 on: {
                   click: function($event) {
-                    _vm.toggleAlgemeen("Slotbeschouwing")
+                    _vm.toggleAlgemeen("Bronnen")
                   }
                 }
               },
-              [_vm._v("\n                    Slotbeschouwing "), _c("br")]
+              [_vm._v("\n                    Bronnen "), _c("br")]
             ),
             _c("br"),
             _vm._v(" "),
@@ -52493,6 +52532,26 @@ var render = function() {
                 _vm._v("\n                    Deelnemers werksessies "),
                 _c("br")
               ]
+            ),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "fauxlabel algemeenitem",
+                class: {
+                  active:
+                    _vm.activealgemeen.includes("Slotbeschouwing") &&
+                    _vm.isAModeSelected
+                },
+                attrs: { disabled: !_vm.isAModeSelected },
+                on: {
+                  click: function($event) {
+                    _vm.toggleAlgemeen("Slotbeschouwing")
+                  }
+                }
+              },
+              [_vm._v("\n                    Slotbeschouwing "), _c("br")]
             ),
             _c("br")
           ]),
@@ -52611,7 +52670,8 @@ var render = function() {
           beschrijvingfuncties: _vm.activebeschrijvingfuncties,
           beschouwingfuncties: _vm.activebeschouwingfuncties,
           prioriteringfuncties: _vm.activeprioriteringfuncties,
-          deelnemerswerksessies: _vm.deelnemerswerksessies
+          deelnemerswerksessies: _vm.deelnemerswerksessies,
+          bronnen: _vm.activebronnen
         }
       })
     ],
@@ -52858,10 +52918,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['activesectors', 'activefuncties', 'modusalgemeen', 'activealgemeen', 'isAModeSelected', 'specials', 'toelichtingsectors', 'beschrijvingfuncties', 'beschouwingfuncties', 'prioriteringfuncties', 'deelnemerswerksessies'],
+    props: ['activesectors', 'activefuncties', 'modusalgemeen', 'activealgemeen', 'isAModeSelected', 'specials', 'toelichtingsectors', 'beschrijvingfuncties', 'beschouwingfuncties', 'prioriteringfuncties', 'deelnemerswerksessies', 'bronnen'],
 
     data: function data() {
         return {};
@@ -52939,7 +53015,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
             return counter;
         },
-        countSlotbeschouwing: function countSlotbeschouwing() {
+        countBronnen: function countBronnen() {
             var counter = 1;
             if (this.modusalgemeen == 'Uitwerking van functies per sector') {
                 counter += this.activesectors.length;
@@ -52985,7 +53061,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.activealgemeen.includes('Prioritering van functies')) {
                 counter++;
             };
-            if (this.activealgemeen.includes('Slotbeschouwing')) {
+            if (this.activealgemeen.includes('Bronnen')) {
+                counter++;
+            };
+            return counter;
+        },
+        countSlotbeschouwing: function countSlotbeschouwing() {
+            var counter = 1;
+            if (this.modusalgemeen == 'Uitwerking van functies per sector') {
+                counter += this.activesectors.length;
+            } else if (this.modusalgemeen == 'Uitwerking van sectoren per functie') {
+                counter += this.activefuncties.length;
+            }
+            if (this.activealgemeen.includes('Inleiding op onderzoek')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Toelichting op sectoren')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Beschrijving van functies')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Beschouwing van functies')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Prioritering van functies')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Bronnen')) {
+                counter++;
+            };
+            if (this.activealgemeen.includes('Deelnemers werksessies')) {
                 counter++;
             };
             return counter;
@@ -53178,14 +53284,10 @@ var render = function() {
                 ])
               : _vm._e(),
             _vm._v(" "),
-            _vm.activealgemeen.includes("Slotbeschouwing")
-              ? _c("a", { attrs: { href: "#slotbeschouwing" } }, [
+            _vm.activealgemeen.includes("Bronnen")
+              ? _c("a", { attrs: { href: "#bronnen" } }, [
                   _c("li", [
-                    _vm._v(
-                      " " +
-                        _vm._s(_vm.countSlotbeschouwing) +
-                        " Slotbeschouwing "
-                    )
+                    _vm._v(" " + _vm._s(_vm.countBronnen) + " Bronnen ")
                   ])
                 ])
               : _vm._e(),
@@ -53197,6 +53299,18 @@ var render = function() {
                       " " +
                         _vm._s(_vm.countDeelnemersWerksessies) +
                         " Deelnemers werksessies "
+                    )
+                  ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.activealgemeen.includes("Slotbeschouwing")
+              ? _c("a", { attrs: { href: "#slotbeschouwing" } }, [
+                  _c("li", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countSlotbeschouwing) +
+                        " Slotbeschouwing "
                     )
                   ])
                 ])
@@ -53546,25 +53660,47 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.activealgemeen.includes("Slotbeschouwing")
-        ? _c("div", {}, [
-            _c(
-              "div",
-              { staticClass: "result", attrs: { id: "slotbeschouwing" } },
-              [
+      _vm.activealgemeen.includes("Bronnen")
+        ? _c(
+            "div",
+            {},
+            [
+              _c("div", { staticClass: "result", attrs: { id: "bronnen" } }, [
                 _c("h2", [
-                  _vm._v(" " + _vm._s(_vm.countSlotbeschouwing) + ". "),
+                  _vm._v(" " + _vm._s(_vm.countBronnen) + ". "),
                   _c("span", {
-                    domProps: { innerHTML: _vm._s(_vm.specials[5].title) }
+                    domProps: { innerHTML: _vm._s(_vm.specials[7].title) }
                   })
                 ]),
                 _vm._v(" "),
+                _c("h3", [
+                  _vm._v(" " + _vm._s(_vm.countBronnen) + ".1 Algemeen ")
+                ]),
+                _vm._v(" "),
                 _c("div", {
-                  domProps: { innerHTML: _vm._s(_vm.specials[5].body) }
+                  domProps: { innerHTML: _vm._s(_vm.specials[7].body) }
                 })
-              ]
-            )
-          ])
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.bronnen, function(bron) {
+                return _c("div", { staticClass: "result" }, [
+                  _c("h3", [
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.countBronnen) +
+                        "." +
+                        _vm._s(bron.count + 1) +
+                        " "
+                    ),
+                    _c("span", { domProps: { innerHTML: _vm._s(bron.title) } })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { domProps: { innerHTML: _vm._s(bron.body) } })
+                ])
+              })
+            ],
+            2
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm.activealgemeen.includes("Deelnemers werksessies")
@@ -53613,6 +53749,27 @@ var render = function() {
             ],
             2
           )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.activealgemeen.includes("Slotbeschouwing")
+        ? _c("div", {}, [
+            _c(
+              "div",
+              { staticClass: "result", attrs: { id: "slotbeschouwing" } },
+              [
+                _c("h2", [
+                  _vm._v(" " + _vm._s(_vm.countSlotbeschouwing) + ". "),
+                  _c("span", {
+                    domProps: { innerHTML: _vm._s(_vm.specials[5].title) }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", {
+                  domProps: { innerHTML: _vm._s(_vm.specials[5].body) }
+                })
+              ]
+            )
+          ])
         : _vm._e()
     ])
   ])

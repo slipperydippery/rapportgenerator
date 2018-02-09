@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bron;
 use App\Sector;
 use App\Bijlage;
 use App\Element;
@@ -69,5 +70,11 @@ class ApiController extends Controller
     {
         $bijlages = Bijlage::all();
         return $bijlages;
+    }
+
+    public function getbronnen()
+    {
+        $bronnen = Bron::all();
+        return $bronnen;
     }
 }
