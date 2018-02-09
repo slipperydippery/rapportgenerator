@@ -330,7 +330,7 @@
                     this.activesectors = this.sectors.slice();
                     this.activetoelichtingsectors = this.toelichtingsectors.slice();
                     this.activeprioriteringfuncties = this.prioriteringfuncties.slice();
-                    this.activebronnen = this.prioriteringfuncties.slice();
+                    this.activebronnen = this.bronnen.slice();
                 } else {
                     this.activesectors = [];    
                     this.activetoelichtingsectors = [];
@@ -374,7 +374,7 @@
                 this.activesectors = this.sectors.slice();
                 this.activetoelichtingsectors = this.toelichtingsectors.slice();
                 this.activeprioriteringfuncties = this.prioriteringfuncties.slice();
-                this.activebronnen = this.prioriteringfuncties.slice();
+                this.activebronnen = this.bronnen.slice();
                 this.sortActiveSectors();
                 this.sortActiveToelichtingSectors();
                 this.sortActivePrioriteringFuncties();

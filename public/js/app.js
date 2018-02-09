@@ -52037,7 +52037,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.activesectors = this.sectors.slice();
                 this.activetoelichtingsectors = this.toelichtingsectors.slice();
                 this.activeprioriteringfuncties = this.prioriteringfuncties.slice();
-                this.activebronnen = this.prioriteringfuncties.slice();
+                this.activebronnen = this.bronnen.slice();
             } else {
                 this.activesectors = [];
                 this.activetoelichtingsectors = [];
@@ -52081,7 +52081,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.activesectors = this.sectors.slice();
             this.activetoelichtingsectors = this.toelichtingsectors.slice();
             this.activeprioriteringfuncties = this.prioriteringfuncties.slice();
-            this.activebronnen = this.prioriteringfuncties.slice();
+            this.activebronnen = this.bronnen.slice();
             this.sortActiveSectors();
             this.sortActiveToelichtingSectors();
             this.sortActivePrioriteringFuncties();
