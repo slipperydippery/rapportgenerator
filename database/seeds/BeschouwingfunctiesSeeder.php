@@ -56,7 +56,7 @@ class BeschouwingfunctiesSeeder extends Seeder
             ],
             [
                 'title' => 'Beschouwing van Netwerkactivering',
-                'body' => '<p>deelsectoren en vooral ook met de omgeving centraal. Daarmee wordt de ontmoeting gefaciliteerd waardoor partijen elkaar binnen en buiten de sector leren kennen, kennis en informatie kunnen uitwisselen en eventueel tot nadere samenwerking kunnen komen. Er is ook een inhoudelijke en politiek-bestuurlijke kant aan netwerkactivering. Het zorgt er namelijk ook voor dat beleidsmatige kwesties aan de orde komen in debat en reflectie binnen en buiten de sector. </p>
+                'body' => '<p>In deze functie staat het vormen, ondersteunen van en toegang verlenen tot netwerken binnen de deelsectoren en vooral ook met de omgeving centraal. Daarmee wordt de ontmoeting gefaciliteerd waardoor partijen elkaar binnen en buiten de sector leren kennen, kennis en informatie kunnen uitwisselen en eventueel tot nadere samenwerking kunnen komen. Er is ook een inhoudelijke en politiek-bestuurlijke kant aan netwerkactivering. Het zorgt er namelijk ook voor dat beleidsmatige kwesties aan de orde komen in debat en reflectie binnen en buiten de sector. </p>
 
 <p>De taken in de ondersteuning bestaan daarbij onder meer uit inhoudelijke en praktische afstemming en co&ouml;rdinatie tussen de diverse partijen in en om de sectoren. Het gaat dan ook om (de organisatie van) bijeenkomsten, conferenties, studiedagen en lezingen. Netwerken, formeel en informeel, kunnen ook bestaan uit kenniskringen, community&rsquo;s en platforms, rond diverse thema&rsquo;s. </p>
 

@@ -172,11 +172,11 @@
                     <h2> {{ countDeelnemersWerksessies }}. <span v-html="specials[6].title"></span> </h2>
                 </div>
                 <div class="result"
-                    v-for="deelnemerswerksessie in deelnemerswerksessies"
+                    v-for="(sector, index) in activesectors"
                 >
-                    <h3> {{ countDeelnemersWerksessies }}.{{ deelnemerswerksessie.id + 1 }} <span v-html="deelnemerswerksessie.title"></span> </h3>
+                    <h3> {{ countDeelnemersWerksessies }}.{{ sector.id }} <span v-html="sector.title"></span> </h3>
                     <div class=""
-                        v-html="deelnemerswerksessie.body"
+                        v-html="deelnemerswerksessies[index].body"
                     ></div>
                 </div>
             </div>

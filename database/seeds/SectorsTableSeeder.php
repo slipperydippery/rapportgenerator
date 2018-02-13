@@ -65,7 +65,7 @@ class SectorsTableSeeder extends Seeder
                 'introduction' => ''
             ],
             [
-                'title' => 'Bovensectoraal Cultuureducatie',
+                'title' => 'Bovensectoraal Cultuureducatie & Cultuurparticipatie',
                 'description' => '',
                 'introduction' => ''
             ],

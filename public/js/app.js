@@ -53724,25 +53724,25 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._l(_vm.deelnemerswerksessies, function(deelnemerswerksessie) {
+              _vm._l(_vm.activesectors, function(sector, index) {
                 return _c("div", { staticClass: "result" }, [
                   _c("h3", [
                     _vm._v(
                       " " +
                         _vm._s(_vm.countDeelnemersWerksessies) +
                         "." +
-                        _vm._s(deelnemerswerksessie.id + 1) +
+                        _vm._s(sector.id) +
                         " "
                     ),
                     _c("span", {
-                      domProps: {
-                        innerHTML: _vm._s(deelnemerswerksessie.title)
-                      }
+                      domProps: { innerHTML: _vm._s(sector.title) }
                     })
                   ]),
                   _vm._v(" "),
                   _c("div", {
-                    domProps: { innerHTML: _vm._s(deelnemerswerksessie.body) }
+                    domProps: {
+                      innerHTML: _vm._s(_vm.deelnemerswerksessies[index].body)
+                    }
                   })
                 ])
               })
