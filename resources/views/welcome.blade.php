@@ -85,7 +85,24 @@
                 </div>
                 <div class="title--print">
                         <h1>Ondersteuningsstructuur Cultuursector</h1>
-                        <h2></h2>
+                        <h2>Inventariserend onderzoek naar ondersteuningsfuncties</h2>
+                        <div class="introtext">
+                            <p>Dit rapport beschrijft de resultaten van het onderzoek naar de ondersteuningsstructuur van de cultuursector dat Berenschot in 2017 heeft uitgevoerd in opdracht van het ministerie van OCW. Het onderzoek betreft een inventarisatie, enerzijds van de activiteiten die plaatsvinden op verschillende ondersteuningsfuncties, anderzijds van de behoeften die leven in het cultuurproducerende veld. </p>
+
+                            <p>Het onderzoek gaat in op de ondersteunende activiteiten van onder meer de rijksgesubsidieerde sectorale en bovensectorale ondersteunende instellingen en de rijkscultuurfondsen. De bevindingen in dit rapport zijn primair gebaseerd op een uitgebreide documentstudie en op gesprekken met elk van de betreffende instellingen en de begeleidingscommissie van het ministerie van OCW. </p>
+
+                            <p>Verder is input gehaald uit werksessies met betrokkenen uit de diverse deelsectoren. Het doel van deze werksessies was om verdieping en aanscherping te krijgen van wat er leeft in de cultuursector, en wat de verwachtingen van spelers zijn van de ondersteuning. Daarmee ontstaat een beeld van ervaringen met de ondersteuningsfuncties en de waardering daarvoor binnen de sector. Hoewel het totaal aantal gesprekspartners ruim is, is het aantal bevraagden per deelsector beperkt. Er is hierbij dan ook geen sprake van input die de mening van de meerderheid van het culturele veld omvat. </p>
+
+                            <p>Dit onderzoek geeft, zonder volledig te kunnen zijn, een overzicht van de grote variëteit aan ondersteunende activiteiten die worden uitgevoerd door spelers in de cultuursector en een indruk van de waardering daarvoor. Naar aanleiding van deze inventarisatie zal het ministerie van OCW een adviesaanvraag opstellen ten behoeve van de Raad voor Cultuur, om een advies te formuleren over de toekomstige inrichting van de ondersteuningsstructuur. Dit advies zal, in het bredere kader van de herziening van het cultuurbestel, na de zomer van 2018 worden uitgebracht. </p>
+                        </div>
+                        <div class="authors">
+                            <em>31 januari 2018</em> <br>
+                            Bastiaan Vinkenburg <br>
+                            Jan-Willem van Giessen <br>
+                            Robert Wester <br>
+                            Hanna Marije Booij <br>
+                            Lonneke Broeks <br>
+                        </div>
                 </div>
                 <div class="title--wrap">   
                     <div class="title m-b-md">
