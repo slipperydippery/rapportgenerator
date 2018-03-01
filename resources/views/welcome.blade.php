@@ -52,6 +52,16 @@
                 text-align: center;
             }
         </style>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-93563705-4"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-93563705-4');
+        </script>
+
     </head>
     <body>
         <div class="flex-center position-ref full-height">
